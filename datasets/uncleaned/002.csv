@@ -1,0 +1,58 @@
+input_text,input_parameters,bash_command
+use dd to create a bootable USB,"[""image.iso"", ""/dev/sdb""]",sudo dd if=image.iso of=/dev/sdb bs=4M status=progress
+wait for a background process to finish,"[""1234""]",wait 1234
+convert PDF to text,"[""document.pdf""]",pdftotext document.pdf
+merge two CSV files by a common column,"[""file1.csv"", ""file2.csv""]","join -t',' file1.csv file2.csv"
+change SELinux context,"[""httpd_sys_content_t"", ""/var/www/html""]",sudo chcon -R -t httpd_sys_content_t /var/www/html
+git tag a commit,"[""v1.0.0""]",git tag v1.0.0
+create a Java JAR file,"[""app.jar"", ""Main.class""]",jar cf app.jar Main.class
+truncate a file to zero bytes,"[""log.txt""]",truncate -s 0 log.txt
+convert CSV to TSV,"[""data.csv""]","sed 's/,/\t/g' data.csv"
+install a global npm package,"[""typescript""]",npm install -g typescript
+colorize grep output,"[""error"", ""log.txt""]","grep --color=always ""error"" log.txt"
+extract audio from a video,"[""video.mp4"", ""audio.mp3""]",ffmpeg -i video.mp4 -vn audio.mp3
+helm upgrade a release,"[""myrelease"", ""mychart/""]",helm upgrade myrelease mychart/
+use ab for HTTP benchmarking,"[""100"", ""10"", ""http://example.com/""]",ab -n 100 -c 10 http://example.com/
+lint Python code with flake8,"[""main.py""]",flake8 main.py
+show HTTP response time breakdown,"[""https://example.com""]","curl -w ""DNS: %{time_namelookup}s\nConnect: %{time_connect}s\nTLS: %{time_appconnect}s\nStart: %{time_starttransfer}s\nTotal: %{time_total}s\n"" -o /dev/null -s https://example.com"
+display a file in hexadecimal,"[""binary.dat""]",xxd binary.dat | head -20
+create a systemd service file,"[""myservice""]","sudo tee /etc/systemd/system/myservice.service << EOF
+[Unit]
+Description=My Service
+[Service]
+ExecStart=/usr/local/bin/myapp
+[Install]
+WantedBy=multi-user.target
+EOF"
+docker load an image from a file,"[""myapp.tar""]",docker load -i myapp.tar
+remove a shared memory segment,"[""12345""]",ipcrm -m 12345
+AWS stop an EC2 instance,"[""i-1234567890abcdef0""]",aws ec2 stop-instances --instance-ids i-1234567890abcdef0
+docker save an image to a file,"[""myapp"", ""myapp.tar""]",docker save -o myapp.tar myapp
+change ownership recursively,"[""user"", ""project/""]",chown -R user project/
+use strace to trace network operations,"[""./myapp""]",strace -e trace=network ./myapp
+run a command only if the previous one fails,"[""curl https://primary.com"", ""curl https://backup.com""]",curl https://primary.com || curl https://backup.com
+convert a file encoding,"[""input.txt"", ""output.txt""]",iconv -f ISO-8859-1 -t UTF-8 input.txt > output.txt
+compile with debug symbols,"[""main.c"", ""output""]",gcc -g -o output main.c
+compress a video,"[""input.mp4"", ""compressed.mp4""]",ffmpeg -i input.mp4 -crf 28 compressed.mp4
+deny a port through the firewall,"[""23""]",sudo ufw deny 23
+show only matching part of lines,"[""[0-9]+"", ""data.txt""]","grep -oP ""[0-9]+"" data.txt"
+use pass to show a password,"[""email/work""]",pass email/work
+install a Python package with pip,"[""requests""]",pip install requests
+create a Python virtual environment,"[""venv""]",python3 -m venv venv
+convert PEM to DER format,"[""cert.pem"", ""cert.der""]",openssl x509 -in cert.pem -outform DER -out cert.der
+filter JSON array by a condition,"[""data.json""]",jq '.[] | select(.age > 25)' data.json
+split a large file into smaller parts,"[""largefile.txt""]",split -b 100M largefile.txt part_
+strip comments from a configuration file,"[""config.conf""]",grep -v '^#' config.conf | grep -v '^$'
+redirect stderr to a file,"[""command"", ""error.log""]",command 2> error.log
+docker copy a file from container,"[""container_id"", ""/app/data.txt"", ""./data.txt""]",docker cp container_id:/app/data.txt ./data.txt
+git show a specific commit,"[""abc1234""]",git show abc1234
+check ELF binary information,"[""./myapp""]",readelf -h ./myapp
+download a file with wget to a specific directory,"[""https://example.com/file.zip"", ""/tmp/""]",wget -P /tmp/ https://example.com/file.zip
+kubernetes create a namespace,"[""staging""]",kubectl create namespace staging
+docker run a container with port mapping,"[""8080"", ""80"", ""nginx""]",docker run -d -p 8080:80 nginx
+ansible run playbook in check mode,"[""playbook.yml""]",ansible-playbook --check playbook.yml
+start a tmux session,"[""work""]",tmux new-session -s work
+GCP get credentials for a GKE cluster,"[""mycluster"", ""us-central1""]",gcloud container clusters get-credentials mycluster --region us-central1
+rate limit network traffic on an interface,"[""eth0"", ""1mbit""]",sudo tc qdisc add dev eth0 root tbf rate 1mbit burst 32kbit latency 400ms
+change the priority of a running process,"[""10"", ""1234""]",renice 10 -p 1234
+mount a filesystem,"[""/dev/sdb1"", ""/mnt/usb""]",sudo mount /dev/sdb1 /mnt/usb

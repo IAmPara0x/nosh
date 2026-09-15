@@ -1,0 +1,51 @@
+input_text,input_parameters,bash_command
+create a GitHub release,"[""v1.0.0""]",gh release create v1.0.0
+use curl to test WebSocket connection,"[""ws://localhost:8080""]","curl --include --no-buffer --header ""Connection: Upgrade"" --header ""Upgrade: websocket"" --header ""Sec-WebSocket-Key: test"" --header ""Sec-WebSocket-Version: 13"" ws://localhost:8080"
+create a cron job that runs daily at midnight,"[""backup.sh""]","echo ""0 0 * * * /path/to/backup.sh"" | crontab -"
+generate a sequence with a step,"[""0"", ""2"", ""20""]",seq 0 2 20
+check who is using a file,"[""/var/log/syslog""]",fuser /var/log/syslog
+check DNS records for a domain,"[""example.com""]",dig example.com
+trace system calls of a process,"[""1234""]",strace -p 1234
+clone a GitHub repository,"[""owner/repo""]",gh repo clone owner/repo
+sort a file in reverse order,"[""names.txt""]",sort -r names.txt
+delete a user,"[""johndoe""]",sudo userdel -r johndoe
+decrypt a GPG encrypted file,"[""file.txt.gpg""]",gpg --decrypt file.txt.gpg
+mount a Windows share,"[""//server/share"", ""/mnt/windows"", ""user""]",sudo mount -t cifs //server/share /mnt/windows -o username=user
+use pr to format files for printing,"[""file.txt""]","pr -h ""My Report"" file.txt"
+show PDF information,"[""document.pdf""]",pdfinfo document.pdf
+replace a string in all Python files,"[""old_name"", ""new_name""]","find . -name ""*.py"" -exec sed -i ""s/old_name/new_name/g"" {} +"
+helm uninstall a release,"[""myrelease""]",helm uninstall myrelease
+create a zip file from a directory,"[""backup.zip"", ""documents/""]",zip -r backup.zip documents/
+create a disk image,"[""/dev/sda"", ""disk.img""]",sudo dd if=/dev/sda of=disk.img bs=4M status=progress
+print specific lines from a file,"[""5"", ""10"", ""file.txt""]","sed -n '5,10p' file.txt"
+helm search for a chart,"[""nginx""]",helm search repo nginx
+test SMTP connection,"[""mail.example.com""]",telnet mail.example.com 25
+sync directories with rsync,"[""source/"", ""destination/""]",rsync -avz source/ destination/
+create a systemd timer for periodic execution,"[""mytimer""]",sudo systemctl enable --now mytimer.timer
+test HTTP/2 support of a server,"[""https://example.com""]",curl --http2 -I https://example.com
+create a group,"[""developers""]",sudo groupadd developers
+create an alias for a command,"[""ll"", ""ls -la""]","alias ll=""ls -la"""
+create a SQLite database and table,"[""mydb.sqlite""]","sqlite3 mydb.sqlite ""CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);"""
+create a GitHub repository,"[""my-project""]",gh repo create my-project --public
+show the MAC address of an interface,"[""eth0""]",cat /sys/class/net/eth0/address
+create a here document and save to file,"[""output.txt""]",cat << 'EOF' > output.txt
+show SELinux context of files,"[""/var/www""]",ls -Z /var/www
+AWS invoke a Lambda function,"[""myfunction""]",aws lambda invoke --function-name myfunction output.json
+search for the word error in server.log,"[""error"", ""server.log""]","grep ""error"" server.log"
+export a MongoDB collection,"[""mydb"", ""users"", ""users.json""]",mongoexport --db mydb --collection users --out users.json
+copy files preserving attributes,"[""source/"", ""dest/""]",cp -a source/ dest/
+add a specific file to staging,"[""index.html""]",git add index.html
+run a command as root,"[""apt update""]",sudo apt update
+print the second column of a CSV,"[""data.csv""]","awk -F',' '{print $2}' data.csv"
+find requests taking more than 5 seconds,"[""access.log""]",awk '$NF > 5' access.log
+disable a service from starting on boot,"[""nginx""]",sudo systemctl disable nginx
+parse JSON from command line,"[""data.json""]",jq '.' data.json
+count the number of lines in data.txt,"[""data.txt""]",wc -l data.txt
+show the OOM score of a process,"[""1234""]",cat /proc/1234/oom_score
+change the default shell,"[""/bin/zsh""]",chsh -s /bin/zsh
+show the SMART health status of a disk,"[""/dev/sda""]",sudo smartctl -H /dev/sda
+send a SIGHUP to a process,"[""1234""]",kill -HUP 1234
+initialize a new Next.js app,"[""my-app""]",npx create-next-app my-app
+search for a pattern case-insensitively,"[""warning"", ""log.txt""]","grep -i ""warning"" log.txt"
+list contents of a tar archive,"[""archive.tar""]",tar -tf archive.tar
+import data into MongoDB,"[""mydb"", ""users"", ""users.json""]",mongoimport --db mydb --collection users --file users.json

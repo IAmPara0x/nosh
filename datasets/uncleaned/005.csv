@@ -1,0 +1,51 @@
+input_text,input_parameters,bash_command
+extract a specific file from tar,"[""file.txt"", ""archive.tar""]",tar -xf archive.tar file.txt
+show the calendar for a specific year,"[""2025""]",cal 2025
+fork a GitHub repository,"[""owner/repo""]",gh repo fork owner/repo
+show the manual page for a command,"[""grep""]",man grep
+run a command only if the previous one succeeds,"[""make"", ""make install""]",make && make install
+transfer files with SFTP,"[""user@server""]",sftp user@server
+vacuum journal logs to a specific size,"[""500M""]",sudo journalctl --vacuum-size=500M
+kubernetes port forward to a pod,"[""mypod"", ""8080"", ""80""]",kubectl port-forward mypod 8080:80
+print the last field of each line,"[""file.txt""]",awk '{print $NF}' file.txt
+resize a filesystem after extending LV,"[""/dev/myvg/mylv""]",sudo resize2fs /dev/myvg/mylv
+measure website response time,"[""https://example.com""]","curl -s -o /dev/null -w ""Connect: %{time_connect}s\nTTFB: %{time_starttransfer}s\nTotal: %{time_total}s\n"" https://example.com"
+test DNS resolution speed,"[""example.com""]",time dig example.com
+docker run with environment variables,"[""MY_VAR=value"", ""nginx""]",docker run -d -e MY_VAR=value nginx
+parse XML from command line,"[""data.xml""]",xmllint --format data.xml
+send a command to a tmux session,"[""work"", ""ls""]","tmux send-keys -t work ""ls"" Enter"
+calculate file checksum,"[""file.txt""]",sha256sum file.txt
+reverse each line character by character,"[""file.txt""]",rev file.txt
+AWS sync a directory to S3,"[""./local_dir"", ""s3://mybucket/remote_dir""]",aws s3 sync ./local_dir s3://mybucket/remote_dir
+adjust OOM killer score,"[""1234"", ""-500""]",echo -500 > /proc/1234/oom_score_adj
+create a GitHub issue,"[""Bug: login broken""]","gh issue create --title ""Bug: login broken"""
+mount a partition by UUID,"[""UUID"", ""/mnt/data""]",sudo mount UUID=UUID /mnt/data
+create a patch file,"[""old/"", ""new/"", ""changes.patch""]",diff -ruN old/ new/ > changes.patch
+monitor a process and restart if it dies,"[""myapp""]","while true; do ./myapp; echo ""Process crashed, restarting...""; sleep 5; done"
+generate a new locale,"[""en_US.UTF-8""]",sudo locale-gen en_US.UTF-8
+analyze HTTP status codes from access log,"[""access.log""]",awk '{print $9}' access.log | sort | uniq -c | sort -rn
+create a symbolic link,"[""target"", ""link_name""]",ln -s target link_name
+convert a Jupyter notebook to HTML,"[""notebook.ipynb""]",jupyter nbconvert --to html notebook.ipynb
+make a script executable,"[""deploy.sh""]",chmod +x deploy.sh
+convert epoch to human readable date,"[""1700000000""]",date -d @1700000000
+show process tree for a specific user,"[""www-data""]",pstree -u www-data
+capture network packets on an interface,"[""eth0""]",sudo tcpdump -i eth0
+create a VLAN interface,"[""eth0"", ""100""]",sudo ip link add link eth0 name eth0.100 type vlan id 100
+run a command on a remote server via SSH,"[""user@server"", ""uptime""]","ssh user@server ""uptime"""
+sign a file with GPG,"[""file.txt""]",gpg --sign file.txt
+count occurrences of a pattern in a file,"[""error"", ""log.txt""]","grep -c ""error"" log.txt"
+enable swap,"[""/swapfile""]",sudo swapon /swapfile
+use tshark to capture packets,"[""eth0""]",sudo tshark -i eth0
+use whois to look up domain information,"[""example.com""]",whois example.com
+verify file against checksum,"[""file.txt.sha256""]",sha256sum -c file.txt.sha256
+convert audio format,"[""input.wav"", ""output.mp3""]",ffmpeg -i input.wav output.mp3
+stress test memory,"[""2G"", ""60""]",stress --vm 1 --vm-bytes 2G --timeout 60
+compress a file with bzip2,"[""data.txt""]",bzip2 data.txt
+unmount a SSHFS mount,"[""/local/mount""]",fusermount -u /local/mount
+add a user to a group,"[""johndoe"", ""docker""]",sudo usermod -aG docker johndoe
+set AppArmor profile to complain mode,"[""nginx""]",sudo aa-complain /etc/apparmor.d/usr.sbin.nginx
+capture only HTTP traffic,"[""eth0""]","sudo tshark -i eth0 -f ""tcp port 80"""
+set environment variable permanently,"[""API_KEY"", ""secret123""]",echo 'export API_KEY=secret123' >> ~/.bashrc && source ~/.bashrc
+view GitHub Actions run details,"[""12345""]",gh run view 12345
+set CPU affinity for a process,"[""0,1"", ""1234""]","taskset -cp 0,1 1234"
+compile with optimization,"[""main.c"", ""output""]",gcc -O2 -o output main.c

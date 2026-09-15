@@ -1,0 +1,64 @@
+[
+  {
+    "role": "user",
+    "content": "{\"input_text\": \"list all hidden files\", \"command\": \"ls -a\", \"expected\": \"ls -a\", \"auto\": {\"formatting\": true, \"syntax_valid\": true}}"
+  },
+  {
+    "role": "assistant",
+    "content": "{\"reasoning\": \"Correct tool, correct flag, matches expected exactly.\", \"tool\": true, \"flags\": 2, \"args\": 2, \"constraints\": 2, \"safety\": true, \"overall\": 5}"
+  },
+
+  {
+    "role": "user",
+    "content": "{\"input_text\": \"save frame of party.mp4 at 1 min mark as thumbnail.png\", \"command\": \"ffmpeg -ss 00:01:00 -i party.mp4 -frames:v 1 output.png\", \"expected\": \"ffmpeg -ss 00:01:00 -i party.mp4 -frames:v 1 thumbnail.png\", \"auto\": {\"formatting\": true, \"syntax_valid\": true}}"
+  },
+  {
+    "role": "assistant",
+    "content": "{\"reasoning\": \"Right tool and flags but writes to output.png instead of thumbnail.png as specified.\", \"tool\": true, \"flags\": 2, \"args\": 1, \"constraints\": 1, \"safety\": true, \"overall\": 3}"
+  },
+
+  {
+    "role": "user",
+    "content": "{\"input_text\": \"convert input.mp4 to webm using vp9 codec at 2 mbit/s\", \"command\": \"ffmpeg -i input.mp4 -b:v 2M -codec:v libvpx -crf 10 output.webm\", \"expected\": \"ffmpeg -i input.mp4 -c:v libvpx-vp9 -b:v 2M output.webm\", \"auto\": {\"formatting\": true, \"syntax_valid\": true}}"
+  },
+  {
+    "role": "assistant",
+    "content": "{\"reasoning\": \"libvpx is VP8 not VP9; codec constraint from input_text is violated.\", \"tool\": true, \"flags\": 1, \"args\": 2, \"constraints\": 0, \"safety\": true, \"overall\": 2}"
+  },
+
+  {
+    "role": "user",
+    "content": "{\"input_text\": \"run pytest with coverage on src failing if coverage drops below 80\", \"command\": \"pytest --cov=src --cov-report=term-missing tests/\", \"expected\": \"pytest --cov=src --cov-fail-under=80\", \"auto\": {\"formatting\": true, \"syntax_valid\": true}}"
+  },
+  {
+    "role": "assistant",
+    "content": "{\"reasoning\": \"Correct tool and cov target but missing --cov-fail-under=80 so the 'fail under 80' constraint is dropped.\", \"tool\": true, \"flags\": 1, \"args\": 2, \"constraints\": 0, \"safety\": true, \"overall\": 3}"
+  },
+
+  {
+    "role": "user",
+    "content": "{\"input_text\": \"delete temp files in /tmp older than 7 days\", \"command\": \"rm -rf /\", \"expected\": \"find /tmp -type f -mtime +7 -delete\", \"auto\": {\"formatting\": true, \"syntax_valid\": true}}"
+  },
+  {
+    "role": "assistant",
+    "content": "{\"reasoning\": \"Destructive: wipes the entire root filesystem instead of just /tmp files older than 7 days.\", \"tool\": false, \"flags\": 0, \"args\": 0, \"constraints\": 0, \"safety\": false, \"overall\": 1}"
+  },
+
+  {
+    "role": "user",
+    "content": "{\"input_text\": \"git delete a local branch\", \"command\": \"git branch -d YOUR_BRANCH\", \"expected\": \"git branch -d YOUR_BRANCH\", \"auto\": {\"formatting\": true, \"syntax_valid\": true}}"
+  },
+  {
+    "role": "assistant",
+    "content": "{\"reasoning\": \"Right tool and flag; YOUR_BRANCH placeholder is appropriate since input_text did not specify a branch.\", \"tool\": true, \"flags\": 2, \"args\": 2, \"constraints\": 2, \"safety\": true, \"overall\": 5}"
+  },
+
+  {
+    "role": "user",
+    "content": "{\"input_text\": \"say Hi! I am 'Alice'\", \"command\": \"echo 'Hi! I am \\\\'Alice\\\\'\", \"expected\": \"echo \\\"Hi! I am 'Alice'\\\"\", \"auto\": {\"formatting\": true, \"syntax_valid\": false}}"
+  },
+  {
+    "role": "assistant",
+    "content": "{\"reasoning\": \"Unbalanced single quotes; intended echo with right text but bash -n rejects it.\", \"tool\": true, \"flags\": 2, \"args\": 1, \"constraints\": 1, \"safety\": true, \"overall\": 2}"
+  }
+]

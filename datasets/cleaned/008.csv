@@ -1,0 +1,101 @@
+prompt,command
+show the TXT records for a domain example.com,dig TXT example.com
+show the TXT records for a domain,dig TXT YOUR_DOMAIN
+kubernetes drain a node mynode for maintenance,kubectl drain mynode --ignore-daemonsets --delete-emptydir-data
+kubernetes drain a node for maintenance,kubectl drain YOUR_NODE --ignore-daemonsets --delete-emptydir-data
+setup a cron job for weekly backups of backup.sh,"echo ""0 2 * * 0 /path/to/backup.sh"" | crontab -"
+setup a cron job for weekly backups,"echo ""0 2 * * 0 /path/to/YOUR_SCRIPT"" | crontab -"
+use ipcalc to calculate subnet information for 192.168.1.0/24,ipcalc 192.168.1.0/24
+use ipcalc to calculate subnet information,ipcalc YOUR_SUBNET
+compress a file data.txt with gzip,gzip data.txt
+compress a file with gzip,gzip YOUR_FILE
+trigger a GitHub Actions workflow deploy.yml,gh workflow run deploy.yml
+trigger a GitHub Actions workflow,gh workflow run YOUR_WORKFLOW
+calculate average response time from logs access.log,awk '{sum+=$NF; n++} END {print sum/n}' access.log
+calculate average response time from logs,awk '{sum+=$NF; n++} END {print sum/n}' YOUR_LOGFILE
+set file access control lists for /shared/file.txt to user:johndoe:rw,setfacl -m user:johndoe:rw /shared/file.txt
+set file access control lists,setfacl -m YOUR_ACL YOUR_FILE
+create a backup with timestamp for project/,"tar -czf ""project_$(date +%Y%m%d_%H%M%S).tar.gz"" project/"
+create a backup with timestamp,"tar -czf ""YOUR_PREFIX_$(date +%Y%m%d_%H%M%S).tar.gz"" YOUR_DIRECTORY"
+sort a file numbers.txt numerically,sort -n numbers.txt
+sort a file numerically,sort -n YOUR_FILE
+create a CSR for SSL from server.key to server.csr,openssl req -new -key server.key -out server.csr
+create a CSR for SSL,openssl req -new -key YOUR_KEY -out YOUR_CSR
+verify an SSL certificate cert.pem,openssl x509 -in cert.pem -text -noout
+verify an SSL certificate,openssl x509 -in YOUR_CERT -text -noout
+check if a command docker exists,"command -v docker >/dev/null 2>&1 && echo ""installed"" || echo ""not installed"""
+check if a command exists,"command -v YOUR_COMMAND >/dev/null 2>&1 && echo ""installed"" || echo ""not installed"""
+create a new Rust project myproject,cargo new myproject
+create a new Rust project,cargo new YOUR_PROJECT
+disassemble a binary ./myapp,objdump -d ./myapp
+disassemble a binary,objdump -d YOUR_BINARY
+kubernetes get all resources in a namespace production,kubectl get all -n production
+kubernetes get all resources in a namespace,kubectl get all -n YOUR_NAMESPACE
+create a tar archive folder/ without compression to archive.tar,tar -cf archive.tar folder/
+create a tar archive without compression,tar -cf YOUR_OUTPUT YOUR_DIRECTORY
+enable promiscuous mode on an interface eth0,sudo ip link set eth0 promisc on
+enable promiscuous mode on an interface,sudo ip link set YOUR_INTERFACE promisc on
+wipe a disk /dev/sdb securely,sudo dd if=/dev/urandom of=/dev/sdb bs=4M status=progress
+wipe a disk securely,sudo dd if=/dev/urandom of=YOUR_DEVICE bs=4M status=progress
+check DNSSEC validation for example.com,dig +dnssec example.com
+check DNSSEC validation,dig +dnssec YOUR_DOMAIN
+merge a GitHub pull request 123,gh pr merge 123
+merge a GitHub pull request,gh pr merge YOUR_PR_NUMBER
+profile a command ./myapp,perf stat ./myapp
+profile a command,perf stat YOUR_COMMAND
+connect to a remote server via SSH user@192.168.1.100,ssh user@192.168.1.100
+connect to a remote server via SSH,ssh YOUR_USER@YOUR_HOST
+create a network namespace mynamespace,sudo ip netns add mynamespace
+create a network namespace,sudo ip netns add YOUR_NAMESPACE
+convert HTML page.html to PDF page.pdf,wkhtmltopdf page.html page.pdf
+convert HTML to PDF,wkhtmltopdf YOUR_INPUT YOUR_OUTPUT
+format JSON output from data.json,jq '.' data.json
+format JSON output,jq '.' YOUR_FILE
+run a PostgreSQL query SELECT NOW() from command line,"psql -c ""SELECT NOW()"""
+run a PostgreSQL query from command line,"psql -c ""YOUR_QUERY"""
+extend a logical volume mylv by 5G,sudo lvextend -L +5G /dev/myvg/mylv
+extend a logical volume,sudo lvextend -L +YOUR_SIZE /dev/myvg/YOUR_LV
+ansible list all hosts in inventory inventory.ini,ansible -i inventory.ini all --list-hosts
+ansible list all hosts in inventory,ansible -i YOUR_INVENTORY all --list-hosts
+create a self-extracting archive from archive.tar.gz to extract.sh,cat decompress.sh archive.tar.gz > extract.sh && chmod +x extract.sh
+create a self-extracting archive,cat YOUR_DECOMPRESS YOUR_ARCHIVE > YOUR_OUTPUT && chmod +x YOUR_OUTPUT
+send SIGUSR1 to a process 1234,kill -USR1 1234
+send SIGUSR1 to a process,kill -USR1 YOUR_PID
+scan a range of ports 1-1000 on 192.168.1.1,nmap -p 1-1000 192.168.1.1
+scan a range of ports,nmap -p YOUR_PORTS YOUR_HOST
+show symbols in a binary ./myapp,nm ./myapp
+show symbols in a binary,nm YOUR_BINARY
+set the system locale to en_US.UTF-8,sudo localectl set-locale LANG=en_US.UTF-8
+set the system locale,sudo localectl set-locale LANG=YOUR_LOCALE
+benchmark a website with ab at https://example.com/,ab -n 1000 -c 10 https://example.com/
+benchmark a website with ab,ab -n YOUR_REQUESTS -c YOUR_CONCURRENT YOUR_URL
+create a named pipe mypipe,mkfifo mypipe
+create a named pipe,mkfifo YOUR_PIPE
+show file access control lists for /shared,getfacl /shared
+show file access control lists,getfacl YOUR_PATH
+restart a systemd service nginx,sudo systemctl restart nginx
+restart a systemd service,sudo systemctl restart YOUR_SERVICE
+attach to a screen session mysession,screen -r mysession
+attach to a screen session,screen -r YOUR_SESSION
+extract a tar.gz archive archive.tar.gz,tar -xzf archive.tar.gz
+extract a tar.gz archive,tar -xzf YOUR_ARCHIVE
+use sed to add line numbers to a file file.txt,sed = file.txt | sed 'N;s/\n/\t/'
+use sed to add line numbers to a file,sed = YOUR_FILE | sed 'N;s/\n/\t/'
+count JSON array elements in data.json,jq '. | length' data.json
+count JSON array elements,jq '. | length' YOUR_FILE
+create a database dump with mysqldump for database_name to backup.sql,mysqldump -u root -p database_name > backup.sql
+create a database dump with mysqldump,mysqldump -u root -p YOUR_DATABASE > YOUR_BACKUP
+replace tabs with spaces in a file file.txt,expand file.txt
+replace tabs with spaces in a file,expand YOUR_FILE
+use auditd to watch a file /etc/passwd for changes,sudo auditctl -w /etc/passwd -p wa -k passwd_changes
+use auditd to watch a file,sudo auditctl -w YOUR_FILE -p wa -k YOUR_KEY
+print lines matching a pattern error in log.txt with line numbers,"grep -n ""error"" log.txt"
+print lines matching a pattern with line numbers,"grep -n ""YOUR_PATTERN"" YOUR_FILE"
+AWS create an SQS queue myqueue,aws sqs create-queue --queue-name myqueue
+AWS create an SQS queue,aws sqs create-queue --queue-name YOUR_QUEUE
+ansible run a playbook playbook.yml with inventory inventory.ini,ansible-playbook -i inventory.ini playbook.yml
+ansible run a playbook with inventory,ansible-playbook -i YOUR_INVENTORY YOUR_PLAYBOOK
+run a command python3 main.py when a file main.py changes,inotifywait -m main.py -e modify | while read; do python3 main.py; done
+run a command when a file changes,inotifywait -m YOUR_FILE -e modify | while read; do YOUR_COMMAND; done
+run a command ip addr in a network namespace mynamespace,sudo ip netns exec mynamespace ip addr
+run a command in a network namespace,sudo ip netns exec YOUR_NAMESPACE YOUR_COMMAND

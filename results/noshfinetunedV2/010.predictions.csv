@@ -1,0 +1,103 @@
+prompt,command,expected,exact_match,formatting,syntax_valid
+GCP copy a file file.txt to GCS gs://mybucket/,gsutil cp file.txt gs://mybucket/,gsutil cp file.txt gs://mybucket/,True,True,True
+GCP copy a file to GCS,gsutil cp gs://source_bucket/source_file gs://destination_bucket/destination_file,gsutil cp YOUR_FILE YOUR_GCS_BUCKET,False,True,True
+docker run a container nginx,docker run -d --name mynginx nginx,docker run -d nginx,False,True,True
+docker run a container,docker run -d myimage,docker run -d YOUR_IMAGE,False,True,True
+set an environment variable API_KEY to abc123,export API_KEY=abc123,export API_KEY=abc123,True,True,True
+set an environment variable,export VARIABLE=value,export YOUR_VAR=YOUR_VALUE,False,True,True
+use rsync to delete files not in source/ from dest/,rsync -av --delete source/ dest/,rsync -avz --delete source/ dest/,False,True,True
+use rsync to delete files not in source,rsync -av --delete source/ dest/,rsync -avz --delete YOUR_SOURCE YOUR_DESTINATION,False,True,True
+create a GIF from a video input.mp4 to output.gif,"ffmpeg -i input.mp4 -vf ""fps=10,scale=320:-1"" -loop 0 output.gif","ffmpeg -i input.mp4 -vf ""fps=10,scale=320:-1"" output.gif",False,True,True
+create a GIF from a video,"ffmpeg -i input.mp4 -filter_complex ""fps=10,scale=320:-1"" -loop 0 output.gif","ffmpeg -i YOUR_INPUT -vf ""fps=10,scale=320:-1"" YOUR_OUTPUT",False,True,True
+parse YAML from command line config.yaml,yq '.' config.yaml,yq '.' config.yaml,True,True,True
+parse YAML from command line,yq '.key' file.yaml,yq '.' YOUR_FILE,False,True,True
+test a TCP connection to example.com:443,nc -zv example.com 443,nc -zv example.com 443,True,True,True
+test a TCP connection to a port,nc -zv YOUR_HOST YOUR_PORT,nc -zv YOUR_HOST YOUR_PORT,True,True,True
+restore a MySQL database database_name from backup.sql,mysql -u root -p database_name < backup.sql,mysql -u root -p database_name < backup.sql,True,True,True
+restore a MySQL database from dump,mysql -u root -p database < dump.sql,mysql -u root -p YOUR_DATABASE < YOUR_BACKUP,False,True,True
+cut a video clip from 00:01:00 to 00:02:00 in input.mp4 to clip.mp4,ffmpeg -i input.mp4 -ss 00:01:00 -to 00:02:00 clip.mp4,ffmpeg -i input.mp4 -ss 00:01:00 -to 00:02:00 -c copy clip.mp4,False,True,True
+cut a video clip,ffmpeg -i input.mp4 -ss 00:01:00 -to 00:02:00 -c copy clip.mp4,ffmpeg -i YOUR_INPUT -ss YOUR_START -to YOUR_END -c copy YOUR_OUTPUT,False,True,True
+git show commits from 2024-01-01 to 2024-01-31,"git log --after=""2024-01-01"" --before=""2024-02-01""","git log --after=""2024-01-01"" --before=""2024-01-31""",False,True,True
+git show commits from a specific date range,"git log --since=""2024-01-01"" --until=""2024-02-01""","git log --after=""YOUR_START_DATE"" --before=""YOUR_END_DATE""",False,True,True
+kubernetes autoscale deployment mydeployment with min 2 and max 10,kubectl autoscale deployment mydeployment --min=2 --max=10,kubectl autoscale deployment mydeployment --min=2 --max=10 --cpu-percent=80,False,True,True
+kubernetes autoscale a deployment,kubectl autoscale deployment deployment_name --cpu-percent=50 --min=2 --max=10,kubectl autoscale deployment YOUR_DEPLOYMENT --min=YOUR_MIN --max=YOUR_MAX --cpu-percent=80,False,True,True
+use rsync with bandwidth limit of 1000 from source/ to dest/,rsync -av --bwlimit=1000 source/ dest/,rsync -avz --bwlimit=1000 source/ dest/,False,True,True
+use rsync with bandwidth limit,rsync --bwlimit=1000 source/ destination/,rsync -avz --bwlimit=YOUR_LIMIT YOUR_SOURCE YOUR_DESTINATION,False,True,True
+disable swap on /swapfile,sudo swapoff /swapfile,sudo swapoff /swapfile,True,True,True
+disable swap,sudo swapoff /swapfile,sudo swapoff YOUR_SWAPFILE,False,True,True
+kubernetes get logs from a pod mypod,kubectl logs mypod,kubectl logs mypod,True,True,True
+kubernetes get logs from a pod,kubectl logs pod_name,kubectl logs YOUR_POD,False,True,True
+check if a port 8080 is in use,lsof -i :8080,lsof -i :8080,True,True,True
+check if a port is in use,lsof -i :80,lsof -i :YOUR_PORT,False,True,True
+check if a directory dirpath exists,"[ -d dirpath ] && echo ""exists"" || echo ""not found""","test -d dirpath && echo ""exists"" || echo ""not found""",False,True,True
+check if a directory exists,"[ -d /path/to/dir ] && echo ""exists"" || echo ""not found""","test -d YOUR_DIRECTORY && echo ""exists"" || echo ""not found""",False,True,True
+brute force directories on a web server http://example.com using wordlist.txt,for d in $(cat wordlist.txt); do curl -I http://example.com/$d; done,dirb http://example.com wordlist.txt,False,True,True
+brute force directories on a web server,dirb YOUR_TARGET YOUR_WORDLIST,dirb YOUR_URL YOUR_WORDLIST,False,True,True
+move file data.csv to the archive directory archive/,mv data.csv archive/,mv data.csv archive/,True,True,True
+move file to the archive directory,mv file.txt archive/,mv YOUR_FILE YOUR_ARCHIVE_DIR,False,True,True
+apply a patch file changes.patch,patch -p1 < changes.patch,patch -p1 < changes.patch,True,True,True
+apply a patch file,patch -p1 < patch.diff,patch -p1 < YOUR_PATCH_FILE,False,True,True
+setup SSH passwordless authentication for user@server,ssh-copy-id user@server,ssh-copy-id user@server,True,True,True
+setup SSH passwordless authentication,ssh-copy-id user@host,ssh-copy-id YOUR_USER@YOUR_SERVER,False,True,True
+initialize a new React app my-app,npx create-react-app my-app,npx create-react-app my-app,True,True,True
+initialize a new React app,npx create-react-app my-app,npx create-react-app YOUR_APP_NAME,False,True,True
+change permissions recursively to 755 for project/,chmod -R 755 project/,chmod -R 755 project/,True,True,True
+change permissions recursively,chmod -R 755 /path/to/dir,chmod -R YOUR_PERMISSIONS YOUR_DIRECTORY,False,True,True
+allow a port 22 through the firewall,sudo ufw allow 22/tcp,sudo ufw allow 22,False,True,True
+allow a port through the firewall,sudo ufw allow 22/tcp,sudo ufw allow YOUR_PORT,False,True,True
+search command history for a keyword docker,history | grep docker,history | grep docker,True,True,True
+search command history for a keyword,"history | grep ""keyword""",history | grep YOUR_KEYWORD,False,True,True
+encrypt a file secret.txt with openssl,openssl enc -aes-256-cbc -salt -in secret.txt -out secret.enc,openssl enc -aes-256-cbc -salt -in secret.txt -out secret.enc,True,True,True
+encrypt a file with openssl,openssl enc -aes-256-cbc -in YOUR_FILE -out YOUR_ENCRYPTED_FILE,openssl enc -aes-256-cbc -salt -in YOUR_FILE -out YOUR_ENCRYPTED_FILE,False,True,True
+set a Redis key mykey to myvalue,redis-cli SET mykey myvalue,redis-cli set mykey myvalue,False,True,True
+set a Redis key,"redis-cli SET mykey ""Hello, Redis!""",redis-cli set YOUR_KEY YOUR_VALUE,False,True,True
+make kernel parameter net.ipv4.ip_forward = 1 persistent,sudo sysctl -w net.ipv4.ip_forward=1,"echo ""net.ipv4.ip_forward = 1"" | sudo tee -a /etc/sysctl.conf",False,True,True
+make kernel parameter persistent,"sudo tee /etc/modprobe.d/usb.conf <<EOF
+options usbcore autosuspend=0
+EOF","echo ""YOUR_PARAMETER"" | sudo tee -a /etc/sysctl.conf",False,True,True
+GCP create a compute instance myvm in zone us-central1-a,gcloud compute instances create myvm --zone us-central1-a,gcloud compute instances create myvm --zone=us-central1-a,False,True,True
+GCP create a compute instance,gcloud compute instances create YOUR_INSTANCE --image YOUR_IMAGE --machine-type YOUR_MACHINE,gcloud compute instances create YOUR_INSTANCE --zone=YOUR_ZONE,False,True,True
+curl a URL https://example.com and show response headers,curl -I https://example.com,curl -I https://example.com,True,True,True
+curl a URL and show response headers,curl -I https://example.com,curl -I YOUR_URL,False,True,True
+extract pages 1 to 5 from input.pdf to output.pdf,pdfseparate input.pdf page_%03d.pdf,pdfseparate -f 1 -l 5 input.pdf output_%d.pdf,False,True,True
+extract pages from a PDF,pdfseparate input.pdf page_%03d.pdf,pdfseparate -f YOUR_START -l YOUR_END YOUR_INPUT YOUR_OUTPUT,False,True,True
+find all hard links to a file target.txt,find / -xdev -samefile target.txt 2>/dev/null,find . -samefile target.txt,False,True,True
+find all hard links to a file,find / -xdev -samefile file.txt 2>/dev/null,find . -samefile YOUR_FILE,False,True,True
+search and replace old_function with new_function across multiple Python files,"find . -name ""*.py"" -exec sed -i 's/old_function/new_function/g' {} +","find . -type f -name ""*.py"" -exec sed -i ""s/old_function/new_function/g"" {} +",False,True,True
+search and replace across multiple files,sed -i 's/old_string/new_string/g' *.txt,"find . -type f -name ""YOUR_PATTERN"" -exec sed -i ""s/YOUR_OLD/YOUR_NEW/g"" {} +",False,True,True
+run a command ./server that survives terminal close,nohup ./server &,nohup ./server &,True,True,True
+run a command that survives terminal close,nohup YOUR_COMMAND &,nohup YOUR_COMMAND &,True,True,True
+get unique lines with count from access.log,awk '{print $1}' access.log | sort | uniq -c | sort -rn,sort access.log | uniq -c | sort -rn,False,True,True
+get unique lines with count,sort file.txt | uniq -c | sort -rn,sort YOUR_FILE | uniq -c | sort -rn,False,True,True
+docker inspect a container container_id,docker inspect container_id,docker inspect container_id,True,True,True
+docker inspect a container,docker inspect container_id,docker inspect YOUR_CONTAINER_ID,False,True,True
+watch a command df -h execute every 2 seconds,watch -n 2 df -h,watch -n 2 df -h,True,True,True
+watch a command execute every 2 seconds,watch -n 2 'command',watch -n 2 YOUR_COMMAND,False,True,True
+enable a service nginx to start on boot,sudo systemctl enable nginx,sudo systemctl enable nginx,True,True,True
+enable a service to start on boot,sudo systemctl enable YOUR_SERVICE,sudo systemctl enable YOUR_SERVICE,True,True,True
+create a new partition on /dev/sdb,sudo fdisk /dev/sdb,sudo fdisk /dev/sdb,True,True,True
+create a new partition,sudo fdisk /dev/sdb,sudo fdisk YOUR_DEVICE,False,True,True
+compile a C++ program main.cpp to output,g++ -o output main.cpp,g++ -o output main.cpp,True,True,True
+compile a C++ program,g++ -o YOUR_OUTPUT YOUR_SOURCE,g++ -o YOUR_OUTPUT YOUR_SOURCE,True,True,True
+unzip a file backup.zip,unzip backup.zip,unzip backup.zip,True,True,True
+unzip a file,unzip file.zip,unzip YOUR_FILE,False,True,True
+ansible check playbook syntax for playbook.yml,ansible-playbook --syntax-check playbook.yml,ansible-playbook --syntax-check playbook.yml,True,True,True
+ansible check playbook syntax,ansible-playbook --check YOUR_PLAYBOOK,ansible-playbook --syntax-check YOUR_PLAYBOOK,False,True,True
+docker build an image myapp from a Dockerfile,docker build -t myapp .,docker build -t myapp .,True,True,True
+docker build an image from a Dockerfile,docker build -t myimage .,docker build -t YOUR_IMAGE .,False,True,True
+block an IP address 10.0.0.5 with iptables,sudo iptables -A INPUT -s 10.0.0.5 -j DROP,sudo iptables -A INPUT -s 10.0.0.5 -j DROP,True,True,True
+block an IP address with iptables,sudo iptables -A INPUT -s 192.168.1.100 -j DROP,sudo iptables -A INPUT -s YOUR_IP -j DROP,False,True,True
+unmount a filesystem /mnt/usb,umount /mnt/usb,sudo umount /mnt/usb,False,True,True
+unmount a filesystem,umount /mnt,sudo umount YOUR_MOUNT_POINT,False,True,True
+use screen to start a detached session mysession,screen -dmS mysession,screen -S mysession -d -m,False,True,True
+use screen to start a detached session,screen -dmS mysession,screen -S YOUR_SESSION -d -m,False,True,True
+check for memory leaks in ./myapp,valgrind --leak-check=full ./myapp,valgrind --leak-check=full ./myapp,True,True,True
+check for memory leaks,valgrind --leak-check=full ./program,valgrind --leak-check=full YOUR_COMMAND,False,True,True
+run a MySQL query SELECT * FROM users on database mydb from command line,"mysql -D mydb -e ""SELECT * FROM users;""","mysql -u root -p mydb -e ""SELECT * FROM users""",False,True,True
+run a MySQL query from command line,"mysql -u root -p -e ""SELECT * FROM users"" database","mysql -u root -p YOUR_DATABASE -e ""YOUR_QUERY""",False,True,True
+display a file binary.dat in octal,od -t oC binary.dat,od binary.dat | head -20,False,True,True
+display a file in octal,od -t oA file.txt,od YOUR_FILE | head -20,False,True,True
+run a command echo done after a delay of 5 seconds,sleep 5 && echo done,sleep 5 && echo done,True,True,True
+run a command after a delay of 5 seconds,sleep 5 && command,sleep 5 && YOUR_COMMAND,False,True,True
+add a watermark watermark.png to an image image.jpg to output.jpg,convert image.jpg -watermark 50% watermark.png output.jpg,composite -dissolve 50% -gravity southeast watermark.png image.jpg output.jpg,False,True,True
+add a watermark to an image,convert input.jpg -watermark 50% watermark.png output.jpg,composite -dissolve 50% -gravity southeast YOUR_WATERMARK YOUR_IMAGE YOUR_OUTPUT,False,True,True

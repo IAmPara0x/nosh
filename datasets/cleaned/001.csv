@@ -1,0 +1,399 @@
+prompt,command
+enable IP forwarding,sudo sysctl -w net.ipv4.ip_forward=1
+check for outdated npm packages,npm outdated
+run a Python one-liner to generate a UUID,"python3 -c ""import uuid; print(uuid.uuid4())"""
+docker list networks,docker network ls
+vet Go code for issues,go vet ./...
+create a ramdisk for temporary files,sudo mount -t tmpfs -o size=1G tmpfs /mnt/ramdisk
+repeat the last command,!!
+show failed login attempts,sudo lastb
+monitor system resources in real time,top
+show all Bluetooth devices,bluetoothctl devices
+scan for wireless networks,sudo iwlist wlan0 scan | grep ESSID
+check for package security updates,sudo apt list --upgradable 2>/dev/null | grep -i security
+show WiFi signal strength,iwconfig wlan0 | grep Signal
+show BIOS information,sudo dmidecode -t bios
+show wireless network information,iwconfig
+show all TCP connections with state,ss -tan state established
+generate a self-signed SSL certificate,openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+install Python dependencies from a file,pip install -r requirements.txt
+show system memory usage,free -h
+create a progress bar in bash,"for i in $(seq 1 100); do printf ""\r[%-50s] %d%%"" $(printf '#%.0s' $(seq 1 $((i/2)))) $i; sleep 0.1; done"
+list all block devices with filesystem type,lsblk -f
+list GitHub releases,gh release list
+show block device information,lsblk
+docker remove unused volumes,docker volume prune -f
+show all successful SSH logins,"grep ""Accepted"" /var/log/auth.log | tail -20"
+show the git diff stat,git diff --stat
+git push tags to remote,git push --tags
+show git log in one line format,git log --oneline
+delete empty directories,find . -empty -type d -delete
+extract specific fields from /etc/passwd,"awk -F: '{print $1, $3, $6}' /etc/passwd"
+start a Jupyter notebook server,jupyter notebook
+loop through files and rename them,"for f in *.txt; do mv ""$f"" ""${f%.txt}.bak""; done"
+restart NetworkManager,sudo systemctl restart NetworkManager
+find files and execute a command on each,"find . -name ""*.tmp"" -exec rm {} \;"
+switch to root user,sudo su
+show listening ports,netstat -tlnp
+list screen sessions,screen -ls
+list all installed packages,dpkg -l
+add all files to git staging,git add .
+count lines of code by file type,"find . -name ""*.py"" -o -name ""*.js"" -o -name ""*.go"" | xargs wc -l"
+show all logical volumes,sudo lvdisplay
+export journal logs to JSON,journalctl -o json --no-pager
+show all aliases,alias
+list all groups,cat /etc/group
+show mail queue,mailq
+show bandwidth usage per process,nethogs
+run make,make
+show the load average,uptime
+docker list all images,docker images
+docker list all containers including stopped,docker ps -a
+show the git log as a graph,git log --graph --oneline --all
+find and delete all .log files,"find . -name ""*.log"" -delete"
+show memory module information,sudo dmidecode -t memory
+list all files including hidden ones,ls -la
+find files with a specific extension and count them,"find . -name ""*.py"" | wc -l"
+test read speed of a disk,dd if=/tmp/testfile of=/dev/null bs=1G count=1 iflag=direct
+show all volume groups,sudo vgdisplay
+show battery status,upower -i /org/freedesktop/UPower/devices/battery_BAT0
+install Node.js packages,npm install
+find files by type (regular files only),find . -type f
+show all mounted CIFS shares,mount -t cifs
+check RAID array status,cat /proc/mdstat
+show all Redis keys,"redis-cli keys ""*"""
+show bridge interfaces,brctl show
+kubernetes get resource usage of nodes,kubectl top nodes
+show NUMA memory allocation,numastat
+list all cron jobs,crontab -l
+show the niceness of all processes,"ps -eo pid,ni,cmd"
+show CPU temperature,sensors
+install a Python package in development mode,pip install -e .
+show the system runlevel,runlevel
+flush the mail queue,sudo postfix flush
+run npm build,npm run build
+find files larger than 100MB,find . -size +100M
+show who is logged in,who
+show detailed memory usage,smem -t -k
+show all Docker container IPs,docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -q)
+GCP list all GCS buckets,gsutil ls
+create a temporary directory securely,mktemp -d
+find all javascript files in the current directory,"find . -name ""*.js"""
+show the ASCII table,man ascii
+clear systemd journal logs older than 7 days,sudo journalctl --vacuum-time=7d
+list all files in the current directory,ls
+list all systemd services,systemctl list-units --type=service
+list all signal names,kill -l
+show directory sizes sorted by size,du -h --max-depth=1 | sort -rh
+show available memory in bytes,free -b | awk '/Mem:/ {print $2}'
+run a Python one-liner to get current timestamp,"python3 -c ""import time; print(int(time.time()))"""
+show unique file extensions in a directory,find . -type f | sed 's/.*\.//' | sort -u
+benchmark memory performance,sysbench memory run
+show slab cache information,slabtop
+list GPG keys,gpg --list-keys
+batch convert images in parallel,"find . -name ""*.png"" | parallel convert {} {.}.jpg"
+show system entropy available,cat /proc/sys/kernel/random/entropy_avail
+find files by type (directories only),find . -type d
+audit npm packages for vulnerabilities,npm audit
+run Rust tests,cargo test
+docker compose show running services,docker-compose ps
+show specific columns from ps output,"ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head"
+flush all iptables rules,sudo iptables -F
+show information about the CPU,lscpu
+generate a new GPG key pair,gpg --full-generate-key
+git create a patch from last commit,git format-patch -1 HEAD
+use named pipe for inter-process communication,"mkfifo /tmp/pipe && cat /tmp/pipe & echo ""data"" > /tmp/pipe"
+docker compose logs,docker-compose logs
+list scheduled at jobs,atq
+check GitHub Actions status,gh run list
+kubernetes get nodes,kubectl get nodes
+run Python tests with coverage,python3 -m pytest --cov=.
+git list all branches,git branch -a
+docker remove all stopped containers,docker container prune -f
+convert all PNG files to JPG,"for f in *.png; do convert ""$f"" ""${f%.png}.jpg""; done"
+show all physical volumes,sudo pvdisplay
+show iptables rules,sudo iptables -L -n -v
+show the exit status of the last command,echo $?
+initialize a new npm project,npm init -y
+print repeated characters,printf '=%.0s' {1..80} && echo
+count lines of code in a project,"find . -name ""*.py"" -exec wc -l {} + | tail -1"
+run a Rust program,cargo run
+trap signals in a bash script,"trap ""echo 'Caught signal'; exit"" SIGINT SIGTERM"
+edit the hosts file,sudo nano /etc/hosts
+use column to format output,mount | column -t
+reload systemd daemon,sudo systemctl daemon-reload
+display system uptime,uptime
+git reset last commit keeping changes,git reset --soft HEAD~1
+check free disk space,df -h
+show only UDP connections,ss -unap
+format Go code,go fmt ./...
+kubernetes get all services,kubectl get services
+terraform plan changes,terraform plan
+show all network namespaces,ip netns list
+generate a random number between 1 and 100,shuf -i 1-100 -n 1
+show failed systemd services,systemctl --failed
+fix npm vulnerabilities,npm audit fix
+download Go dependencies,go mod tidy
+git clean untracked files,git clean -fd
+create a temporary file securely,mktemp
+benchmark file IO performance,sysbench fileio --file-total-size=1G prepare && sysbench fileio --file-total-size=1G --file-test-mode=rndrw run
+AWS list EC2 instances,"aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name,PublicIpAddress]' --output table"
+AWS list IAM users,aws iam list-users
+list available timezones,timedatectl list-timezones
+create a secure random string,openssl rand -hex 32
+view system logs,journalctl -xe
+show the top 10 most used commands from history,history | awk '{print $2}' | sort | uniq -c | sort -rn | head -10
+show firewall status,sudo ufw status
+show semaphore arrays,ipcs -s
+show all PCI devices,lspci
+set SELinux to permissive mode,sudo setenforce 0
+show all open network connections,ss -tunapl
+redirect port 80 to 8080 with iptables,sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+run npm tests,npm test
+show running processes,ps aux
+rotate log files,sudo logrotate -f /etc/logrotate.conf
+list all users on the system,cat /etc/passwd
+check Rust code without building,cargo check
+check for failed SSH login attempts,"grep ""Failed password"" /var/log/auth.log | tail -20"
+remove all files except a specific type,"find . -maxdepth 1 -not -name ""*.py"" -not -type d -delete"
+show all kernel parameters,sysctl -a
+count the number of files in a directory,ls -1 | wc -l
+find duplicate files in a directory,fdupes -r .
+monitor file system events,inotifywait -m -r --format '%w%f %e' .
+lint Rust code with clippy,cargo clippy
+show the 5 newest files in a directory,ls -lt | head -6
+use arithmetic expansion,echo $((2 + 3 * 4))
+monitor disk IO per process,iotop -o
+show all active network connections with process info,ss -tulpn
+show the number of CPUs,nproc
+build with Maven,mvn clean install
+git list stashes,git stash list
+check NTP synchronization status,timedatectl status
+count the number of CPUs online,getconf _NPROCESSORS_ONLN
+show hidden files only,ls -ld .*
+reboot the system,sudo reboot
+create a Python package distribution,python3 setup.py sdist bdist_wheel
+show the last 50 lines of system logs,journalctl -n 50
+find files modified in the last 24 hours,find . -mtime -1
+terraform apply changes,terraform apply -auto-approve
+run Python tests with verbose output,python3 -m pytest -v
+run Maven tests,mvn test
+show hardware information,sudo lshw -short
+docker remove all unused resources,docker system prune -af
+show connection states summary,ss -s
+show loaded kernel modules,lsmod
+show command history,history
+git show all files tracked,git ls-files
+update shared library cache,sudo ldconfig
+show IO statistics,iostat
+flush DNS cache,sudo systemd-resolve --flush-caches
+show all setuid files on the system,find / -perm -4000 -type f 2>/dev/null
+show epoch time,date +%s
+pipe output of one command to another,"ls -la | grep "".txt"""
+docker compose build,docker-compose build
+show network IO statistics,sar -n DEV 1 5
+display a tree view with depth limit,tree -L 2
+enable the firewall,sudo ufw enable
+show disk usage sorted by size,du -sh * | sort -rh
+show cgroup resource usage,systemd-cgtop
+show all IPv6 addresses,ip -6 addr show
+run Gradle tests,./gradlew test
+cancel a scheduled shutdown,sudo shutdown -c
+git stash current changes,git stash
+list globally installed npm packages,npm list -g --depth=0
+show shared memory segments,ipcs -m
+build with Gradle,./gradlew build
+show only directories in tree view,tree -d
+show systemd timer units,systemctl list-timers
+use watch to monitor memory usage,watch -n 2 free -h
+run Python unit tests,python3 -m pytest
+shutdown the system in 30 minutes,sudo shutdown -h +30
+use command substitution in a variable,current_date=$(date +%Y-%m-%d)
+activate a Python virtual environment,source venv/bin/activate
+find the 10 most recently modified files,find . -type f -printf '%T+ %p\n' | sort -r | head -10
+show locale settings,locale
+show high priority journal messages,journalctl -p err
+show all login shells available,cat /etc/shells
+show journal disk usage,journalctl --disk-usage
+check disk usage of the current directory,du -sh .
+run npm in development mode,npm run dev
+run cmake to generate build files,cmake .
+git show the diff of unstaged changes,git diff
+set a timer for 10 minutes,"sleep 600 && echo ""Time is up"""
+synchronize system clock with NTP,sudo ntpdate pool.ntp.org
+list GitHub pull requests,gh pr list
+benchmark disk IO,fio --name=test --rw=randread --bs=4k --size=1G --numjobs=4 --runtime=30
+list tmux sessions,tmux list-sessions
+show the size of each subdirectory,du -h --max-depth=1
+rename files replacing spaces with underscores,rename 's/ /_/g' *
+docker show container resource usage,docker stats
+show open TCP connections count,ss -t | wc -l
+list available locales,locale -a
+delete all python files,rm *.py
+show boot messages from previous boot,journalctl -b -1
+show the top 10 largest files,find . -type f -exec ls -lS {} + | head -10
+kubernetes get resource usage of pods,kubectl top pods
+git show remote URLs,git remote -v
+run Go benchmarks,go test -bench=. ./...
+show the current user,whoami
+kubernetes get all deployments,kubectl get deployments
+terraform format configuration files,terraform fmt
+show systemd service boot time,systemd-analyze blame
+find empty files in the current directory,find . -empty -type f
+show all environment variables,env
+kubernetes get all pods,kubectl get pods
+start a MongoDB shell,mongosh
+find which process is using the most memory,ps aux --sort=-%mem | head -5
+show interrupt statistics,cat /proc/interrupts
+terraform show current state,terraform show
+terraform validate configuration,terraform validate
+helm list all releases,helm list
+use watch to monitor process count,watch -n 1 'ps aux | wc -l'
+show all failed systemd units,systemctl --failed
+run Go tests,go test ./...
+generate a Python coverage report,python3 -m coverage report
+show process IO usage,iotop
+show the keyboard layout,localectl status
+shutdown the system,sudo shutdown -h now
+show disk usage of all mounted filesystems,df -h
+git list all authors,git log --format='%aN' | sort -u
+show the IP address of the machine,hostname -I
+use watch to monitor disk usage,watch -n 5 df -h
+show the public IP address,curl ifconfig.me
+check the version of bash,bash --version
+show the calendar for the current month,cal
+show CPU model name,"grep ""model name"" /proc/cpuinfo | head -1"
+check for zombie processes,"ps aux | awk '$8==""Z""'"
+use awk to monitor network connections in real time,watch -n 1 'ss -s'
+generate a date range,"for i in $(seq 0 6); do date -d ""+$i days"" +%Y-%m-%d; done"
+git apply stashed changes,git stash pop
+show full system information,uname -a
+docker list all running containers,docker ps
+show virtual memory statistics,vmstat 1 5
+find which process is using the most CPU,ps aux --sort=-%cpu | head -5
+terraform list all resources in state,terraform state list
+git initialize a new repository,git init
+find large files in git history,"git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | awk '/^blob/ {print $3, $4}' | sort -rn | head -10"
+use xargs to delete files found by find,"find . -name ""*.tmp"" -print0 | xargs -0 rm"
+set strict mode in a bash script,set -euo pipefail
+update all npm packages,npm update
+monitor with a better interface,htop
+push changes to the remote repository,git push
+create a PDF from images,convert *.jpg output.pdf
+git show the diff of staged changes,git diff --staged
+show system manufacturer information,sudo dmidecode -t system
+show message queues,ipcs -q
+build a Go binary,go build
+clean build artifacts,make clean
+kubernetes get namespaces,kubectl get namespaces
+show context switch statistics,vmstat 1 3
+show system install date,ls -lct /etc | tail -1
+run Go tests with verbose output,go test -v ./...
+find empty directories,find . -empty -type d
+show information about memory,cat /proc/meminfo
+show the current working directory,pwd
+flush all network routes,sudo ip route flush table main
+check internet connectivity,ping -c 4 google.com
+show the UUID of all partitions,blkid
+git list files changed in last commit,git diff --name-only HEAD~1
+build with cmake,cmake --build .
+list GitHub issues,gh issue list
+start an iperf3 server,iperf3 -s
+list all IP addresses that attempted login,"grep ""Failed password"" /var/log/auth.log | awk '{print $(NF-3)}' | sort | uniq -c | sort -rn"
+kubernetes get all pods in all namespaces,kubectl get pods --all-namespaces
+update all packages,sudo apt update && sudo apt upgrade -y
+generate an SSH key,ssh-keygen -t rsa -b 4096
+format Rust code,cargo fmt
+show network namespace list,ip netns list
+AWS list Lambda functions,aws lambda list-functions
+display network traffic statistics,vnstat
+show maximum filename length,getconf NAME_MAX /
+git fetch all remote branches,git fetch --all
+show the hostname,hostname
+generate an audit report,sudo aureport
+docker compose up,docker-compose up -d
+show kernel version,uname -r
+bring a background job to foreground,fg
+show overall boot time,systemd-analyze time
+git show ignored files,git status --ignored
+show process tree,pstree -p
+show swap usage,swapon --show
+benchmark CPU performance,sysbench cpu --cpu-max-prime=20000 run
+display the PATH environment variable,echo $PATH
+show git log,git log
+helm update repositories,helm repo update
+compile TypeScript files,npx tsc
+show all USB devices,lsusb
+show SELinux status,sestatus
+show the current date and time,date
+AWS list S3 buckets,aws s3 ls
+terraform destroy infrastructure,terraform destroy -auto-approve
+generate a random password,openssl rand -base64 16
+switch to the main branch,git checkout main
+compile a Rust program,cargo build
+git rebase onto main,git rebase main
+docker compose down,docker-compose down
+find broken symbolic links,find . -xtype l
+docker list volumes,docker volume ls
+test write speed of a disk,dd if=/dev/zero of=/tmp/testfile bs=1G count=1 oflag=direct
+create a select menu in bash,"select opt in ""Option 1"" ""Option 2"" ""Quit""; do echo $opt; break; done"
+show users with UID greater than 1000,awk -F: '$3 > 1000 {print $1}' /etc/passwd
+find files modified in the last hour,find . -mmin -60 -type f
+clear the terminal screen,clear
+show current user's groups,groups
+show listening services and their PIDs,ss -tlnp
+pull latest changes from remote,git pull
+show the system page size,getconf PAGE_SIZE
+view the system boot log,journalctl -b
+count files by extension,find . -type f | sed 's/.*\.//' | sort | uniq -c | sort -rn
+show inode usage,df -i
+freeze Python dependencies to a file,pip freeze > requirements.txt
+save iptables rules,sudo iptables-save > /etc/iptables.rules
+show cgroup hierarchy,systemd-cgls
+show the last reboot time,who -b
+display the ARP table,arp -a
+show bandwidth usage per interface,sar -n DEV 1 1
+show system limits for a user,ulimit -a
+split tmux pane vertically,tmux split-window -v
+show kernel messages in real time,dmesg -w
+AWS list DynamoDB tables,aws dynamodb list-tables
+display a tree view of directories,tree
+GCP list all compute instances,gcloud compute instances list
+list background jobs,jobs
+start a simple HTTP server on port 8000,python3 -m http.server 8000
+show all mounted NFS shares,showmount -e localhost
+split tmux pane horizontally,tmux split-window -h
+find files by permission,find . -perm 777
+use process substitution to compare outputs,diff <(ls dir1) <(ls dir2)
+delete files older than 90 days,find . -mtime +90 -delete
+generate a sequence of numbers,seq 1 100
+GCP list GKE clusters,gcloud container clusters list
+show CPU usage per core,mpstat -P ALL 1 5
+show all established SSH connections,ss -tnp | grep ssh
+update the locate database,sudo updatedb
+GCP list all Cloud Functions,gcloud functions list
+batch resize images to 50 percent,mogrify -resize 50% *.jpg
+show real-time CPU frequency,"watch -n 1 ""cat /proc/cpuinfo | grep MHz"""
+show network interfaces,ifconfig
+git count commits by author,git shortlog -sn
+check if running inside a Docker container,"test -f /.dockerenv && echo ""Docker"" || echo ""Not Docker"""
+terraform initialize a project,terraform init
+show all TODO comments in source code,"grep -rn ""TODO"" --include=""*.py"" ."
+show AppArmor status,sudo aa-status
+show all FIXME comments in source code,"grep -rn ""FIXME"" --include=""*.py"" ."
+kubernetes get events,kubectl get events
+git list worktrees,git worktree list
+show last login information,last
+connect to a Redis server,redis-cli
+convert all filenames to lowercase,rename 'y/A-Z/a-z/' *
+list all open ports and associated processes,sudo lsof -i -P -n | grep LISTEN
+show the current IP routing table,ip route show
+show the ARP cache,ip neigh show
+show only TCP connections,ss -tnap
+show all world-writable files,find / -perm -0002 -type f 2>/dev/null
+show TCP connection statistics by state,ss -tan | awk 'NR>1 {print $1}' | sort | uniq -c | sort -rn
+show the routing table,route -n
+show kernel messages,dmesg
+use getopts for argument parsing,"while getopts ""f:v"" opt; do case $opt in f) file=$OPTARG;; v) verbose=1;; esac; done"
+show total disk space used,df -h --total | tail -1
+check the git status,git status

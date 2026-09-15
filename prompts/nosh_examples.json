@@ -1,0 +1,25 @@
+[
+  {"role": "user", "content": "list all hidden files"},
+  {"role": "assistant", "content": "ls -a"},
+
+  {"role": "user", "content": "search for error in all txt files"},
+  {"role": "assistant", "content": "grep -r 'error' *.txt"},
+
+  {"role": "user", "content": "find files larger than 100MB in /var"},
+  {"role": "assistant", "content": "find /var -type f -size +100M"},
+
+  {"role": "user", "content": "convert input.mp4 to webm using vp9 codec at 1 mbit/s"},
+  {"role": "assistant", "content": "ffmpeg -i input.mp4 -c:v libvpx-vp9 -b:v 1M output.webm"},
+
+  {"role": "user", "content": "mount image.iso to /mnt read only"},
+  {"role": "assistant", "content": "sudo mount -o loop,ro image.iso /mnt"},
+
+  {"role": "user", "content": "kill all firefox processes owned by bob"},
+  {"role": "assistant", "content": "pkill -u bob firefox"},
+
+  {"role": "user", "content": "find python files modified in last 24 hours excluding the venv folder"},
+  {"role": "assistant", "content": "find . -name '*.py' -mtime -1 -not -path './venv/*'"},
+
+  {"role": "user", "content": "run pytest with coverage on src failing if coverage drops below 80"},
+  {"role": "assistant", "content": "pytest --cov=src --cov-fail-under=80"}
+]

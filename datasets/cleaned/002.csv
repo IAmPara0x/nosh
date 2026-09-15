@@ -1,0 +1,101 @@
+prompt,command
+run make with a specific target install,make install
+run make with a specific target,make YOUR_TARGET
+show the first 10 lines of log.txt,head log.txt
+show the first 10 lines of a file,head YOUR_FILE
+kubernetes rollback deployment mydeployment,kubectl rollout undo deployment/mydeployment
+kubernetes rollback a deployment,kubectl rollout undo deployment/YOUR_DEPLOYMENT
+monitor a log file app.log in real time,tail -f app.log
+monitor a log file in real time,tail -f YOUR_LOGFILE
+run a command for each line of a file with script.sh and urls.txt,"while IFS= read -r line; do ./script.sh ""$line""; done < urls.txt"
+run a command for each line of a file,"while IFS= read -r line; do ./YOUR_SCRIPT ""$line""; done < YOUR_FILE"
+profile a bash script script.sh,PS4='+ $(date +%s.%N) ' bash -x script.sh
+profile a bash script,PS4='+ $(date +%s.%N) ' bash -x YOUR_SCRIPT
+create a RAID array /dev/md0 with /dev/sdb and /dev/sdc,sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb /dev/sdc
+create a RAID array,sudo mdadm --create YOUR_ARRAY --level=1 --raid-devices=2 YOUR_DEVICE1 YOUR_DEVICE2
+use GNU parallel to process files with 4 jobs and process.sh,"find . -name ""*.csv"" | parallel -j4 ./process.sh {}"
+use GNU parallel to process files,"find . -name ""*.csv"" | parallel -jYOUR_JOBS ./YOUR_SCRIPT {}"
+encode a string hello world in base64,"echo ""hello world"" | base64"
+encode a string in base64,"echo ""YOUR_STRING"" | base64"
+show lines that do not match pattern debug in log.txt,"grep -v ""debug"" log.txt"
+show lines that do not match a pattern in a file,"grep -v ""YOUR_PATTERN"" YOUR_FILE"
+use xargs to process 4 items in parallel with process.sh,cat items.txt | xargs -P 4 -I {} ./process.sh {}
+use xargs to process items in parallel,cat items.txt | xargs -P YOUR_JOBS -I {} ./YOUR_SCRIPT {}
+add a disk /dev/sdb to LVM,sudo pvcreate /dev/sdb
+add a disk to LVM,sudo pvcreate YOUR_DEVICE
+convert a markdown file document.md to PDF document.pdf,pandoc document.md -o document.pdf
+convert a markdown file to PDF,pandoc YOUR_INPUT -o YOUR_OUTPUT
+set the keyboard layout to us,sudo localectl set-keymap us
+set the keyboard layout,sudo localectl set-keymap YOUR_LAYOUT
+decode a base64 string aGVsbG8gd29ybGQ=,"echo ""aGVsbG8gd29ybGQ="" | base64 -d"
+decode a base64 string,"echo ""YOUR_BASE64_STRING"" | base64 -d"
+remove trailing whitespace from file.txt,sed -i 's/[[:space:]]*$//' file.txt
+remove trailing whitespace from a file,sed -i 's/[[:space:]]*$//' YOUR_FILE
+run a command with 30 second timeout for ./long_task,timeout 30 ./long_task
+run a command with timeout,timeout YOUR_TIMEOUT YOUR_COMMAND
+process files in parallel with xargs using 4 jobs,"find . -name ""*.jpg"" -print0 | xargs -0 -P 4 -I {} convert {} -resize 50% {}"
+process files in parallel with xargs,"find . -name ""YOUR_PATTERN"" -print0 | xargs -0 -P YOUR_JOBS -I {} YOUR_COMMAND {} {}"
+flatten a nested JSON structure from data.json,"jq '[paths(scalars) as $p | {key: ($p | join(""."")), value: getpath($p)}] | from_entries' data.json"
+flatten a nested JSON structure,"jq '[paths(scalars) as $p | {key: ($p | join(""."")), value: getpath($p)}] | from_entries' YOUR_FILE"
+run a Go program main.go,go run main.go
+run a Go program,go run YOUR_PROGRAM
+convert an image from input.png to output.jpg,convert input.png output.jpg
+convert an image format,convert YOUR_INPUT YOUR_OUTPUT
+run a specific Python test file test_main.py,python3 -m pytest test_main.py
+run a specific Python test file,python3 -m pytest YOUR_TEST_FILE
+create a new directory called projects,mkdir projects
+create a new directory,mkdir YOUR_DIRECTORY
+create an SSH tunnel to localhost:3306 on port 8080 via user@server,ssh -L 8080:localhost:3306 user@server
+create an SSH tunnel,ssh -L YOUR_LOCAL_PORT:YOUR_REMOTE_HOST:YOUR_REMOTE_PORT YOUR_USER@YOUR_SERVER
+kubernetes create a secret mysecret with password s3cr3t,kubectl create secret generic mysecret --from-literal=password=s3cr3t
+kubernetes create a secret,kubectl create secret generic YOUR_SECRET --from-literal=YOUR_KEY=YOUR_VALUE
+create a logical volume mylv of size 10G in volume group myvg,sudo lvcreate -n mylv -L 10G myvg
+create a logical volume,sudo lvcreate -n YOUR_LV -L YOUR_SIZE YOUR_VG
+docker copy a file ./config.txt to container_id:/app/config.txt,docker cp ./config.txt container_id:/app/config.txt
+docker copy a file to container,docker cp YOUR_LOCAL_PATH YOUR_CONTAINER_ID:YOUR_CONTAINER_PATH
+decompress a bzip2 file data.txt.bz2,bunzip2 data.txt.bz2
+decompress a bzip2 file,bunzip2 YOUR_FILE
+change file permissions of secret.txt to read-only,chmod 444 secret.txt
+change file permissions to read-only,chmod 444 YOUR_FILE
+git delete a local branch old-feature,git branch -d old-feature
+git delete a local branch,git branch -d YOUR_BRANCH
+view a GitHub pull request 123,gh pr view 123
+view a GitHub pull request,gh pr view YOUR_PR_NUMBER
+analyze a pcap file capture.pcap,tshark -r capture.pcap
+analyze a pcap file,tshark -r YOUR_PCAP_FILE
+decompress a gzip file data.txt.gz,gunzip data.txt.gz
+decompress a gzip file,gunzip YOUR_FILE
+remove EXIF data from an image photo.jpg,exiftool -all= photo.jpg
+remove EXIF data from an image,exiftool -all= YOUR_IMAGE_FILE
+compress a directory project/ into a tar.gz file archive.tar.gz,tar -czf archive.tar.gz project/
+compress a directory into a tar.gz file,tar -czf YOUR_OUTPUT YOUR_DIRECTORY
+check out a GitHub pull request 123 locally,gh pr checkout 123
+check out a GitHub pull request locally,gh pr checkout YOUR_PR_NUMBER
+git cherry-pick a commit abc1234,git cherry-pick abc1234
+git cherry-pick a commit,git cherry-pick YOUR_COMMIT_HASH
+query a SQLite database mydb.sqlite,"sqlite3 mydb.sqlite ""SELECT * FROM users;"""
+query a SQLite database,"sqlite3 YOUR_DATABASE ""YOUR_QUERY;"""
+docker view logs of a container container_id,docker logs container_id
+docker view logs of a container,docker logs YOUR_CONTAINER_ID
+transform JSON data from data.json,"jq '[.[] | {name: .name, age: .age}]' data.json"
+transform JSON data,jq 'YOUR_JQ_FILTER' YOUR_FILE
+use m4 macro processor on template.m4,m4 template.m4
+use m4 macro processor on a file,m4 YOUR_TEMPLATE_FILE
+start a systemd service nginx,sudo systemctl start nginx
+start a systemd service,sudo systemctl start YOUR_SERVICE
+extract IP addresses from a file log.txt,"grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' log.txt"
+extract IP addresses from a file,"grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' YOUR_FILE"
+convert decimal 42 to binary,"echo ""obase=2;42"" | bc"
+convert decimal to binary,"echo ""obase=2;YOUR_NUMBER"" | bc"
+search for a whole word error in log.txt,"grep -w ""error"" log.txt"
+search for a whole word only in a file,"grep -w ""YOUR_WORD"" YOUR_FILE"
+calculate the average of a column in data.txt,awk '{sum+=$1; n++} END {print sum/n}' data.txt
+calculate the average of a column,awk '{sum+=$1; n++} END {print sum/n}' YOUR_FILE
+show process memory map for PID 1234,cat /proc/1234/maps
+show process memory map,cat /proc/YOUR_PID/maps
+use bc for floating point arithmetic 3.14 * 2.5,"echo ""3.14 * 2.5"" | bc"
+use bc for floating point arithmetic,"echo ""YOUR_EXPRESSION"" | bc"
+show detailed SMART attributes for /dev/sda,sudo smartctl -A /dev/sda
+show detailed SMART attributes,sudo smartctl -A YOUR_DEVICE
+show the total size of a file type *.log,"find . -name ""*.log"" -exec du -ch {} + | tail -1"
+show the total size of a file type,"find . -name ""YOUR_PATTERN"" -exec du -ch {} + | tail -1"

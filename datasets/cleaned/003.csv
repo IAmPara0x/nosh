@@ -1,0 +1,101 @@
+prompt,command
+create a GitHub release v1.0.0,gh release create v1.0.0
+create a GitHub release,gh release create YOUR_VERSION
+use curl to test WebSocket connection ws://localhost:8080,"curl --include --no-buffer --header ""Connection: Upgrade"" --header ""Upgrade: websocket"" --header ""Sec-WebSocket-Key: test"" --header ""Sec-WebSocket-Version: 13"" ws://localhost:8080"
+use curl to test WebSocket connection,"curl --include --no-buffer --header ""Connection: Upgrade"" --header ""Upgrade: websocket"" --header ""Sec-WebSocket-Key: test"" --header ""Sec-WebSocket-Version: 13"" YOUR_WEBSOCKET_URL"
+create a cron job that runs daily at midnight for backup.sh,"echo ""0 0 * * * /path/to/backup.sh"" | crontab -"
+create a cron job that runs daily at midnight,"echo ""0 0 * * * /path/to/YOUR_SCRIPT"" | crontab -"
+generate a sequence from 0 to 20 with step 2,seq 0 2 20
+generate a sequence with a step,seq YOUR_START YOUR_STEP YOUR_END
+check who is using file /var/log/syslog,fuser /var/log/syslog
+check who is using a file,fuser YOUR_FILE
+check DNS records for domain example.com,dig example.com
+check DNS records for a domain,dig YOUR_DOMAIN
+trace system calls of process 1234,strace -p 1234
+trace system calls of a process,strace -p YOUR_PID
+clone a GitHub repository owner/repo,gh repo clone owner/repo
+clone a GitHub repository,gh repo clone YOUR_OWNER/YOUR_REPO
+sort a file names.txt in reverse order,sort -r names.txt
+sort a file in reverse order,sort -r YOUR_FILE
+delete a user johndoe,sudo userdel -r johndoe
+delete a user,sudo userdel -r YOUR_USERNAME
+decrypt a GPG encrypted file file.txt.gpg,gpg --decrypt file.txt.gpg
+decrypt a GPG encrypted file,gpg --decrypt YOUR_ENCRYPTED_FILE
+mount a Windows share //server/share to /mnt/windows as user,sudo mount -t cifs //server/share /mnt/windows -o username=user
+mount a Windows share,sudo mount -t cifs YOUR_SHARE_PATH YOUR_MOUNT_POINT -o username=YOUR_USER
+use pr to format file.txt for printing,"pr -h ""My Report"" file.txt"
+use pr to format files for printing,"pr -h ""YOUR_HEADER"" YOUR_FILE"
+show PDF information for document.pdf,pdfinfo document.pdf
+show PDF information,pdfinfo YOUR_PDF_FILE
+replace old_name with new_name in all Python files,"find . -name ""*.py"" -exec sed -i ""s/old_name/new_name/g"" {} +"
+replace a string in all Python files,"find . -name ""*.py"" -exec sed -i ""s/YOUR_OLD_STRING/YOUR_NEW_STRING/g"" {} +"
+helm uninstall a release myrelease,helm uninstall myrelease
+helm uninstall a release,helm uninstall YOUR_RELEASE
+create a zip file backup.zip from directory documents/,zip -r backup.zip documents/
+create a zip file from a directory,zip -r YOUR_OUTPUT YOUR_DIRECTORY
+create a disk image of /dev/sda to disk.img,sudo dd if=/dev/sda of=disk.img bs=4M status=progress
+create a disk image,sudo dd if=YOUR_DEVICE of=YOUR_IMAGE bs=4M status=progress
+print lines 5 to 10 from file.txt,"sed -n '5,10p' file.txt"
+print specific lines from a file,"sed -n 'YOUR_START,YOUR_ENDp' YOUR_FILE"
+helm search for a chart nginx,helm search repo nginx
+helm search for a chart,helm search repo YOUR_CHART
+test SMTP connection to mail.example.com,telnet mail.example.com 25
+test SMTP connection,telnet YOUR_MAIL_SERVER 25
+sync directories source/ to destination/ with rsync,rsync -avz source/ destination/
+sync directories with rsync,rsync -avz YOUR_SOURCE YOUR_DESTINATION
+create a systemd timer mytimer for periodic execution,sudo systemctl enable --now mytimer.timer
+create a systemd timer for periodic execution,sudo systemctl enable --now YOUR_TIMER.timer
+test HTTP/2 support of server https://example.com,curl --http2 -I https://example.com
+test HTTP/2 support of a server,curl --http2 -I YOUR_URL
+create a group developers,sudo groupadd developers
+create a group,sudo groupadd YOUR_GROUP
+create an alias ll for command ls -la,"alias ll=""ls -la"""
+create an alias for a command,"alias YOUR_ALIAS=""YOUR_COMMAND"""
+create a SQLite database mydb.sqlite and table,"sqlite3 mydb.sqlite ""CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);"""
+create a SQLite database and table,"sqlite3 YOUR_DATABASE ""YOUR_CREATE_TABLE_STATEMENT;"""
+create a GitHub repository my-project,gh repo create my-project --public
+create a GitHub repository,gh repo create YOUR_REPO --public
+show the MAC address of interface eth0,cat /sys/class/net/eth0/address
+show the MAC address of an interface,cat /sys/class/net/YOUR_INTERFACE/address
+create a here document and save to file output.txt,cat << 'EOF' > output.txt
+create a here document and save to file,cat << 'EOF' > YOUR_FILE
+show SELinux context of files in /var/www,ls -Z /var/www
+show SELinux context of files,ls -Z YOUR_DIRECTORY
+AWS invoke a Lambda function myfunction,aws lambda invoke --function-name myfunction output.json
+AWS invoke a Lambda function,aws lambda invoke --function-name YOUR_FUNCTION output.json
+search for the word error in server.log,"grep ""error"" server.log"
+search for the word in a log file,"grep ""YOUR_WORD"" YOUR_LOGFILE"
+export a MongoDB collection users from mydb to users.json,mongoexport --db mydb --collection users --out users.json
+export a MongoDB collection,mongoexport --db YOUR_DATABASE --collection YOUR_COLLECTION --out YOUR_OUTPUT
+copy files from source/ to dest/ preserving attributes,cp -a source/ dest/
+copy files preserving attributes,cp -a YOUR_SOURCE YOUR_DESTINATION
+add a specific file index.html to staging,git add index.html
+add a specific file to staging,git add YOUR_FILE
+run a command apt update as root,sudo apt update
+run a command as root,sudo YOUR_COMMAND
+print the second column of a CSV data.csv,"awk -F',' '{print $2}' data.csv"
+print the second column of a CSV,"awk -F',' '{print $2}' YOUR_FILE"
+find requests taking more than 5 seconds in access.log,awk '$NF > 5' access.log
+find requests taking more than 5 seconds,awk '$NF > YOUR_THRESHOLD' YOUR_LOGFILE
+disable a service nginx from starting on boot,sudo systemctl disable nginx
+disable a service from starting on boot,sudo systemctl disable YOUR_SERVICE
+parse JSON from command line data.json,jq '.' data.json
+parse JSON from command line,jq '.' YOUR_FILE
+count the number of lines in data.txt,wc -l data.txt
+count the number of lines in a file,wc -l YOUR_FILE
+show the OOM score of process 1234,cat /proc/1234/oom_score
+show the OOM score of a process,cat /proc/YOUR_PID/oom_score
+change the default shell to /bin/zsh,chsh -s /bin/zsh
+change the default shell,chsh -s YOUR_SHELL_PATH
+show the SMART health status of disk /dev/sda,sudo smartctl -H /dev/sda
+show the SMART health status of a disk,sudo smartctl -H YOUR_DEVICE
+send a SIGHUP to process 1234,kill -HUP 1234
+send a SIGHUP to a process,kill -HUP YOUR_PID
+initialize a new Next.js app my-app,npx create-next-app my-app
+initialize a new Next.js app,npx create-next-app YOUR_APP_NAME
+search for a pattern warning in log.txt case-insensitively,"grep -i ""warning"" log.txt"
+search for a pattern case-insensitively,"grep -i ""YOUR_PATTERN"" YOUR_FILE"
+list contents of a tar archive archive.tar,tar -tf archive.tar
+list contents of a tar archive,tar -tf YOUR_ARCHIVE
+import data into MongoDB collection users in database mydb from users.json,mongoimport --db mydb --collection users --file users.json
+import data into MongoDB,mongoimport --db YOUR_DATABASE --collection YOUR_COLLECTION --file YOUR_FILE

@@ -1,0 +1,727 @@
+config,quant,k,prompt,command,expected,exact_match,formatting,syntax_valid,overall
+Q3_K_M:2,Q3_K_M,2,"Convert the image ""photo.png"" to a JPEG with 80% quality using ImageMagick.",convert photo.png -quality 80 photo.jpg,convert photo.png -quality 80 photo.jpg,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Using find, locate all .sh files that contain the string ""TODO"", replace it with ""DONE"" in‑place, and create a backup of each modified file with a .bak extension.","find . -type f -name ""*.sh"" -exec grep -l ""TODO"" {} \; -print0 | while IFS= read -r -d '' file; do
+  backup_file=""${file}.bak""
+  cp ""$file"" ""$backup_file""
+  sed -i ""s/TODO/DONE/g"" ""$file""
+done","find . -type f -name ""*.sh"" -exec grep -l ""TODO"" {} + | while read -r f; do cp ""$f"" ""$f.bak""; sed -i 's/TODO/DONE/g' ""$f""; done",False,True,True,4
+Q3_K_M:2,Q3_K_M,2,"Download a file with progress bar and resume capability from ""https://example.com/large.iso"".",wget --progress=bar --continue https://example.com/large.iso,wget -c https://example.com/large.iso,False,True,True,3
+Q3_K_M:2,Q3_K_M,2,Sort the contents of unsorted.txt alphabetically and remove duplicates.,sort -u unsorted.txt,sort -u unsorted.txt > sorted_unique.txt,False,True,True,5
+Q3_K_M:2,Q3_K_M,2,Show the 10 most recent entries in the system journal,journalctl -n 10,journalctl -n 10 --no-pager,False,True,True,4
+Q3_K_M:2,Q3_K_M,2,Show the current load averages,cat /proc/loadavg,cat /proc/loadavg,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Create RAM disk 1G,sudo mount -t tmpfs -o size=1G tmpfs /mnt/ramdisk,sudo mkdir -p /mnt/ram && sudo mount -t tmpfs -o size=1G tmpfs /mnt/ram,False,True,True,3
+Q3_K_M:2,Q3_K_M,2,Create alias ll for ls -la,alias ll='ls -la',$ alias ll='ls -la',False,True,True,5
+Q3_K_M:2,Q3_K_M,2,Display the first 10 lines of a file named data.log,head -n 10 data.log,head -n 10 data.log,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Download a file from ""https://example.com/file.tar.gz"" using wget",wget https://example.com/file.tar.gz,wget https://example.com/file.tar.gz,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Find all Python files that contain the string 'TODO',"grep -R ""TODO"" --include='*.py' .","grep -R ""TODO"" --include='*.py' .
+./module/utils.py:# TODO: refactor this function",False,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Create a command that monitors /var/log/syslog for lines containing the word ""CRITICAL"", extracts the timestamp and the message, and sends an email alert with the extracted info to admin@example.com using sendmail.","tail -F /var/log/syslog | grep --line-buffered ""CRITICAL"" | while read line; do ts=$(echo ""$line"" | grep -oE ""\[.*\]""); msg=$(echo ""$line"" | sed -E ""s/^.*\[$ts\] \(.*\)/\2/""); echo -e ""Subject: Critical System Event\n\nTimestamp: $ts\nMessage: $msg"" | sendmail admin@example.com; done","tail -F /var/log/syslog | grep --line-buffered 'CRITICAL' | while read -r line; do
+  ts=$(echo ""$line"" | awk '{print $1"" ""$2"" ""$3}')
+  msg=$(echo ""$line"" | cut -d' ' -f4-)
+  printf ""Subject: Critical alert\n\nTime: %s\nMessage: %s\n"" ""$ts"" ""$msg"" | sendmail admin@example.com
+done &",False,True,True,4
+Q3_K_M:2,Q3_K_M,2,Create a user called alice with a home directory and bash shell,sudo useradd -m -s /bin/bash alice,sudo useradd -m -s /bin/bash alice,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Show the last 20 lines of the Apache access log, but only the IP addresses.",tail -n 20 /var/log/apache2/access.log | awk '{print $1}',tail -n 20 /var/log/apache2/access.log | awk '{print $1}',True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"List the 10 largest files in /home, sorted descending.",find /home -type f -exec du -h {} + | sort -hr | head -n 10,find /home -type f -exec du -h {} + | sort -rh | head -n 10,False,True,True,4
+Q3_K_M:2,Q3_K_M,2,Extend a LVM logical volume,lvextend -L +500M /dev/vg_example/lv_example,lvextend -L +100M /dev/vg_example/lv_example,False,True,True,3
+Q3_K_M:2,Q3_K_M,2,"Using perl, replace any occurrence of dates in MM/DD/YYYY format in all .txt files under /data with ISO format YYYY‑MM‑DD, editing files in‑place.",perl -pi -e 's/(\d{2})\/(\d{2})\/(\d{4})/$3-\$2-\$1/g' /data/*.txt,find /data -type f -name '*.txt' -print0 | xargs -0 perl -i -pe 's/(\d{2})\/(\d{2})\/(\d{4})/$3-\$1-\$2/g',False,True,True,3
+Q3_K_M:2,Q3_K_M,2,Show the current user and their groups,id -un && id -Gn,id,False,True,True,4
+Q3_K_M:2,Q3_K_M,2,Show the last login time for the current user,lastlog -u $USER | head -n 1,last -n 1 $(whoami),False,True,True,4
+Q3_K_M:2,Q3_K_M,2,Show the current shell's process ID,"echo $$
+12345",echo $$,False,True,True,4
+Q3_K_M:2,Q3_K_M,2,Create a new system group named 'example',groupadd example,groupadd example,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Show the 3 most frequently occurring words in ""book.txt"" (ignore case, strip punctuation).",tr -cs '[:alnum:]' '\n' < book.txt | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr | head -n 3,"tr -c ""[:alnum:]"" ""\n"" < book.txt | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr | head -n 3",False,True,True,4
+Q3_K_M:2,Q3_K_M,2,"Using sed, transform a configuration file /etc/app.conf by commenting out any line that starts with ""debug="" and appending a new line ""debug=off"" at the end of the file, all in-place.","sed -i '/^debug=/s/^/#/' /etc/app.conf && echo ""debug=off"" >> /etc/app.conf",sed -i '/^debug=/s/^/#/' /etc/app.conf && echo 'debug=off' >> /etc/app.conf,False,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Show the difference between two directories dirA and dirB, ignoring empty files.",diff -r --ignore-empty-files dirA dirB,"diff -qr dirA dirB | grep -v ""Only in""",False,True,True,3
+Q3_K_M:2,Q3_K_M,2,Create a 1 GB file filled with zeros named zero.bin.,dd if=/dev/zero of=zero.bin bs=1M count=1024,dd if=/dev/zero of=zero.bin bs=1M count=1024,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Create a new group,groupadd YOUR_GROUP,groupadd newgroup,False,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Kill all processes named ""node""",pkill node,pkill node,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Print the current working directory in bold text using ANSI escape codes.,"echo -e ""\033[1m$(pwd)\033[0m""","printf ""\e[1m$(pwd)\e[0m\n""",False,True,True,4
+Q3_K_M:2,Q3_K_M,2,"Create a Bash function that takes a directory and a file extension, calculates the total size of all files with that extension, and prints the size in megabytes with three decimal places.","size_by_extension() {
+  dir=""$1""
+  ext=""$2""
+  size=$(find ""$dir"" -type f -name ""*.$ext"" -printf ""%s"" | awk '{total+=$1} END {print total}')
+  printf ""%.3f MB\n"" $(echo ""scale=3; $size/1024/1024"" | bc)
+}","total_size() {
+  local dir=""$1""
+  local ext=""$2""
+  local bytes=$(find ""$dir"" -type f -name ""*.$ext"" -printf ""%s\n"" | awk '{total+=$1} END {print total}')
+  printf ""Total size: %.3f MB\n"" ""$(echo ""scale=6; $bytes/1024/1024"" | bc)""
+}",False,True,True,4
+Q3_K_M:2,Q3_K_M,2,Create a new git repository in the current directory,git init,git init,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Show the top 10 lines of the output of ""dmesg"" that contain the word ""usb""",dmesg | grep usb | head -n 10,dmesg | grep -i usb | head -n 10,False,True,True,3
+Q3_K_M:2,Q3_K_M,2,Count the number of lines in input.txt,wc -l < input.txt,"$ wc -l input.txt
+42",False,True,True,5
+Q3_K_M:2,Q3_K_M,2,Create a new archive 'archive.tar' from a directory 'example',tar -cvf archive.tar example,tar -cvf archive.tar example,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Check whether the port 3306 is listening on the local machine.,ss -tlnp | grep ':3306 ',ss -tuln | grep ':3306',False,True,True,4
+Q3_K_M:2,Q3_K_M,2,"Merge the branch ""dev"" into the current branch without fast‑forward","git merge -m ""Merge dev into current"" dev",git merge --no-ff dev,False,True,True,2
+Q3_K_M:2,Q3_K_M,2,Show last 20 lines of syslog,tail -n 20 /var/log/syslog,sudo tail -n 20 /var/log/syslog,False,True,True,4
+Q3_K_M:2,Q3_K_M,2,Show the file type of the file 'example.txt',file example.txt,file example.txt,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Show the IP address and hostname of the machine,hostname -I,hostname -I && hostname,False,True,True,3
+Q3_K_M:2,Q3_K_M,2,"Provide a Bash one‑liner that reads a large JSON array from stdin, streams each object to jq to extract the ""id"" and ""status"" fields, and writes them as CSV rows to output.csv without loading the entire array into memory.","jq -c '(.id, .status) | @csv' | tee output.csv","jq -r '.[] | [.id, .status] | @csv' > output.csv",False,True,True,1
+Q3_K_M:2,Q3_K_M,2,"Find and replace the string ""VERSION=1.0"" with ""VERSION=2.0"" in all ""Makefile"" files recursively.",find . -type f -name Makefile -exec sed -i 's/VERSION=1.0/VERSION=2.0/g' {} \;,"find . -type f -name ""Makefile"" -exec sed -i 's/VERSION=1\.0/VERSION=2.0/g' {} +",False,True,True,3
+Q3_K_M:2,Q3_K_M,2,Show the total number of files in the current directory and its subdirectories,find . -type f | wc -l,find . -type f | wc -l,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Find all Docker containers that have been exited for more than 24 hours and remove them, then output the IDs of removed containers.","docker ps -a --filter 'status=exited' --format '{{.ID}} {{.RunningFor}}' | while read id time; do if [[ $time == *""days""* ]]; then docker rm ""$id""; echo ""Removed: $id""; fi; done","ids=$(docker ps -a --filter 'status=exited' --filter 'exited=24h' -q); [ -n ""$ids"" ] && docker rm $ids && echo ""Removed containers: $ids"" || echo ""No containers to remove""",False,True,True,3
+Q3_K_M:2,Q3_K_M,2,Extract the third column from a space‑separated file and sort it uniquely,cut -d' ' -f3 YOUR_FILE | sort -u,cut -d' ' -f3 data.txt | sort -u,False,True,True,5
+Q3_K_M:2,Q3_K_M,2,Print the number of CPU cores,nproc,nproc,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Download the file https://example.com/archive.tar.gz and save it as /tmp/archive.tar.gz, showing a progress bar.",wget --progress=bar https://example.com/archive.tar.gz -O /tmp/archive.tar.gz,curl -L --progress-bar https://example.com/archive.tar.gz -o /tmp/archive.tar.gz,False,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Search recursively for the pattern ""TODO"" in the src/ directory and show line numbers","grep -Rin ""TODO"" src/","grep -R ""TODO"" -n src/",False,True,True,5
+Q3_K_M:2,Q3_K_M,2,Start a system service named 'service_name',systemctl start service_name,systemctl start service_name,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Add a user named 'example' to a group named 'example',usermod -aG example example,usermod -aG example example,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Find all files larger than 100 MB in /var and list their sizes in a human‑readable format.,find /var -type f -size +100M -exec ls -lh {} \;,"find /var -type f -size +100M -exec ls -lh {} + | awk '{print $5, $9}'",False,True,True,5
+Q3_K_M:2,Q3_K_M,2,Change the permissions of the directory /var/www to 750 recursively.,chmod -R 750 /var/www,chmod -R 750 /var/www,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Show the IP addresses of all network interfaces,ip -brief address,ip -brief address,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Using find, locate all executable files in /usr/local/bin that have been modified in the last week, and create a tar archive named recent_bins.tar containing them while preserving permissions.",find /usr/local/bin -type f -executable -mtime -7 -print0 | tar --null -czf recent_bins.tar --files-from=-,find /usr/local/bin -type f -executable -mtime -7 -print0 | tar --null -cvf recent_bins.tar --files-from=-,False,True,True,3
+Q3_K_M:2,Q3_K_M,2,"Using awk, compute the average response time from an Nginx access log assuming the response time is the last field in each line.","awk '{sum+=$NF; cnt++} END {print ""Average response time: "" sum/cnt}' /var/log/nginx/access.log","awk '{sum+=$NF; cnt++} END {if (cnt>0) printf ""Average response time: %.3f\n"", sum/cnt}' /var/log/nginx/access.log",False,True,True,4
+Q3_K_M:2,Q3_K_M,2,"Append the line 'alias ll=""ls -la""' to ~/.bashrc","echo 'alias ll=""ls -la""' >> ~/.bashrc","echo 'alias ll=""ls -la""' >> ~/.bashrc",True,True,True,5
+Q3_K_M:2,Q3_K_M,2,List all Docker images that are not currently used by any container (dangling).,docker images --filter 'dangling=true' -q,docker images -f dangling=true,False,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Decompress ""archive.gz"" and write output to ""archive""",gunzip archive.gz,gunzip -c archive.gz > archive,False,True,True,1
+Q3_K_M:2,Q3_K_M,2,"Create a temporary file and write ""Hello World"" into it, then display its path","tmpfile=$(mktemp); echo ""Hello World"" > $tmpfile; echo $tmpfile","tmpfile=$(mktemp) && echo ""Hello World"" > ""$tmpfile"" && echo ""$tmpfile""",False,True,True,4
+Q3_K_M:2,Q3_K_M,2,"Convert all spaces at the beginning of lines in ""script.sh"" to tabs (assuming 4 spaces per tab).",sed -i 's/^>\{4\}//' script.sh,expand -t 4 -i script.sh > script_tmp.sh && mv script_tmp.sh script.sh,False,True,True,1
+Q3_K_M:2,Q3_K_M,2,Show the current firewall rules using iptables,sudo iptables -L -v -n,sudo iptables -L -v -n,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Create a new virtual environment named ""venv"" using Python 3",python3 -m venv venv,python3 -m venv venv,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Check the syntax of the Bash script ""deploy.sh"" without executing it.",bash -n deploy.sh,bash -n deploy.sh,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Find all services that are enabled but not currently running, and start them automatically.","systemctl list-unit-files --type=service | awk '{if($4==""enabled"" && $6==""no"") print $1}' | xargs systemctl start","systemctl list-unit-files --type=service --state=enabled | awk 'NR>1{print $1}' | while read svc; do
+  if ! systemctl is-active --quiet ""$svc""; then
+    systemctl start ""$svc""
+  fi
+done",False,True,True,2
+Q3_K_M:2,Q3_K_M,2,"List the top 10 IP addresses accessing the Apache access log, sorted by request count, and output the result as a JSON array of objects with fields ""ip"" and ""hits"".","awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -n10 | awk '{print ""{\""ip\"": \""""$1 ""\"", \""hits\"": ""$2""}""}' | paste -sd',' - | sed 's/^/[/' -e 's/,$/\]/'","#!/usr/bin/env bash
+awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -10 \
+    | awk '{print ""{\""ip\"": \""""$2""\"", \""hits\"": ""$1""}""}' \
+    | jq -s '.'",False,True,True,2
+Q3_K_M:2,Q3_K_M,2,"Use sed to replace all occurrences of a specific string in a file, and then use diff to compare the original and modified files","sed 's/old_string/new_string/g' file.txt > file_modified.txt
+diff file.txt file_modified.txt",sed 's/old_string/new_string/g' file.txt > modified_file.txt; diff file.txt modified_file.txt,False,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Create a command that finds all files larger than 1 GiB, moves them to /mnt/large_files preserving directory structure, and logs the original and new paths to /var/log/large_file_moves.log.","#!/usr/bin/env bash
+find . -type f -size +1G -print0 | while IFS= read -r -d '' file; do
+  orig=""${file}""
+  new=""/mnt/large_files/$(basename ""$file"")""
+  mv ""$file"" ""$new"" && echo ""$(date +%F_%T) Moved $orig -> $new"" >> /var/log/large_file_moves.log
+done","find / -type f -size +1G -print0 | while IFS= read -r -d '' f; do rel=${f#/}; dest=""/mnt/large_files/$rel""; mkdir -p ""$(dirname ""$dest"")"" && mv ""$f"" ""$dest"" && echo ""$(date +%F_%T) $f -> $dest"" >> /var/log/large_file_moves.log; done",False,True,True,3
+Q3_K_M:2,Q3_K_M,2,"Generate a report of disk usage per user on /home, sorted descending, and output as a JSON array.","printf '['; IFS=,; users=$(find /home -type d -name '.*' -printf '%h\n' | sort -u); for user in $users; do usage=$(du -sh /home/$user 2>/dev/null | cut -f1); printf '{""user"":""%s"",""usage"":""%s""}' ""$user"" ""$usage""; if [ ""$user"" != ""${users##*}"" ]; then printf ','; fi; done; printf ']';","du -sh /home/* 2>/dev/null | \
+  awk '{print $2"":""$1}' | \
+  while IFS="":"" read user size; do echo ""{\""user\"":\""${user#/home/}\"",\""size\"":\""$size\""}""; done | \
+  jq -s 'sort_by(.size|sub(""[KMG]$"";"""";""g"")|tonumber) | reverse'",False,True,True,3
+Q3_K_M:2,Q3_K_M,2,"Write a Bash script that generates a histogram of HTTP response codes from an Apache log, using awk to count each code and then printing a simple bar chart with '*' characters.","#!/usr/bin/env bash
+awk '{print $9}' /var/log/apache2/access.log | sort | uniq -c | awk '{printf ""%s %s\n"", $2, $1}' | while read code count; do echo -e ""$code \033[0;32m${count}\033[0m""; done","#!/usr/bin/env bash\nlog=/var/log/apache2/access.log\nawk '{print $9}' ""$log"" |\n  sort | uniq -c |\n  awk '{printf ""%s %s %s\n"", $2, $1, sprintf(""%*s"", $1, """").gsub(/ /,""*"")}'",False,True,True,3
+Q3_K_M:2,Q3_K_M,2,List the files in a package named 'example',dpkg -L example,dpkg -L example,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Show detailed information of files in the /var/log directory, sorted by size descending.",find /var/log -type f -exec ls -lh {} + | sort -hr,ls -lhS /var/log,False,True,True,3
+Q3_K_M:2,Q3_K_M,2,Schedule a one‑time system shutdown at 23:30 today.,sudo shutdown -h 23:30,sudo shutdown -h 23:30,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Using only bash and coreutils, generate a progress bar that shows the copy progress of a 5 GiB file src.bin to /mnt/backup/src.bin, updating every second.","#!/usr/bin/env bash
+src=src.bin
+dest=/mnt/backup/src.bin
+size=$(stat -c%s ""$src"")
+start=0
+while [ $start -lt $size ]; do
+  end=$((start + 512*1024))
+  if [ $end -gt $size ]; then end=$size; fi
+  cp --progress=bar:0-100 ""$src"" ""$dest"" --start=$start --end=$end
+  start=$end
+  sleep 1
+done","{ dd if=src.bin of=/mnt/backup/src.bin bs=4M status=none & pid=$!; while kill -0 $pid 2>/dev/null; do copied=$(stat --format=%s /mnt/backup/src.bin 2>/dev/null || echo 0); percent=$(( copied*100/5368709120 )); printf ""\rProgress: [%-50s] %3d%%"" $(printf ""#""{1..$((percent/2))}) $percent; sleep 1; done; wait $pid; echo; }",False,True,True,1
+Q3_K_M:2,Q3_K_M,2,"Print the contents of ""data.json"" with syntax highlighting using ""jq""",jq . data.json,"jq . data.json
+{
+  ""name"": ""example"",
+  ""value"": 42
+}",False,True,True,5
+Q3_K_M:2,Q3_K_M,2,Remove the directory temp_dir and all its contents without prompting,rm -rf temp_dir,rm -rf temp_dir,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Write a Bash one‑liner that lists all users on the system who have not logged in for more than 90 days, using /var/log/lastlog, and disables their accounts with usermod.","lastlog -u | awk -v days=90 '$3 > days {print $1}' | while read user; do usermod -L ""$user"" && echo ""Disabled account for $user"" || echo ""Account already disabled or not found""; done","while IFS=: read -r user _ uid _ _ _ _; do
+  if ((uid>=1000)); then
+    last=$(lastlog -u ""$user"" | awk 'NR==2 {print $4,$5,$6}')
+    if [[ ""$last"" == '**Never logged in**' ]] || (( $(date -d ""$last"" +%s) < $(date -d '-90 days' +%s) )); then
+      usermod -L ""$user""
+    fi
+  fi
+done < <(cut -d: -f1,3 /etc/passwd)",False,True,True,3
+Q3_K_M:2,Q3_K_M,2,"List all Docker images sorted by size, showing the top 5","docker images --format ""{{.Repository}} {{.Size}}"" | sort -hr | head -n 5","docker images --format ""{{.Repository}}:{{.Tag}} {{.Size}}"" | sort -k2 -h | tail -n 5",False,True,True,3
+Q3_K_M:2,Q3_K_M,2,"Copy the local file report.pdf to the remote host /tmp directory using scp, preserving timestamps.",scp -p report.pdf user@remote_host:/tmp,scp -p report.pdf user@example.com:/tmp/,False,True,True,3
+Q3_K_M:2,Q3_K_M,2,Extract the contents of a compressed archive named 'archive.tar.gz',tar -xzf archive.tar.gz,tar -xzvf archive.tar.gz,False,True,True,4
+Q3_K_M:2,Q3_K_M,2,Create a new file named 'example.txt' and write 'Hello World' to it,echo 'Hello World' > example.txt,echo 'Hello World' > example.txt,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Generate a random UUID and print it.,uuidgen,uuidgen,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Write a Bash one-liner that lists the 5 largest files in /var/www, showing size in human readable format and full path, sorted descending.",find /var/www -type f -exec du -h {} + | sort -hr | head -n 5,"#!/usr/bin/env bash
+find /var/www -type f -exec du -h {} + | sort -hr | head -5",False,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Write a Bash one‑liner that prints the number of CPUs, total memory in GB, and the system uptime in days, formatted as JSON.","printf '{""cpu_count"": %d, ""mem_gb"": %.2f, ""uptime_days"": %.2f}\n' ""$(nproc)"" ""$(free -g | awk '/Mem:/ {print $2}')"" ""$(uptime | awk -F'[ ,]' '{print ($5+0)/24}')""","printf '{""cpus"":%d,""memory_gb"":%.2f,""uptime_days"":%.2f}\n' ""$(nproc)"" ""$(awk '/MemTotal/ {printf $2/1024/1024}' /proc/meminfo)"" ""$(awk '{print $1/86400}' /proc/uptime)""",False,True,True,3
+Q3_K_M:2,Q3_K_M,2,"Create a Bash function that accepts a git branch name, checks out the branch, rebases it onto master, runs the test suite, and if successful, pushes the branch; otherwise, aborts the rebase and returns to the previous branch.","git_rebase_test() {
+  local branch=""$1""
+  git checkout ""$branch"" && git rebase master && \
+    make test && git push -u origin ""$branch"" && echo ""Rebased and pushed $branch"" || {
+    git rebase --abort
+    git checkout ""$branch""
+    echo ""Rebase failed, aborting""
+  }
+}","git_sync(){ local branch=""$1""; local cur=$(git rev-parse --abbrev-ref HEAD); git checkout ""$branch"" && git rebase master && if ./run_tests.sh; then git push origin ""$branch""; else git rebase --abort && git checkout ""$cur""; fi; }",False,True,True,3
+Q3_K_M:2,Q3_K_M,2,Create a zip archive of the 'example' directory,zip -r example.zip example,zip -r example.zip example,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Create a pipeline that reads a large log file, extracts JSON objects embedded in lines, pretty-prints them with jq, and writes to json_logs.txt, handling malformed JSON gracefully.","grep -o '{[^}]*}' large.log | while IFS= read -r line; do echo ""$line"" | jq . 2>/dev/null; done > json_logs.txt","grep -o '{.*}' large.log |
+  while read line; do
+    echo ""$line"" | jq . 2>/dev/null || echo ""Malformed JSON: $line"" >> errors.log
+  done > json_logs.txt",False,True,True,4
+Q3_K_M:2,Q3_K_M,2,"Using curl, download the latest release tarball of jq from GitHub API, verify its SHA256 checksum against the value returned by the API, and extract it to ~/tools/jq_latest/ if verification succeeds.","api_url=""https://api.github.com/repos/stedolan/jq/releases/latest""
+response=$(curl -s ""$api_url"")
+latest_url=$(echo ""$response"" | jq -r '.assets[] | select(.name|endswith(""jq-linux-amd64.tar.gz"")) | .browser_download_url')
+checksum=$(echo ""$response"" | jq -r '.assets[] | select(.name|endswith(""jq-linux-amd64.tar.gz.sha256"")) | .browser_download_url')
+curl -L -o jq.tar.gz ""$latest_url""
+if [[ $(echo ""$checksum $latest_url"" | sha2","url=$(curl -s https://api.github.com/repos/stedolan/jq/releases/latest | jq -r '.assets[] | select(.name|test(""jq-.*\.tar\.gz"")) | .browser_download_url'); checksum=$(curl -s https://api.github.com/repos/stedolan/jq/releases/latest | jq -r '.assets[] | select(.name|test(""jq-.*\.tar\.gz\.sha256"")) | .browser_download_url' | xargs curl -sL); curl -L -o /tmp/jq.tar.gz ""$url""; echo ""$checksum  /tmp/jq.tar.gz"" | sha256sum -c - && mkdir -p ~/tools/jq_latest && tar -xzf /tmp/jq.tar.gz -C ~/tools/jq_latest",False,True,False,1
+Q3_K_M:2,Q3_K_M,2,"Create a pipeline that reads a CSV of user data, filters rows where age > 30, extracts the email column, removes duplicates, and writes them to emails.txt.","awk -F',' '($2 > 30) {print $3}' user_data.csv | sort -u > emails.txt","awk -F',' '$3>30 {print $5}' users.csv | sort -u > emails.txt",False,True,True,1
+Q3_K_M:2,Q3_K_M,2,Display the current bash version.,echo $BASH_VERSION,echo $BASH_VERSION,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Check the disk information,df -h,lsblk,False,True,True,5
+Q3_K_M:2,Q3_K_M,2,Create a new directory named 'test',mkdir test,mkdir test,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Create a symbolic link named ""latest"" pointing to ""release_v2.3""",ln -s release_v2.3 latest,ln -s release_v2.3 latest,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Display the current user's groups as a space‑separated list.,groups $(whoami),id -Gn,False,True,True,4
+Q3_K_M:2,Q3_K_M,2,"Find all ELF binaries in /usr/local/bin that are not owned by root, change their ownership to root:root, and set the setuid bit, logging each change to /var/log/setuid_changes.log.","find /usr/local/bin -type f -executable -perm -111 -exec chown root:root {} \; -print0 | while IFS= read -r -d '' file; do echo ""$(date +%F_%T) Changed $file"" >> /var/log/setuid_changes.log; chmod u+s ""$file""; done","#!/usr/bin/env bash
+find /usr/local/bin -type f -executable -exec file {} \; | grep -i ELF | cut -d: -f1 | while read -r bin; do
+  if [ $(stat -c %U ""$bin"") != ""root"" ]; then
+    chown root:root ""$bin""
+    chmod u+s ""$bin""
+    echo ""$(date '+%F %T') Modified $bin"" >> /var/log/setuid_changes.log
+  fi
+done",False,True,True,2
+Q3_K_M:2,Q3_K_M,2,"Write a Bash one‑liner that extracts all IPv4 addresses from access.log, counts occurrences, and prints the top 5 attackers.","awk '{for(i=1;i<=NF;i++) if($i~/^([0-9]{1,3}\.){3}[0-9]{1,3}$/){print $i}}' access.log | sort | uniq -c | sort -nr | head -n5","awk '{for(i=1;i<=NF;i++) if($i ~ /([0-9]{1,3}\.){3}[0-9]{1,3}/) print $i}' access.log | sort | uniq -c | sort -nr | head -5",False,True,True,4
+Q3_K_M:2,Q3_K_M,2,Extract the tar.gz archive backup.tar.gz into /opt/backup,tar -xzvf backup.tar.gz -C /opt/backup,tar -xzf backup.tar.gz -C /opt/backup,False,True,True,4
+Q3_K_M:2,Q3_K_M,2,"Download the file from ""https://example.com/file.txt"" and save it as ""file.txt"".",curl -O https://example.com/file.txt,curl -L -o file.txt https://example.com/file.txt,False,True,True,2
+Q3_K_M:2,Q3_K_M,2,"Write a pipeline that reads a list of URLs from urls.txt, downloads each with curl (max 3 retries, 10s timeout), computes its SHA256, and writes ""<url> <sha256>"" to checksums.txt, skipping URLs that fail after retries.","while read -r url; do if curl -m 10 -s -L ""$url"" -o ""${url##*/}""; then sha=$(sha256sum ""${url##*/}"" | awk '{print $1}'); echo ""$url $sha"" >> checksums.txt; else echo ""Failed: $url"" >&2; fi; done < urls.txt","while read -r url; do sha=$(curl -sSf --retry 3 --max-time 10 ""$url"" | sha256sum | awk '{print $1}') && echo ""$url $sha"" >> checksums.txt; done < urls.txt",False,True,True,2
+Q3_K_M:2,Q3_K_M,2,"Create a new user ""devuser"" with a home directory and default shell /bin/bash.",sudo useradd -m -s /bin/bash devuser,sudo useradd -m -s /bin/bash devuser,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,Change the permissions of a file named 'file.txt' to 'rwxr-x',chmod 755 file.txt,chmod 755 file.txt,True,True,True,5
+Q3_K_M:2,Q3_K_M,2,"Using find and chmod, locate all executable files in /opt/scripts that are not owned by root, and change their ownership to root while preserving the executable bits.","find /opt/scripts -type f -perm -111 ! -user root -print0 | xargs -0 -I{} sh -c 'chmod -R 755 ""{}"" && chown root ""{}""'","find /opt/scripts -type f -executable ! -user root -exec chown root:{} \; -exec chmod u+x,g+x,o+x {} \;",False,True,True,2
+Q3_K_M:2,Q3_K_M,2,"Replace every occurrence of a UUID (format 8-4-4-4-12 hex) in all *.txt files under /data with a newly generated UUID, preserving the rest of the file content.","find /data -type f -name ""*.txt"" -print0 | xargs -0 -I{} sh -c 'uuid=$(uuidgen -r); sed -i ""s/\\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\b/\\1/g"" ""{}""'","find /data -type f -name '*.txt' -print0 | xargs -0 -I{} bash -c 'sed -i -E ""s/[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}/$(uuidgen)/g"" ""{}""'",False,True,True,1
+Q4_K_S:2,Q4_K_S,2,"Convert the image ""photo.png"" to a JPEG with 80% quality using ImageMagick.",convert photo.png -quality 80 photo.jpg,convert photo.png -quality 80 photo.jpg,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Using find, locate all .sh files that contain the string ""TODO"", replace it with ""DONE"" in‑place, and create a backup of each modified file with a .bak extension.","find . -type f -name ""*.sh"" -exec grep -l ""TODO"" {} \; | while read -r file; do
+  grep -l ""TODO"" ""$file"" | xargs -r sed -i.bak 's/TODO/DONE/g'
+done","find . -type f -name ""*.sh"" -exec grep -l ""TODO"" {} + | while read -r f; do cp ""$f"" ""$f.bak""; sed -i 's/TODO/DONE/g' ""$f""; done",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Download a file with progress bar and resume capability from ""https://example.com/large.iso"".",wget --progress=bar https://example.com/large.iso,wget -c https://example.com/large.iso,False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Sort the contents of unsorted.txt alphabetically and remove duplicates.,sort -u unsorted.txt,sort -u unsorted.txt > sorted_unique.txt,False,True,True,5
+Q4_K_S:2,Q4_K_S,2,Show the 10 most recent entries in the system journal,journalctl -n 10,journalctl -n 10 --no-pager,False,True,True,4
+Q4_K_S:2,Q4_K_S,2,Show the current load averages,cat /proc/loadavg,cat /proc/loadavg,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Create RAM disk 1G,sudo mount -t tmpfs -o size=1G tmpfs /mnt/ramdisk,sudo mkdir -p /mnt/ram && sudo mount -t tmpfs -o size=1G tmpfs /mnt/ram,False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Create alias ll for ls -la,alias ll='ls -la',$ alias ll='ls -la',False,True,True,5
+Q4_K_S:2,Q4_K_S,2,Display the first 10 lines of a file named data.log,head -n 10 data.log,head -n 10 data.log,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Download a file from ""https://example.com/file.tar.gz"" using wget",wget https://example.com/file.tar.gz,wget https://example.com/file.tar.gz,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Find all Python files that contain the string 'TODO',"grep -R ""TODO"" --include=""*.py"" .","grep -R ""TODO"" --include='*.py' .
+./module/utils.py:# TODO: refactor this function",False,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Create a command that monitors /var/log/syslog for lines containing the word ""CRITICAL"", extracts the timestamp and the message, and sends an email alert with the extracted info to admin@example.com using sendmail.","tail -F /var/log/syslog | grep --line-buffered ""CRITICAL"" | while read -r line; do ts=$(echo ""$line"" | awk '{print $1"" ""$2"" ""$3}'); msg=$(echo ""$line"" | awk '{print $4"" ""$5"" ""$6"" ""$7"" ""$8"" ""$9"" ""$10"" ""$11"" ""$12"" ""$13"" ""$14"" ""$15"" ""$16"" ""$17"" ""$18"" ""$19"" ""$20"" ""$21"" ""$22"" ""$2","tail -F /var/log/syslog | grep --line-buffered 'CRITICAL' | while read -r line; do
+  ts=$(echo ""$line"" | awk '{print $1"" ""$2"" ""$3}')
+  msg=$(echo ""$line"" | cut -d' ' -f4-)
+  printf ""Subject: Critical alert\n\nTime: %s\nMessage: %s\n"" ""$ts"" ""$msg"" | sendmail admin@example.com
+done &",False,True,False,1
+Q4_K_S:2,Q4_K_S,2,Create a user called alice with a home directory and bash shell,sudo useradd -m -s /bin/bash alice,sudo useradd -m -s /bin/bash alice,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Show the last 20 lines of the Apache access log, but only the IP addresses.",tail -n 20 /var/log/apache2/access.log | awk '{print $1}',tail -n 20 /var/log/apache2/access.log | awk '{print $1}',True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"List the 10 largest files in /home, sorted descending.",find /home -type f -exec du -h {} + | sort -rh | head -n 10,find /home -type f -exec du -h {} + | sort -rh | head -n 10,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Extend a LVM logical volume,lvextend -L +500M /dev/vg_example/lv_example,lvextend -L +100M /dev/vg_example/lv_example,False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Using perl, replace any occurrence of dates in MM/DD/YYYY format in all .txt files under /data with ISO format YYYY‑MM‑DD, editing files in‑place.",perl -pi -e 's/(\d{2})\/(\d{2})\/(\d{4})/$3-\$2-\$1/g' /data/*.txt,find /data -type f -name '*.txt' -print0 | xargs -0 perl -i -pe 's/(\d{2})\/(\d{2})\/(\d{4})/$3-\$1-\$2/g',False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Show the current user and their groups,groups,id,False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Show the last login time for the current user,lastlog -u $USER,last -n 1 $(whoami),False,True,True,4
+Q4_K_S:2,Q4_K_S,2,Show the current shell's process ID,echo $$,echo $$,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Create a new system group named 'example',groupadd example,groupadd example,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Show the 3 most frequently occurring words in ""book.txt"" (ignore case, strip punctuation).",tr -cs '[:alnum:]' '\n' < book.txt | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -rn | head -n 3,"tr -c ""[:alnum:]"" ""\n"" < book.txt | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr | head -n 3",False,True,True,4
+Q4_K_S:2,Q4_K_S,2,"Using sed, transform a configuration file /etc/app.conf by commenting out any line that starts with ""debug="" and appending a new line ""debug=off"" at the end of the file, all in-place.",sed -i '/^debug=/s/^/#/' /etc/app.conf && echo 'debug=off' >> /etc/app.conf,sed -i '/^debug=/s/^/#/' /etc/app.conf && echo 'debug=off' >> /etc/app.conf,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Show the difference between two directories dirA and dirB, ignoring empty files.",diff -qr dirA dirB,"diff -qr dirA dirB | grep -v ""Only in""",False,True,True,4
+Q4_K_S:2,Q4_K_S,2,Create a 1 GB file filled with zeros named zero.bin.,dd if=/dev/zero of=zero.bin bs=1M count=1024,dd if=/dev/zero of=zero.bin bs=1M count=1024,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Create a new group,groupadd YOUR_GROUP,groupadd newgroup,False,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Kill all processes named ""node""",pkill node,pkill node,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Print the current working directory in bold text using ANSI escape codes.,"echo -e ""\033[1m$(pwd)\033[0m""","printf ""\e[1m$(pwd)\e[0m\n""",False,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Create a Bash function that takes a directory and a file extension, calculates the total size of all files with that extension, and prints the size in megabytes with three decimal places.","size_of_files(){
+  dir=""$1""
+  ext=""$2""
+  find ""$dir"" -type f -name ""*.$ext"" -exec du -sm {} + | awk '{total+=$1} END {print ""Total size: "" total "" MB""}'
+}","total_size() {
+  local dir=""$1""
+  local ext=""$2""
+  local bytes=$(find ""$dir"" -type f -name ""*.$ext"" -printf ""%s\n"" | awk '{total+=$1} END {print total}')
+  printf ""Total size: %.3f MB\n"" ""$(echo ""scale=6; $bytes/1024/1024"" | bc)""
+}",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Create a new git repository in the current directory,git init,git init,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Show the top 10 lines of the output of ""dmesg"" that contain the word ""usb""",dmesg | grep usb | grep -i error | sort | uniq | head -n 10,dmesg | grep -i usb | head -n 10,False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Count the number of lines in input.txt,wc -l < input.txt,"$ wc -l input.txt
+42",False,True,True,5
+Q4_K_S:2,Q4_K_S,2,Create a new archive 'archive.tar' from a directory 'example',tar -cvf archive.tar example,tar -cvf archive.tar example,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Check whether the port 3306 is listening on the local machine.,ss -ltn | grep ':3306 ',ss -tuln | grep ':3306',False,True,True,4
+Q4_K_S:2,Q4_K_S,2,"Merge the branch ""dev"" into the current branch without fast‑forward",git merge --no-ff dev,git merge --no-ff dev,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Show last 20 lines of syslog,tail -n 20 /var/log/syslog,sudo tail -n 20 /var/log/syslog,False,True,True,4
+Q4_K_S:2,Q4_K_S,2,Show the file type of the file 'example.txt',file example.txt,file example.txt,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Show the IP address and hostname of the machine,hostname -I,hostname -I && hostname,False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Provide a Bash one‑liner that reads a large JSON array from stdin, streams each object to jq to extract the ""id"" and ""status"" fields, and writes them as CSV rows to output.csv without loading the entire array into memory.","jq -c '.[] | {id: .id, status: .status}' | while read -r obj; do echo ""${obj[id]},${obj[status]}""; done > output.csv","jq -r '.[] | [.id, .status] | @csv' > output.csv",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Find and replace the string ""VERSION=1.0"" with ""VERSION=2.0"" in all ""Makefile"" files recursively.","find . -type f -name ""Makefile"" -exec sed -i 's/VERSION=1.0/VERSION=2.0/g' {} \;","find . -type f -name ""Makefile"" -exec sed -i 's/VERSION=1\.0/VERSION=2.0/g' {} +",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Show the total number of files in the current directory and its subdirectories,find . -type f | wc -l,find . -type f | wc -l,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Find all Docker containers that have been exited for more than 24 hours and remove them, then output the IDs of removed containers.","docker ps -a --filter ""status=exited"" --format ""{{.ID}} {{.RunningFor}}"" | while read id time; do if [[ $time == *""days""* ]]; then days=$(echo $time | grep -o '[0-9]\+'); if (( days >= 2 )); then docker rm ""$id""; echo ""Removed container $id""; fi; fi; done","ids=$(docker ps -a --filter 'status=exited' --filter 'exited=24h' -q); [ -n ""$ids"" ] && docker rm $ids && echo ""Removed containers: $ids"" || echo ""No containers to remove""",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Extract the third column from a space‑separated file and sort it uniquely,cut -d' ' -f3 YOUR_FILE | sort -u,cut -d' ' -f3 data.txt | sort -u,False,True,True,5
+Q4_K_S:2,Q4_K_S,2,Print the number of CPU cores,nproc,nproc,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Download the file https://example.com/archive.tar.gz and save it as /tmp/archive.tar.gz, showing a progress bar.",wget --progress=bar https://example.com/archive.tar.gz -O /tmp/archive.tar.gz,curl -L --progress-bar https://example.com/archive.tar.gz -o /tmp/archive.tar.gz,False,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Search recursively for the pattern ""TODO"" in the src/ directory and show line numbers","grep -Rn ""TODO"" src/","grep -R ""TODO"" -n src/",False,True,True,5
+Q4_K_S:2,Q4_K_S,2,Start a system service named 'service_name',systemctl start service_name,systemctl start service_name,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Add a user named 'example' to a group named 'example',usermod -aG example example,usermod -aG example example,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Find all files larger than 100 MB in /var and list their sizes in a human‑readable format.,find /var -type f -size +100M -exec ls -lh {} \;,"find /var -type f -size +100M -exec ls -lh {} + | awk '{print $5, $9}'",False,True,True,4
+Q4_K_S:2,Q4_K_S,2,Change the permissions of the directory /var/www to 750 recursively.,chmod -R 750 /var/www,chmod -R 750 /var/www,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Show the IP addresses of all network interfaces,ip -brief address,ip -brief address,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Using find, locate all executable files in /usr/local/bin that have been modified in the last week, and create a tar archive named recent_bins.tar containing them while preserving permissions.",find /usr/local/bin -type f -executable -mtime -7 -print0 | tar --null -czf recent_bins.tar --files-from=-,find /usr/local/bin -type f -executable -mtime -7 -print0 | tar --null -cvf recent_bins.tar --files-from=-,False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Using awk, compute the average response time from an Nginx access log assuming the response time is the last field in each line.",awk '{sum+=$NF; n++} END {print sum/n}' /var/log/nginx/access.log,"awk '{sum+=$NF; cnt++} END {if (cnt>0) printf ""Average response time: %.3f\n"", sum/cnt}' /var/log/nginx/access.log",False,True,True,4
+Q4_K_S:2,Q4_K_S,2,"Append the line 'alias ll=""ls -la""' to ~/.bashrc","echo 'alias ll=""ls -la""' >> ~/.bashrc","echo 'alias ll=""ls -la""' >> ~/.bashrc",True,True,True,5
+Q4_K_S:2,Q4_K_S,2,List all Docker images that are not currently used by any container (dangling).,"docker images --filter ""dangling=true"" --format ""{{.Repository}}""",docker images -f dangling=true,False,True,True,4
+Q4_K_S:2,Q4_K_S,2,"Decompress ""archive.gz"" and write output to ""archive""",gunzip -c archive.gz > archive,gunzip -c archive.gz > archive,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Create a temporary file and write ""Hello World"" into it, then display its path","tmpfile=$(mktemp) && echo ""Hello World"" > ""$tmpfile"" && echo ""$tmpfile""","tmpfile=$(mktemp) && echo ""Hello World"" > ""$tmpfile"" && echo ""$tmpfile""",True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Convert all spaces at the beginning of lines in ""script.sh"" to tabs (assuming 4 spaces per tab).","sed -i 's/^\s\{4,\}/\t/' script.sh",expand -t 4 -i script.sh > script_tmp.sh && mv script_tmp.sh script.sh,False,True,True,1
+Q4_K_S:2,Q4_K_S,2,Show the current firewall rules using iptables,sudo iptables -L -n,sudo iptables -L -v -n,False,True,True,4
+Q4_K_S:2,Q4_K_S,2,"Create a new virtual environment named ""venv"" using Python 3",python3 -m venv venv,python3 -m venv venv,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Check the syntax of the Bash script ""deploy.sh"" without executing it.",bash -n deploy.sh,bash -n deploy.sh,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Find all services that are enabled but not currently running, and start them automatically.","systemctl list-units --type=service --state=enabled --no-legend | awk '{print $1}' | while read svc; do if ! systemctl is-active --quiet ""$svc""; then systemctl enable --now ""$svc""; fi; done","systemctl list-unit-files --type=service --state=enabled | awk 'NR>1{print $1}' | while read svc; do
+  if ! systemctl is-active --quiet ""$svc""; then
+    systemctl start ""$svc""
+  fi
+done",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"List the top 10 IP addresses accessing the Apache access log, sorted by request count, and output the result as a JSON array of objects with fields ""ip"" and ""hits"".","awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -n 10 | while read count ip; do echo ""{\""ip\"": \""$ip\"", \""hits\"": $count}""; done | jq -s '.'","#!/usr/bin/env bash
+awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -10 \
+    | awk '{print ""{\""ip\"": \""""$2""\"", \""hits\"": ""$1""}""}' \
+    | jq -s '.'",False,True,True,4
+Q4_K_S:2,Q4_K_S,2,"Use sed to replace all occurrences of a specific string in a file, and then use diff to compare the original and modified files",sed 's/old_string/new_string/g' file.txt > file.tmp && diff file.txt file.tmp,sed 's/old_string/new_string/g' file.txt > modified_file.txt; diff file.txt modified_file.txt,False,True,True,4
+Q4_K_S:2,Q4_K_S,2,"Create a command that finds all files larger than 1 GiB, moves them to /mnt/large_files preserving directory structure, and logs the original and new paths to /var/log/large_file_moves.log.","#!/usr/bin/env bash
+find . -type f -size +1G -print0 | while IFS= read -r -d '' file; do
+  dest=""/mnt/large_files/$(dirname ""$file"")""
+  mkdir -p ""$dest""
+  mv ""$file"" ""$dest"" && echo ""$(readlink -f ""$file"") -> $dest$(readlink -f ""$file"")"" >> /var/log/large_file_moves.log
+done","find / -type f -size +1G -print0 | while IFS= read -r -d '' f; do rel=${f#/}; dest=""/mnt/large_files/$rel""; mkdir -p ""$(dirname ""$dest"")"" && mv ""$f"" ""$dest"" && echo ""$(date +%F_%T) $f -> $dest"" >> /var/log/large_file_moves.log; done",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Generate a report of disk usage per user on /home, sorted descending, and output as a JSON array.","printf '['; find /home -type f -printf '%u %s\n' | sort | uniq -c | sort -nr | while IFS=' ' read -r count user; do printf '{""user"":""%s"",""size"":%s},' ""$user"" ""$count""; done; printf ']\n'","du -sh /home/* 2>/dev/null | \
+  awk '{print $2"":""$1}' | \
+  while IFS="":"" read user size; do echo ""{\""user\"":\""${user#/home/}\"",\""size\"":\""$size\""}""; done | \
+  jq -s 'sort_by(.size|sub(""[KMG]$"";"""";""g"")|tonumber) | reverse'",False,True,True,1
+Q4_K_S:2,Q4_K_S,2,"Write a Bash script that generates a histogram of HTTP response codes from an Apache log, using awk to count each code and then printing a simple bar chart with '*' characters.","#!/usr/bin/env bash
+awk '{print $9}' /var/log/apache2/access.log | sort | uniq -c | while read count code; do
+  printf ""%s %s\n"" ""$code"" $(printf ""%03d"" $count)
+  for ((i=0;i<count;i++)); do echo -n ""*""; done
+  echo
+done","#!/usr/bin/env bash\nlog=/var/log/apache2/access.log\nawk '{print $9}' ""$log"" |\n  sort | uniq -c |\n  awk '{printf ""%s %s %s\n"", $2, $1, sprintf(""%*s"", $1, """").gsub(/ /,""*"")}'",False,True,True,4
+Q4_K_S:2,Q4_K_S,2,List the files in a package named 'example',dpkg -L example,dpkg -L example,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Show detailed information of files in the /var/log directory, sorted by size descending.",find /var/log -type f -exec ls -lh {} + | sort -k5 -rh,ls -lhS /var/log,False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Schedule a one‑time system shutdown at 23:30 today.,shutdown -h now,sudo shutdown -h 23:30,False,True,True,2
+Q4_K_S:2,Q4_K_S,2,"Using only bash and coreutils, generate a progress bar that shows the copy progress of a 5 GiB file src.bin to /mnt/backup/src.bin, updating every second.","#!/usr/bin/env bash
+src=""/path/to/src.bin""
+dest=""/mnt/backup/src.bin""
+size=$(stat -c%s ""$src"")
+start=$(date +%s)
+while [ $(stat -c%s ""$dest"") -lt $size ]; do
+  cp --progress=bar:force --progress=bar:status=0 ""$src"" ""$dest""
+  sleep 1
+done
+end=$(date +%s)
+echo ""Copy completed in $((end-start)) seconds""","{ dd if=src.bin of=/mnt/backup/src.bin bs=4M status=none & pid=$!; while kill -0 $pid 2>/dev/null; do copied=$(stat --format=%s /mnt/backup/src.bin 2>/dev/null || echo 0); percent=$(( copied*100/5368709120 )); printf ""\rProgress: [%-50s] %3d%%"" $(printf ""#""{1..$((percent/2))}) $percent; sleep 1; done; wait $pid; echo; }",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Print the contents of ""data.json"" with syntax highlighting using ""jq""",jq . data.json,"jq . data.json
+{
+  ""name"": ""example"",
+  ""value"": 42
+}",False,True,True,5
+Q4_K_S:2,Q4_K_S,2,Remove the directory temp_dir and all its contents without prompting,rm -rf temp_dir,rm -rf temp_dir,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Write a Bash one‑liner that lists all users on the system who have not logged in for more than 90 days, using /var/log/lastlog, and disables their accounts with usermod.","awk -F: '$3>=1000{print $1}' /etc/passwd | while read user; do lastlog -u ""$user"" | awk 'NR==2{if($3<$(date -d ""90 days ago"" +%s)) print $1}' | while read uid; do usermod -L ""$uid""; done; done","while IFS=: read -r user _ uid _ _ _ _; do
+  if ((uid>=1000)); then
+    last=$(lastlog -u ""$user"" | awk 'NR==2 {print $4,$5,$6}')
+    if [[ ""$last"" == '**Never logged in**' ]] || (( $(date -d ""$last"" +%s) < $(date -d '-90 days' +%s) )); then
+      usermod -L ""$user""
+    fi
+  fi
+done < <(cut -d: -f1,3 /etc/passwd)",False,True,True,1
+Q4_K_S:2,Q4_K_S,2,"List all Docker images sorted by size, showing the top 5","docker images --format ""{{.Repository}} {{.Size}}"" | sort -hr | head -n 5","docker images --format ""{{.Repository}}:{{.Tag}} {{.Size}}"" | sort -k2 -h | tail -n 5",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Copy the local file report.pdf to the remote host /tmp directory using scp, preserving timestamps.",scp -p report.pdf user@remote:/tmp,scp -p report.pdf user@example.com:/tmp/,False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Extract the contents of a compressed archive named 'archive.tar.gz',tar -xzvf archive.tar.gz,tar -xzvf archive.tar.gz,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Create a new file named 'example.txt' and write 'Hello World' to it,echo 'Hello World' > example.txt,echo 'Hello World' > example.txt,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Generate a random UUID and print it.,uuidgen,uuidgen,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Write a Bash one-liner that lists the 5 largest files in /var/www, showing size in human readable format and full path, sorted descending.",find /var/www -type f -exec du -h {} + | sort -hr | head -n 5,"#!/usr/bin/env bash
+find /var/www -type f -exec du -h {} + | sort -hr | head -5",False,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Write a Bash one‑liner that prints the number of CPUs, total memory in GB, and the system uptime in days, formatted as JSON.","printf '{""cpus"": %d, ""mem_gb"": %.2f, ""uptime_days"": %.2f}\n' ""$(nproc)"" ""$(awk '/MemTotal/ {print $2/1024}' /proc/meminfo)"" ""$(awk '/Uptime/ {print $1}' /proc/uptime | tr -d '.' | bc -l)""","printf '{""cpus"":%d,""memory_gb"":%.2f,""uptime_days"":%.2f}\n' ""$(nproc)"" ""$(awk '/MemTotal/ {printf $2/1024/1024}' /proc/meminfo)"" ""$(awk '{print $1/86400}' /proc/uptime)""",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Create a Bash function that accepts a git branch name, checks out the branch, rebases it onto master, runs the test suite, and if successful, pushes the branch; otherwise, aborts the rebase and returns to the previous branch.","git_rebase_test() {
+  local branch=""$1""
+  git checkout ""$branch"" && git rebase master && \
+    if ./run_tests.sh; then git push origin ""$branch""; else git rebase --abort; git checkout ""$branch""; fi
+}","git_sync(){ local branch=""$1""; local cur=$(git rev-parse --abbrev-ref HEAD); git checkout ""$branch"" && git rebase master && if ./run_tests.sh; then git push origin ""$branch""; else git rebase --abort && git checkout ""$cur""; fi; }",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Create a zip archive of the 'example' directory,zip -r example.zip example,zip -r example.zip example,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Create a pipeline that reads a large log file, extracts JSON objects embedded in lines, pretty-prints them with jq, and writes to json_logs.txt, handling malformed JSON gracefully.",grep -a '{' large.log | grep -a '}' | jq -c . 2>/dev/null | tee json_logs.txt,"grep -o '{.*}' large.log |
+  while read line; do
+    echo ""$line"" | jq . 2>/dev/null || echo ""Malformed JSON: $line"" >> errors.log
+  done > json_logs.txt",False,True,True,2
+Q4_K_S:2,Q4_K_S,2,"Using curl, download the latest release tarball of jq from GitHub API, verify its SHA256 checksum against the value returned by the API, and extract it to ~/tools/jq_latest/ if verification succeeds.","api_url=""https://api.github.com/repos/jqlang/jq/releases/latest""
+latest_url=$(curl -s ""$api_url"" | jq -r '.assets[] | select(.name|endswith("".tar.gz"")) .browser_download_url')
+curl -sL ""$latest_url"" -o jq_latest.tar.gz
+expected_checksum=$(curl -sL ""$api_url"" | jq -r '.assets[] | select(.name|endswith("".sha256"")) .browser_download_url' | xargs curl -sL)
+actual_checksum=$(sha256sum jq_latest.tar.gz | awk '{print $1}')","url=$(curl -s https://api.github.com/repos/stedolan/jq/releases/latest | jq -r '.assets[] | select(.name|test(""jq-.*\.tar\.gz"")) | .browser_download_url'); checksum=$(curl -s https://api.github.com/repos/stedolan/jq/releases/latest | jq -r '.assets[] | select(.name|test(""jq-.*\.tar\.gz\.sha256"")) | .browser_download_url' | xargs curl -sL); curl -L -o /tmp/jq.tar.gz ""$url""; echo ""$checksum  /tmp/jq.tar.gz"" | sha256sum -c - && mkdir -p ~/tools/jq_latest && tar -xzf /tmp/jq.tar.gz -C ~/tools/jq_latest",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Create a pipeline that reads a CSV of user data, filters rows where age > 30, extracts the email column, removes duplicates, and writes them to emails.txt.","awk -F',' '$3>30 {print $4}' users.csv | sort -u > emails.txt","awk -F',' '$3>30 {print $5}' users.csv | sort -u > emails.txt",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,Display the current bash version.,echo $BASH_VERSION,echo $BASH_VERSION,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Check the disk information,df -h,lsblk,False,True,True,5
+Q4_K_S:2,Q4_K_S,2,Create a new directory named 'test',mkdir test,mkdir test,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Create a symbolic link named ""latest"" pointing to ""release_v2.3""",ln -s release_v2.3 latest,ln -s release_v2.3 latest,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Display the current user's groups as a space‑separated list.,groups,id -Gn,False,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Find all ELF binaries in /usr/local/bin that are not owned by root, change their ownership to root:root, and set the setuid bit, logging each change to /var/log/setuid_changes.log.","find /usr/local/bin -type f -exec file {} \; | grep 'ELF' | cut -d: -f1 | while read bin; do if [ $(stat -c %U ""$bin"") != 'root' ]; then chown root:root ""$bin"" && chmod u+s ""$bin"" && echo ""$(date +%F_%T) $bin"" >> /var/log/setuid_changes.log; fi; done","#!/usr/bin/env bash
+find /usr/local/bin -type f -executable -exec file {} \; | grep -i ELF | cut -d: -f1 | while read -r bin; do
+  if [ $(stat -c %U ""$bin"") != ""root"" ]; then
+    chown root:root ""$bin""
+    chmod u+s ""$bin""
+    echo ""$(date '+%F %T') Modified $bin"" >> /var/log/setuid_changes.log
+  fi
+done",False,True,True,4
+Q4_K_S:2,Q4_K_S,2,"Write a Bash one‑liner that extracts all IPv4 addresses from access.log, counts occurrences, and prints the top 5 attackers.","awk '{print $1}' access.log | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort | uniq -c | sort -nr | head -n 5","awk '{for(i=1;i<=NF;i++) if($i ~ /([0-9]{1,3}\.){3}[0-9]{1,3}/) print $i}' access.log | sort | uniq -c | sort -nr | head -5",False,True,True,2
+Q4_K_S:2,Q4_K_S,2,Extract the tar.gz archive backup.tar.gz into /opt/backup,tar -xzvf backup.tar.gz -C /opt/backup,tar -xzf backup.tar.gz -C /opt/backup,False,True,True,4
+Q4_K_S:2,Q4_K_S,2,"Download the file from ""https://example.com/file.txt"" and save it as ""file.txt"".",curl -L -o file.txt https://example.com/file.txt,curl -L -o file.txt https://example.com/file.txt,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Write a pipeline that reads a list of URLs from urls.txt, downloads each with curl (max 3 retries, 10s timeout), computes its SHA256, and writes ""<url> <sha256>"" to checksums.txt, skipping URLs that fail after retries.","while read -r url; do
+  for i in {1..3}; do
+    if curl -m 10 --retry-delay 5 --retry 3 -sSL ""$url"" -o ""$(basename ""$url"")"" && sha256sum ""$(basename ""$url"")"" | awk '{print ""'""$url""' ""$1""}' >> checksums.txt; then break; fi;
+  done;
+done < urls.txt","while read -r url; do sha=$(curl -sSf --retry 3 --max-time 10 ""$url"" | sha256sum | awk '{print $1}') && echo ""$url $sha"" >> checksums.txt; done < urls.txt",False,True,True,3
+Q4_K_S:2,Q4_K_S,2,"Create a new user ""devuser"" with a home directory and default shell /bin/bash.",sudo useradd -m -s /bin/bash devuser,sudo useradd -m -s /bin/bash devuser,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,Change the permissions of a file named 'file.txt' to 'rwxr-x',chmod 755 file.txt,chmod 755 file.txt,True,True,True,5
+Q4_K_S:2,Q4_K_S,2,"Using find and chmod, locate all executable files in /opt/scripts that are not owned by root, and change their ownership to root while preserving the executable bits.",find /opt/scripts -type f -perm -111 ! -user root -exec chmod 755 {} \;,"find /opt/scripts -type f -executable ! -user root -exec chown root:{} \; -exec chmod u+x,g+x,o+x {} \;",False,True,True,2
+Q4_K_S:2,Q4_K_S,2,"Replace every occurrence of a UUID (format 8-4-4-4-12 hex) in all *.txt files under /data with a newly generated UUID, preserving the rest of the file content.","find /data -type f -name ""*.txt"" -exec sed -i 's/\(^[0-9a-fA-F]\{8\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{12\}\)\(.*\)/\1\n\n\n/g' {} +","find /data -type f -name '*.txt' -print0 | xargs -0 -I{} bash -c 'sed -i -E ""s/[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}/$(uuidgen)/g"" ""{}""'",False,True,True,1
+Q4_K_M:2,Q4_K_M,2,"Convert the image ""photo.png"" to a JPEG with 80% quality using ImageMagick.",convert photo.png -quality 80 photo.jpg,convert photo.png -quality 80 photo.jpg,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Using find, locate all .sh files that contain the string ""TODO"", replace it with ""DONE"" in‑place, and create a backup of each modified file with a .bak extension.","find . -type f -name ""*.sh"" -exec grep -l ""TODO"" {} \; | while read -r file; do
+  grep -l ""TODO"" ""$file"" | xargs -r sed -i.bak 's/TODO/DONE/g'
+done","find . -type f -name ""*.sh"" -exec grep -l ""TODO"" {} + | while read -r f; do cp ""$f"" ""$f.bak""; sed -i 's/TODO/DONE/g' ""$f""; done",False,True,True,4
+Q4_K_M:2,Q4_K_M,2,"Download a file with progress bar and resume capability from ""https://example.com/large.iso"".",wget --progress=bar https://example.com/large.iso,wget -c https://example.com/large.iso,False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Sort the contents of unsorted.txt alphabetically and remove duplicates.,sort -u unsorted.txt,sort -u unsorted.txt > sorted_unique.txt,False,True,True,5
+Q4_K_M:2,Q4_K_M,2,Show the 10 most recent entries in the system journal,journalctl -n 10,journalctl -n 10 --no-pager,False,True,True,4
+Q4_K_M:2,Q4_K_M,2,Show the current load averages,cat /proc/loadavg,cat /proc/loadavg,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Create RAM disk 1G,sudo mount -t tmpfs -o size=1G tmpfs /mnt/ramdisk,sudo mkdir -p /mnt/ram && sudo mount -t tmpfs -o size=1G tmpfs /mnt/ram,False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Create alias ll for ls -la,alias ll='ls -la',$ alias ll='ls -la',False,True,True,5
+Q4_K_M:2,Q4_K_M,2,Display the first 10 lines of a file named data.log,head -n 10 data.log,head -n 10 data.log,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Download a file from ""https://example.com/file.tar.gz"" using wget",wget https://example.com/file.tar.gz,wget https://example.com/file.tar.gz,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Find all Python files that contain the string 'TODO',"grep -R ""TODO"" --include=""*.py"" .","grep -R ""TODO"" --include='*.py' .
+./module/utils.py:# TODO: refactor this function",False,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Create a command that monitors /var/log/syslog for lines containing the word ""CRITICAL"", extracts the timestamp and the message, and sends an email alert with the extracted info to admin@example.com using sendmail.","tail -F /var/log/syslog | grep --line-buffered ""CRITICAL"" | while read -r line; do ts=$(echo ""$line"" | awk '{print $1"" ""$2"" ""$3}'); msg=$(echo ""$line"" | awk '{print $4"" ""$5"" ""$6"" ""$7"" ""$8"" ""$9"" ""$10"" ""$11"" ""$12"" ""$13"" ""$14"" ""$15"" ""$16"" ""$17"" ""$18"" ""$19"" ""$20"" ""$21"" ""$22"" ""$2","tail -F /var/log/syslog | grep --line-buffered 'CRITICAL' | while read -r line; do
+  ts=$(echo ""$line"" | awk '{print $1"" ""$2"" ""$3}')
+  msg=$(echo ""$line"" | cut -d' ' -f4-)
+  printf ""Subject: Critical alert\n\nTime: %s\nMessage: %s\n"" ""$ts"" ""$msg"" | sendmail admin@example.com
+done &",False,True,False,1
+Q4_K_M:2,Q4_K_M,2,Create a user called alice with a home directory and bash shell,sudo useradd -m -s /bin/bash alice,sudo useradd -m -s /bin/bash alice,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Show the last 20 lines of the Apache access log, but only the IP addresses.",tail -n 20 /var/log/apache2/access.log | awk '{print $1}',tail -n 20 /var/log/apache2/access.log | awk '{print $1}',True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"List the 10 largest files in /home, sorted descending.",find /home -type f -exec du -h {} + | sort -rh | head -n 10,find /home -type f -exec du -h {} + | sort -rh | head -n 10,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Extend a LVM logical volume,lvextend -L +500M /dev/vg_example/lv_example,lvextend -L +100M /dev/vg_example/lv_example,False,True,True,3
+Q4_K_M:2,Q4_K_M,2,"Using perl, replace any occurrence of dates in MM/DD/YYYY format in all .txt files under /data with ISO format YYYY‑MM‑DD, editing files in‑place.",perl -pi -e 's/(\d{2})\/(\d{2})\/(\d{4})/$3-$2-$1/g' /data/*.txt,find /data -type f -name '*.txt' -print0 | xargs -0 perl -i -pe 's/(\d{2})\/(\d{2})\/(\d{4})/$3-\$1-\$2/g',False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Show the current user and their groups,id -a,id,False,True,True,5
+Q4_K_M:2,Q4_K_M,2,Show the last login time for the current user,lastlog -u $USER,last -n 1 $(whoami),False,True,True,4
+Q4_K_M:2,Q4_K_M,2,Show the current shell's process ID,echo $$,echo $$,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Create a new system group named 'example',groupadd example,groupadd example,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Show the 3 most frequently occurring words in ""book.txt"" (ignore case, strip punctuation).",tr -cs '[:alnum:]' '\n' < book.txt | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -rn | head -n 3,"tr -c ""[:alnum:]"" ""\n"" < book.txt | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr | head -n 3",False,True,True,4
+Q4_K_M:2,Q4_K_M,2,"Using sed, transform a configuration file /etc/app.conf by commenting out any line that starts with ""debug="" and appending a new line ""debug=off"" at the end of the file, all in-place.",sed -i '/^debug=/s/^/#/' /etc/app.conf && echo 'debug=off' >> /etc/app.conf,sed -i '/^debug=/s/^/#/' /etc/app.conf && echo 'debug=off' >> /etc/app.conf,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Show the difference between two directories dirA and dirB, ignoring empty files.",diff -qr dirA dirB --brief,"diff -qr dirA dirB | grep -v ""Only in""",False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Create a 1 GB file filled with zeros named zero.bin.,dd if=/dev/zero of=zero.bin bs=1M count=1024,dd if=/dev/zero of=zero.bin bs=1M count=1024,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Create a new group,groupadd YOUR_GROUP,groupadd newgroup,False,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Kill all processes named ""node""",pkill node,pkill node,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Print the current working directory in bold text using ANSI escape codes.,"echo -e ""\033[1m$(pwd)\033[0m""","printf ""\e[1m$(pwd)\e[0m\n""",False,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Create a Bash function that takes a directory and a file extension, calculates the total size of all files with that extension, and prints the size in megabytes with three decimal places.","size_of_files(){
+  dir=""$1""
+  ext=""$2""
+  size=$(find ""$dir"" -type f -name ""*.$ext"" -exec du -sm {} + | awk '{s+=$1} END {print s}')
+  printf ""%.3f MB\n"" ""$size""
+}","total_size() {
+  local dir=""$1""
+  local ext=""$2""
+  local bytes=$(find ""$dir"" -type f -name ""*.$ext"" -printf ""%s\n"" | awk '{total+=$1} END {print total}')
+  printf ""Total size: %.3f MB\n"" ""$(echo ""scale=6; $bytes/1024/1024"" | bc)""
+}",False,True,True,4
+Q4_K_M:2,Q4_K_M,2,Create a new git repository in the current directory,git init,git init,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Show the top 10 lines of the output of ""dmesg"" that contain the word ""usb""",dmesg | grep usb | head -n 10,dmesg | grep -i usb | head -n 10,False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Count the number of lines in input.txt,wc -l < input.txt,"$ wc -l input.txt
+42",False,True,True,5
+Q4_K_M:2,Q4_K_M,2,Create a new archive 'archive.tar' from a directory 'example',tar -cvf archive.tar example,tar -cvf archive.tar example,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Check whether the port 3306 is listening on the local machine.,ss -ltn | grep ':3306 ',ss -tuln | grep ':3306',False,True,True,4
+Q4_K_M:2,Q4_K_M,2,"Merge the branch ""dev"" into the current branch without fast‑forward",git merge --no-ff dev,git merge --no-ff dev,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Show last 20 lines of syslog,tail -n 20 /var/log/syslog,sudo tail -n 20 /var/log/syslog,False,True,True,4
+Q4_K_M:2,Q4_K_M,2,Show the file type of the file 'example.txt',file example.txt,file example.txt,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Show the IP address and hostname of the machine,hostname -I,hostname -I && hostname,False,True,True,3
+Q4_K_M:2,Q4_K_M,2,"Provide a Bash one‑liner that reads a large JSON array from stdin, streams each object to jq to extract the ""id"" and ""status"" fields, and writes them as CSV rows to output.csv without loading the entire array into memory.","jq -c 'map({id: .id, status: .status})' | while read -r obj; do echo ""${obj}""; done > output.csv","jq -r '.[] | [.id, .status] | @csv' > output.csv",False,True,True,2
+Q4_K_M:2,Q4_K_M,2,"Find and replace the string ""VERSION=1.0"" with ""VERSION=2.0"" in all ""Makefile"" files recursively.","find . -type f -name ""Makefile"" -exec sed -i 's/VERSION=1.0/VERSION=2.0/g' {} \;","find . -type f -name ""Makefile"" -exec sed -i 's/VERSION=1\.0/VERSION=2.0/g' {} +",False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Show the total number of files in the current directory and its subdirectories,find . -type f | wc -l,find . -type f | wc -l,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Find all Docker containers that have been exited for more than 24 hours and remove them, then output the IDs of removed containers.","docker ps -a --filter ""status=exited"" --format ""{{.ID}} {{.RunningFor}}"" | while read id time; do if [[ $time == *""days""* ]] && (( $(echo $time | grep -o '[0-9]\+' | head -1) > 24 )); then docker rm ""$id""; echo ""Removed container $id""; fi; done","ids=$(docker ps -a --filter 'status=exited' --filter 'exited=24h' -q); [ -n ""$ids"" ] && docker rm $ids && echo ""Removed containers: $ids"" || echo ""No containers to remove""",False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Extract the third column from a space‑separated file and sort it uniquely,cut -d' ' -f3 YOUR_FILE | sort -u,cut -d' ' -f3 data.txt | sort -u,False,True,True,5
+Q4_K_M:2,Q4_K_M,2,Print the number of CPU cores,nproc,nproc,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Download the file https://example.com/archive.tar.gz and save it as /tmp/archive.tar.gz, showing a progress bar.",wget --progress=bar https://example.com/archive.tar.gz -O /tmp/archive.tar.gz,curl -L --progress-bar https://example.com/archive.tar.gz -o /tmp/archive.tar.gz,False,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Search recursively for the pattern ""TODO"" in the src/ directory and show line numbers","grep -Rn ""TODO"" src/","grep -R ""TODO"" -n src/",False,True,True,5
+Q4_K_M:2,Q4_K_M,2,Start a system service named 'service_name',systemctl start service_name,systemctl start service_name,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Add a user named 'example' to a group named 'example',usermod -aG example example,usermod -aG example example,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Find all files larger than 100 MB in /var and list their sizes in a human‑readable format.,find /var -type f -size +100M -exec du -h {} +,"find /var -type f -size +100M -exec ls -lh {} + | awk '{print $5, $9}'",False,True,True,4
+Q4_K_M:2,Q4_K_M,2,Change the permissions of the directory /var/www to 750 recursively.,chmod -R 750 /var/www,chmod -R 750 /var/www,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Show the IP addresses of all network interfaces,ip -brief address,ip -brief address,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Using find, locate all executable files in /usr/local/bin that have been modified in the last week, and create a tar archive named recent_bins.tar containing them while preserving permissions.",find /usr/local/bin -type f -executable -mtime -7 -print0 | tar --null -czf recent_bins.tar --files-from=-,find /usr/local/bin -type f -executable -mtime -7 -print0 | tar --null -cvf recent_bins.tar --files-from=-,False,True,True,3
+Q4_K_M:2,Q4_K_M,2,"Using awk, compute the average response time from an Nginx access log assuming the response time is the last field in each line.",awk '{sum+=$NF} END {print sum/NR}' /var/log/nginx/access.log,"awk '{sum+=$NF; cnt++} END {if (cnt>0) printf ""Average response time: %.3f\n"", sum/cnt}' /var/log/nginx/access.log",False,True,True,4
+Q4_K_M:2,Q4_K_M,2,"Append the line 'alias ll=""ls -la""' to ~/.bashrc","echo 'alias ll=""ls -la""' >> ~/.bashrc","echo 'alias ll=""ls -la""' >> ~/.bashrc",True,True,True,5
+Q4_K_M:2,Q4_K_M,2,List all Docker images that are not currently used by any container (dangling).,"docker images --filter ""dangling=true"" -q",docker images -f dangling=true,False,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Decompress ""archive.gz"" and write output to ""archive""",gunzip -c archive.gz > archive,gunzip -c archive.gz > archive,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Create a temporary file and write ""Hello World"" into it, then display its path","tmpfile=$(mktemp) && echo ""Hello World"" > ""$tmpfile"" && echo ""$tmpfile""","tmpfile=$(mktemp) && echo ""Hello World"" > ""$tmpfile"" && echo ""$tmpfile""",True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Convert all spaces at the beginning of lines in ""script.sh"" to tabs (assuming 4 spaces per tab).",sed -i 's/^\s*$/\t/' script.sh,expand -t 4 -i script.sh > script_tmp.sh && mv script_tmp.sh script.sh,False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Show the current firewall rules using iptables,sudo iptables -L -n,sudo iptables -L -v -n,False,True,True,4
+Q4_K_M:2,Q4_K_M,2,"Create a new virtual environment named ""venv"" using Python 3",python3 -m venv venv,python3 -m venv venv,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Check the syntax of the Bash script ""deploy.sh"" without executing it.",bash -n deploy.sh,bash -n deploy.sh,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Find all services that are enabled but not currently running, and start them automatically.","systemctl list-units --type=service --state=enabled --no-legend | awk '{print $1}' | while read svc; do if ! systemctl is-active --quiet ""$svc""; then systemctl enable ""$svc"" && systemctl start ""$svc""; fi; done","systemctl list-unit-files --type=service --state=enabled | awk 'NR>1{print $1}' | while read svc; do
+  if ! systemctl is-active --quiet ""$svc""; then
+    systemctl start ""$svc""
+  fi
+done",False,True,True,3
+Q4_K_M:2,Q4_K_M,2,"List the top 10 IP addresses accessing the Apache access log, sorted by request count, and output the result as a JSON array of objects with fields ""ip"" and ""hits"".","awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -n 10 | while read cnt ip; do echo ""{\""ip\"": \""$ip\"", \""hits\"": $cnt}""; done | jq -s '.'","#!/usr/bin/env bash
+awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -10 \
+    | awk '{print ""{\""ip\"": \""""$2""\"", \""hits\"": ""$1""}""}' \
+    | jq -s '.'",False,True,True,4
+Q4_K_M:2,Q4_K_M,2,"Use sed to replace all occurrences of a specific string in a file, and then use diff to compare the original and modified files",sed 's/old_string/new_string/g' file.txt > file_modified.txt; diff file.txt file_modified.txt,sed 's/old_string/new_string/g' file.txt > modified_file.txt; diff file.txt modified_file.txt,False,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Create a command that finds all files larger than 1 GiB, moves them to /mnt/large_files preserving directory structure, and logs the original and new paths to /var/log/large_file_moves.log.","#!/usr/bin/env bash
+find / -type f -size +1G -print0 | while IFS= read -r -d '' file; do
+  rel=${file#/}
+  dest=/mnt/large_files/$rel
+  mkdir -p ""$(dirname ""$dest"")""
+  mv ""$file"" ""$dest"" && echo ""$(date +%F_%T) $file -> $dest"" >> /var/log/large_file_moves.log
+done","find / -type f -size +1G -print0 | while IFS= read -r -d '' f; do rel=${f#/}; dest=""/mnt/large_files/$rel""; mkdir -p ""$(dirname ""$dest"")"" && mv ""$f"" ""$dest"" && echo ""$(date +%F_%T) $f -> $dest"" >> /var/log/large_file_moves.log; done",False,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Generate a report of disk usage per user on /home, sorted descending, and output as a JSON array.","printf '['; find /home -type f -printf '%u %s\n' | sort | uniq -c | sort -nr | while IFS=' ' read -r count user size; do printf '{""user"":""%s"",""size"":%s},'; done; printf ']';","du -sh /home/* 2>/dev/null | \
+  awk '{print $2"":""$1}' | \
+  while IFS="":"" read user size; do echo ""{\""user\"":\""${user#/home/}\"",\""size\"":\""$size\""}""; done | \
+  jq -s 'sort_by(.size|sub(""[KMG]$"";"""";""g"")|tonumber) | reverse'",False,True,True,1
+Q4_K_M:2,Q4_K_M,2,"Write a Bash script that generates a histogram of HTTP response codes from an Apache log, using awk to count each code and then printing a simple bar chart with '*' characters.","#!/usr/bin/env bash
+awk '{print $9}' /var/log/apache2/access.log | sort | uniq -c | while read count code; do echo -n ""$code ""; for ((i=0;i<count;i++)); do echo -n '*'; done; echo; done","#!/usr/bin/env bash\nlog=/var/log/apache2/access.log\nawk '{print $9}' ""$log"" |\n  sort | uniq -c |\n  awk '{printf ""%s %s %s\n"", $2, $1, sprintf(""%*s"", $1, """").gsub(/ /,""*"")}'",False,True,True,4
+Q4_K_M:2,Q4_K_M,2,List the files in a package named 'example',dpkg -L example,dpkg -L example,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Show detailed information of files in the /var/log directory, sorted by size descending.",find /var/log -type f -exec du -h {} + | sort -hr,ls -lhS /var/log,False,True,True,4
+Q4_K_M:2,Q4_K_M,2,Schedule a one‑time system shutdown at 23:30 today.,sudo shutdown -h now,sudo shutdown -h 23:30,False,True,True,2
+Q4_K_M:2,Q4_K_M,2,"Using only bash and coreutils, generate a progress bar that shows the copy progress of a 5 GiB file src.bin to /mnt/backup/src.bin, updating every second.","#!/usr/bin/env bash
+src=""/path/to/src.bin""
+dest=""/mnt/backup/src.bin""
+size=$(stat -c%s ""$src"")
+start=$(date +%s)
+while [ $(stat -c%s ""$dest"") -lt $size ]; do
+  cp --progress ""$src"" ""$dest""
+  sleep 1
+done
+end=$(date +%s)
+echo ""Copied in $(($end-$start)) seconds""","{ dd if=src.bin of=/mnt/backup/src.bin bs=4M status=none & pid=$!; while kill -0 $pid 2>/dev/null; do copied=$(stat --format=%s /mnt/backup/src.bin 2>/dev/null || echo 0); percent=$(( copied*100/5368709120 )); printf ""\rProgress: [%-50s] %3d%%"" $(printf ""#""{1..$((percent/2))}) $percent; sleep 1; done; wait $pid; echo; }",False,True,True,3
+Q4_K_M:2,Q4_K_M,2,"Print the contents of ""data.json"" with syntax highlighting using ""jq""",jq . data.json,"jq . data.json
+{
+  ""name"": ""example"",
+  ""value"": 42
+}",False,True,True,5
+Q4_K_M:2,Q4_K_M,2,Remove the directory temp_dir and all its contents without prompting,rm -rf temp_dir,rm -rf temp_dir,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Write a Bash one‑liner that lists all users on the system who have not logged in for more than 90 days, using /var/log/lastlog, and disables their accounts with usermod.","awk -F: '($3>=500){print $1}' /etc/passwd | while read user; do lastlog -u ""$user"" | awk 'NR==2{print $1}' | grep -q -E '^[0-9]{2}\/[0-9]{2}\/[0-9]{2}$' && lastlog -u ""$user"" | awk 'NR==2{print $4}' | grep -q -E '^[0-9]{2}\/[0-9]{2}\/[0-9]{2}$' && lastlog","while IFS=: read -r user _ uid _ _ _ _; do
+  if ((uid>=1000)); then
+    last=$(lastlog -u ""$user"" | awk 'NR==2 {print $4,$5,$6}')
+    if [[ ""$last"" == '**Never logged in**' ]] || (( $(date -d ""$last"" +%s) < $(date -d '-90 days' +%s) )); then
+      usermod -L ""$user""
+    fi
+  fi
+done < <(cut -d: -f1,3 /etc/passwd)",False,True,False,1
+Q4_K_M:2,Q4_K_M,2,"List all Docker images sorted by size, showing the top 5","docker images --format ""{{.Repository}} {{.Tag}} {{.Size}}"" | sort -hr | head -n 5","docker images --format ""{{.Repository}}:{{.Tag}} {{.Size}}"" | sort -k2 -h | tail -n 5",False,True,True,3
+Q4_K_M:2,Q4_K_M,2,"Copy the local file report.pdf to the remote host /tmp directory using scp, preserving timestamps.",scp -p report.pdf user@remote:/tmp,scp -p report.pdf user@example.com:/tmp/,False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Extract the contents of a compressed archive named 'archive.tar.gz',tar -xzvf archive.tar.gz,tar -xzvf archive.tar.gz,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Create a new file named 'example.txt' and write 'Hello World' to it,echo 'Hello World' > example.txt,echo 'Hello World' > example.txt,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Generate a random UUID and print it.,uuidgen,uuidgen,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Write a Bash one-liner that lists the 5 largest files in /var/www, showing size in human readable format and full path, sorted descending.",find /var/www -type f -exec du -h {} + | sort -hr | head -n 5,"#!/usr/bin/env bash
+find /var/www -type f -exec du -h {} + | sort -hr | head -5",False,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Write a Bash one‑liner that prints the number of CPUs, total memory in GB, and the system uptime in days, formatted as JSON.","printf '{""cpus"": %d, ""mem_gb"": %.2f, ""uptime_days"": %.2f}\n' ""$(nproc)"" ""$(awk '/MemTotal/ {printf ""%.2f"", $2/1024}' /proc/meminfo)"" ""$(awk '/Uptime/ {print $1}' /proc/uptime | cut -d. -f1)""","printf '{""cpus"":%d,""memory_gb"":%.2f,""uptime_days"":%.2f}\n' ""$(nproc)"" ""$(awk '/MemTotal/ {printf $2/1024/1024}' /proc/meminfo)"" ""$(awk '{print $1/86400}' /proc/uptime)""",False,True,True,3
+Q4_K_M:2,Q4_K_M,2,"Create a Bash function that accepts a git branch name, checks out the branch, rebases it onto master, runs the test suite, and if successful, pushes the branch; otherwise, aborts the rebase and returns to the previous branch.","git_rebase_test() {
+  local branch=""$1""
+  git checkout ""$branch"" && git rebase master && git push origin ""$branch"" || {
+    git rebase --abort && git checkout ""$branch""
+    echo ""Rebase failed, aborting""
+  }
+}","git_sync(){ local branch=""$1""; local cur=$(git rev-parse --abbrev-ref HEAD); git checkout ""$branch"" && git rebase master && if ./run_tests.sh; then git push origin ""$branch""; else git rebase --abort && git checkout ""$cur""; fi; }",False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Create a zip archive of the 'example' directory,zip -r example.zip example,zip -r example.zip example,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Create a pipeline that reads a large log file, extracts JSON objects embedded in lines, pretty-prints them with jq, and writes to json_logs.txt, handling malformed JSON gracefully.",grep -a '{' large.log | grep -a '}' | jq -c . 2>/dev/null | tee json_logs.txt,"grep -o '{.*}' large.log |
+  while read line; do
+    echo ""$line"" | jq . 2>/dev/null || echo ""Malformed JSON: $line"" >> errors.log
+  done > json_logs.txt",False,True,True,2
+Q4_K_M:2,Q4_K_M,2,"Using curl, download the latest release tarball of jq from GitHub API, verify its SHA256 checksum against the value returned by the API, and extract it to ~/tools/jq_latest/ if verification succeeds.","api_url=""https://api.github.com/repos/jqlang/jq/releases/latest""
+curl -sSL ""$api_url"" | jq -r '.assets[] | select(.name|endswith("".tar.gz"")) | .browser_download_url' | while read -r url; do
+  filename=$(basename ""$url"")
+  curl -sSL ""$url"" -o ""$filename""
+  expected=$(curl -sSL ""$api_url"" | jq -r '.assets[] | select(.name==""jq-linux64.tar.gz"") | .checksums.sha256')
+  actual=$(sha256sum ""$filename""","url=$(curl -s https://api.github.com/repos/stedolan/jq/releases/latest | jq -r '.assets[] | select(.name|test(""jq-.*\.tar\.gz"")) | .browser_download_url'); checksum=$(curl -s https://api.github.com/repos/stedolan/jq/releases/latest | jq -r '.assets[] | select(.name|test(""jq-.*\.tar\.gz\.sha256"")) | .browser_download_url' | xargs curl -sL); curl -L -o /tmp/jq.tar.gz ""$url""; echo ""$checksum  /tmp/jq.tar.gz"" | sha256sum -c - && mkdir -p ~/tools/jq_latest && tar -xzf /tmp/jq.tar.gz -C ~/tools/jq_latest",False,True,False,1
+Q4_K_M:2,Q4_K_M,2,"Create a pipeline that reads a CSV of user data, filters rows where age > 30, extracts the email column, removes duplicates, and writes them to emails.txt.","awk -F',' '$3>30 {print $4}' users.csv | sort -u > emails.txt","awk -F',' '$3>30 {print $5}' users.csv | sort -u > emails.txt",False,True,True,3
+Q4_K_M:2,Q4_K_M,2,Display the current bash version.,echo $BASH_VERSION,echo $BASH_VERSION,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Check the disk information,df -h,lsblk,False,True,True,5
+Q4_K_M:2,Q4_K_M,2,Create a new directory named 'test',mkdir test,mkdir test,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Create a symbolic link named ""latest"" pointing to ""release_v2.3""",ln -s release_v2.3 latest,ln -s release_v2.3 latest,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Display the current user's groups as a space‑separated list.,groups,id -Gn,False,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Find all ELF binaries in /usr/local/bin that are not owned by root, change their ownership to root:root, and set the setuid bit, logging each change to /var/log/setuid_changes.log.","find /usr/local/bin -type f -exec file {} \; | grep 'ELF' | cut -d: -f1 | while read bin; do if [ $(stat -c %U ""$bin"") != 'root' ]; then chown root:root ""$bin"" && chmod u+s ""$bin"" && echo ""$(date +%F_%T) $bin setuid"" >> /var/log/setuid_changes.log; fi; done","#!/usr/bin/env bash
+find /usr/local/bin -type f -executable -exec file {} \; | grep -i ELF | cut -d: -f1 | while read -r bin; do
+  if [ $(stat -c %U ""$bin"") != ""root"" ]; then
+    chown root:root ""$bin""
+    chmod u+s ""$bin""
+    echo ""$(date '+%F %T') Modified $bin"" >> /var/log/setuid_changes.log
+  fi
+done",False,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Write a Bash one‑liner that extracts all IPv4 addresses from access.log, counts occurrences, and prints the top 5 attackers.",awk '{for(i=1;i<=NF;i++) if($i~/[0-9]+\.[0-9]+\.[0-9]+\.[0-9]/) print $i}' access.log | sort | uniq -c | sort -nr | head -n5,"awk '{for(i=1;i<=NF;i++) if($i ~ /([0-9]{1,3}\.){3}[0-9]{1,3}/) print $i}' access.log | sort | uniq -c | sort -nr | head -5",False,True,True,4
+Q4_K_M:2,Q4_K_M,2,Extract the tar.gz archive backup.tar.gz into /opt/backup,tar -xzvf backup.tar.gz -C /opt/backup,tar -xzf backup.tar.gz -C /opt/backup,False,True,True,4
+Q4_K_M:2,Q4_K_M,2,"Download the file from ""https://example.com/file.txt"" and save it as ""file.txt"".",curl -L -o file.txt https://example.com/file.txt,curl -L -o file.txt https://example.com/file.txt,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Write a pipeline that reads a list of URLs from urls.txt, downloads each with curl (max 3 retries, 10s timeout), computes its SHA256, and writes ""<url> <sha256>"" to checksums.txt, skipping URLs that fail after retries.","while read -r url; do
+  for i in {1..3}; do
+    if curl -m 10 --retry 0 --retry-delay 0 --retry-connrefused --retry-all-errors --retry-keep-alive --retry-protocol=retry -sSL ""$url"" -o ""$(basename ""$url"")"" -w ""%{http_code}"" -o /dev/null; then
+      sha256sum ""$(basename ""$url"")"" | awk '{print \""$url\\t$1\""}' >> checksums.txt;
+      break;
+    fi;
+  done;
+done < urls","while read -r url; do sha=$(curl -sSf --retry 3 --max-time 10 ""$url"" | sha256sum | awk '{print $1}') && echo ""$url $sha"" >> checksums.txt; done < urls.txt",False,True,True,1
+Q4_K_M:2,Q4_K_M,2,"Create a new user ""devuser"" with a home directory and default shell /bin/bash.",sudo useradd -m -s /bin/bash devuser,sudo useradd -m -s /bin/bash devuser,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,Change the permissions of a file named 'file.txt' to 'rwxr-x',chmod 755 file.txt,chmod 755 file.txt,True,True,True,5
+Q4_K_M:2,Q4_K_M,2,"Using find and chmod, locate all executable files in /opt/scripts that are not owned by root, and change their ownership to root while preserving the executable bits.",find /opt/scripts -type f -perm -111 ! -user root -exec chmod 755 {} \;,"find /opt/scripts -type f -executable ! -user root -exec chown root:{} \; -exec chmod u+x,g+x,o+x {} \;",False,True,True,2
+Q4_K_M:2,Q4_K_M,2,"Replace every occurrence of a UUID (format 8-4-4-4-12 hex) in all *.txt files under /data with a newly generated UUID, preserving the rest of the file content.","find /data -type f -name ""*.txt"" -exec sed -i ""s/\(^[0-9a-fA-F]\{8\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{4\}-[0-9a-fA-F]\{12\}\)\(.*\)/\1$new_uuid\2/g"" {} +","find /data -type f -name '*.txt' -print0 | xargs -0 -I{} bash -c 'sed -i -E ""s/[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}/$(uuidgen)/g"" ""{}""'",False,True,True,1
+Q5_K_M:2,Q5_K_M,2,"Convert the image ""photo.png"" to a JPEG with 80% quality using ImageMagick.",convert photo.png -quality 80 photo.jpg,convert photo.png -quality 80 photo.jpg,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Using find, locate all .sh files that contain the string ""TODO"", replace it with ""DONE"" in‑place, and create a backup of each modified file with a .bak extension.","find . -type f -name ""*.sh"" -exec grep -l ""TODO"" {} + | while read f; do
+  grep -l ""TODO"" ""$f"" | xargs -I{} sh -c 'sed -i.bak ""s/TODO/DONE/g"" ""$f""'
+done","find . -type f -name ""*.sh"" -exec grep -l ""TODO"" {} + | while read -r f; do cp ""$f"" ""$f.bak""; sed -i 's/TODO/DONE/g' ""$f""; done",False,True,True,2
+Q5_K_M:2,Q5_K_M,2,"Download a file with progress bar and resume capability from ""https://example.com/large.iso"".",wget --progress=bar --continue https://example.com/large.iso,wget -c https://example.com/large.iso,False,True,True,3
+Q5_K_M:2,Q5_K_M,2,Sort the contents of unsorted.txt alphabetically and remove duplicates.,sort -u unsorted.txt > sorted_unique.txt,sort -u unsorted.txt > sorted_unique.txt,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Show the 10 most recent entries in the system journal,journalctl -n 10,journalctl -n 10 --no-pager,False,True,True,4
+Q5_K_M:2,Q5_K_M,2,Show the current load averages,cat /proc/loadavg,cat /proc/loadavg,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Create RAM disk 1G,sudo mount -t tmpfs -o size=1G tmpfs /mnt/ramdisk,sudo mkdir -p /mnt/ram && sudo mount -t tmpfs -o size=1G tmpfs /mnt/ram,False,True,True,3
+Q5_K_M:2,Q5_K_M,2,Create alias ll for ls -la,alias ll='ls -la',$ alias ll='ls -la',False,True,True,5
+Q5_K_M:2,Q5_K_M,2,Display the first 10 lines of a file named data.log,head -n 10 data.log,head -n 10 data.log,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Download a file from ""https://example.com/file.tar.gz"" using wget",wget https://example.com/file.tar.gz,wget https://example.com/file.tar.gz,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Find all Python files that contain the string 'TODO',"grep -R ""TODO"" --include=""*.py"" .","grep -R ""TODO"" --include='*.py' .
+./module/utils.py:# TODO: refactor this function",False,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Create a command that monitors /var/log/syslog for lines containing the word ""CRITICAL"", extracts the timestamp and the message, and sends an email alert with the extracted info to admin@example.com using sendmail.","tail -F /var/log/syslog | grep --line-buffered ""CRITICAL"" | while read -r line; do ts=$(echo ""$line"" | awk '{print $1"" ""$2"" ""$3}'); msg=$(echo ""$line"" | awk '{print $4}'); echo -e ""Subject: Critical Alert\n\nTimestamp: $ts\nMessage: $msg"" | sendmail admin@example.com; done","tail -F /var/log/syslog | grep --line-buffered 'CRITICAL' | while read -r line; do
+  ts=$(echo ""$line"" | awk '{print $1"" ""$2"" ""$3}')
+  msg=$(echo ""$line"" | cut -d' ' -f4-)
+  printf ""Subject: Critical alert\n\nTime: %s\nMessage: %s\n"" ""$ts"" ""$msg"" | sendmail admin@example.com
+done &",False,True,True,4
+Q5_K_M:2,Q5_K_M,2,Create a user called alice with a home directory and bash shell,sudo useradd -m -s /bin/bash alice,sudo useradd -m -s /bin/bash alice,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Show the last 20 lines of the Apache access log, but only the IP addresses.",tail -n 20 /var/log/apache2/access.log | awk '{print $1}',tail -n 20 /var/log/apache2/access.log | awk '{print $1}',True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"List the 10 largest files in /home, sorted descending.",find /home -type f -exec du -h {} + | sort -rh | head -n 10,find /home -type f -exec du -h {} + | sort -rh | head -n 10,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Extend a LVM logical volume,lvextend -L +100M /dev/vg_example/lv_example,lvextend -L +100M /dev/vg_example/lv_example,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Using perl, replace any occurrence of dates in MM/DD/YYYY format in all .txt files under /data with ISO format YYYY‑MM‑DD, editing files in‑place.",perl -pi -e 's/(\b)([0-9]{2})\/([0-9]{2})\/([0-9]{4})(\b)/$1$4-$3-$2$5/g' /data/*.txt,find /data -type f -name '*.txt' -print0 | xargs -0 perl -i -pe 's/(\d{2})\/(\d{2})\/(\d{4})/$3-\$1-\$2/g',False,True,True,2
+Q5_K_M:2,Q5_K_M,2,Show the current user and their groups,id,id,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Show the last login time for the current user,lastlog -u $USER,last -n 1 $(whoami),False,True,True,4
+Q5_K_M:2,Q5_K_M,2,Show the current shell's process ID,"echo $$
+1234",echo $$,False,True,True,3
+Q5_K_M:2,Q5_K_M,2,Create a new system group named 'example',groupadd example,groupadd example,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Show the 3 most frequently occurring words in ""book.txt"" (ignore case, strip punctuation).",tr -cs '[:alnum:]' '\n' < book.txt | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr | head -n 3,"tr -c ""[:alnum:]"" ""\n"" < book.txt | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr | head -n 3",False,True,True,4
+Q5_K_M:2,Q5_K_M,2,"Using sed, transform a configuration file /etc/app.conf by commenting out any line that starts with ""debug="" and appending a new line ""debug=off"" at the end of the file, all in-place.",sed -i '/^debug=/s/^/#/;$a\debug=off' /etc/app.conf,sed -i '/^debug=/s/^/#/' /etc/app.conf && echo 'debug=off' >> /etc/app.conf,False,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Show the difference between two directories dirA and dirB, ignoring empty files.",diff -qr dirA dirB,"diff -qr dirA dirB | grep -v ""Only in""",False,True,True,3
+Q5_K_M:2,Q5_K_M,2,Create a 1 GB file filled with zeros named zero.bin.,dd if=/dev/zero of=zero.bin bs=1M count=1024,dd if=/dev/zero of=zero.bin bs=1M count=1024,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Create a new group,groupadd newgroup,groupadd newgroup,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Kill all processes named ""node""",pkill node,pkill node,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Print the current working directory in bold text using ANSI escape codes.,"echo -e ""\033[1m$(pwd)\033[0m""","printf ""\e[1m$(pwd)\e[0m\n""",False,True,True,4
+Q5_K_M:2,Q5_K_M,2,"Create a Bash function that takes a directory and a file extension, calculates the total size of all files with that extension, and prints the size in megabytes with three decimal places.","size_of_type(){
+  dir=""$1""
+  ext=""$2""
+  total=$(find ""$dir"" -type f -name ""*.$ext"" -exec du -sm {} + | awk '{s+=$1} END {print s}')
+  printf ""%.3f MB\n"" ""$total""
+}","total_size() {
+  local dir=""$1""
+  local ext=""$2""
+  local bytes=$(find ""$dir"" -type f -name ""*.$ext"" -printf ""%s\n"" | awk '{total+=$1} END {print total}')
+  printf ""Total size: %.3f MB\n"" ""$(echo ""scale=6; $bytes/1024/1024"" | bc)""
+}",False,True,True,4
+Q5_K_M:2,Q5_K_M,2,Create a new git repository in the current directory,git init,git init,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Show the top 10 lines of the output of ""dmesg"" that contain the word ""usb""",dmesg | grep usb | head -n 10,dmesg | grep -i usb | head -n 10,False,True,True,3
+Q5_K_M:2,Q5_K_M,2,Count the number of lines in input.txt,wc -l < input.txt,"$ wc -l input.txt
+42",False,True,True,5
+Q5_K_M:2,Q5_K_M,2,Create a new archive 'archive.tar' from a directory 'example',tar -cvf archive.tar example,tar -cvf archive.tar example,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Check whether the port 3306 is listening on the local machine.,ss -ltn | grep ':3306',ss -tuln | grep ':3306',False,True,True,4
+Q5_K_M:2,Q5_K_M,2,"Merge the branch ""dev"" into the current branch without fast‑forward",git merge --no-ff dev,git merge --no-ff dev,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Show last 20 lines of syslog,tail -n 20 /var/log/syslog,sudo tail -n 20 /var/log/syslog,False,True,True,4
+Q5_K_M:2,Q5_K_M,2,Show the file type of the file 'example.txt',file example.txt,file example.txt,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Show the IP address and hostname of the machine,hostname -I,hostname -I && hostname,False,True,True,3
+Q5_K_M:2,Q5_K_M,2,"Provide a Bash one‑liner that reads a large JSON array from stdin, streams each object to jq to extract the ""id"" and ""status"" fields, and writes them as CSV rows to output.csv without loading the entire array into memory.","jq -c '(.id, .status) | @csv' | tr '\n' ',' | sed 's/,$//' > output.csv","jq -r '.[] | [.id, .status] | @csv' > output.csv",False,True,True,1
+Q5_K_M:2,Q5_K_M,2,"Find and replace the string ""VERSION=1.0"" with ""VERSION=2.0"" in all ""Makefile"" files recursively.","find . -type f -name ""Makefile"" -exec sed -i 's/VERSION=1.0/VERSION=2.0/g' {} +","find . -type f -name ""Makefile"" -exec sed -i 's/VERSION=1\.0/VERSION=2.0/g' {} +",False,True,True,3
+Q5_K_M:2,Q5_K_M,2,Show the total number of files in the current directory and its subdirectories,find . -type f | wc -l,find . -type f | wc -l,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Find all Docker containers that have been exited for more than 24 hours and remove them, then output the IDs of removed containers.","docker ps -a --filter ""status=exited"" --format ""{{.ID}} {{.CreatedAt}}"" | while read id created; do if [[ $(date -d ""$created"" +%s) -lt $(date -d ""24 hours ago"" +%s) ]]; then docker rm ""$id""; echo ""Removed $id""; fi; done","ids=$(docker ps -a --filter 'status=exited' --filter 'exited=24h' -q); [ -n ""$ids"" ] && docker rm $ids && echo ""Removed containers: $ids"" || echo ""No containers to remove""",False,True,True,3
+Q5_K_M:2,Q5_K_M,2,Extract the third column from a space‑separated file and sort it uniquely,cut -d' ' -f3 YOUR_FILE | sort -u,cut -d' ' -f3 data.txt | sort -u,False,True,True,5
+Q5_K_M:2,Q5_K_M,2,Print the number of CPU cores,nproc,nproc,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Download the file https://example.com/archive.tar.gz and save it as /tmp/archive.tar.gz, showing a progress bar.",wget --progress=bar https://example.com/archive.tar.gz -O /tmp/archive.tar.gz,curl -L --progress-bar https://example.com/archive.tar.gz -o /tmp/archive.tar.gz,False,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Search recursively for the pattern ""TODO"" in the src/ directory and show line numbers","grep -Rn ""TODO"" src/","grep -R ""TODO"" -n src/",False,True,True,5
+Q5_K_M:2,Q5_K_M,2,Start a system service named 'service_name',systemctl start service_name,systemctl start service_name,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Add a user named 'example' to a group named 'example',usermod -aG example example,usermod -aG example example,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Find all files larger than 100 MB in /var and list their sizes in a human‑readable format.,find /var -type f -size +100M -exec du -h {} +,"find /var -type f -size +100M -exec ls -lh {} + | awk '{print $5, $9}'",False,True,True,4
+Q5_K_M:2,Q5_K_M,2,Change the permissions of the directory /var/www to 750 recursively.,chmod -R 750 /var/www,chmod -R 750 /var/www,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Show the IP addresses of all network interfaces,ip -brief address,ip -brief address,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Using find, locate all executable files in /usr/local/bin that have been modified in the last week, and create a tar archive named recent_bins.tar containing them while preserving permissions.",find /usr/local/bin -type f -executable -mtime -7 -print0 | tar --null -czvf recent_bins.tar --files-from=-,find /usr/local/bin -type f -executable -mtime -7 -print0 | tar --null -cvf recent_bins.tar --files-from=-,False,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Using awk, compute the average response time from an Nginx access log assuming the response time is the last field in each line.",awk '{sum+=$NF; n++} END {print sum/n}' /var/log/nginx/access.log,"awk '{sum+=$NF; cnt++} END {if (cnt>0) printf ""Average response time: %.3f\n"", sum/cnt}' /var/log/nginx/access.log",False,True,True,4
+Q5_K_M:2,Q5_K_M,2,"Append the line 'alias ll=""ls -la""' to ~/.bashrc","echo 'alias ll=""ls -la""' >> ~/.bashrc","echo 'alias ll=""ls -la""' >> ~/.bashrc",True,True,True,5
+Q5_K_M:2,Q5_K_M,2,List all Docker images that are not currently used by any container (dangling).,"docker images --filter ""dangling=true"" -q",docker images -f dangling=true,False,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Decompress ""archive.gz"" and write output to ""archive""",gunzip archive.gz,gunzip -c archive.gz > archive,False,True,True,1
+Q5_K_M:2,Q5_K_M,2,"Create a temporary file and write ""Hello World"" into it, then display its path","tmpfile=$(mktemp) && echo ""Hello World"" > ""$tmpfile"" && echo ""$tmpfile""","tmpfile=$(mktemp) && echo ""Hello World"" > ""$tmpfile"" && echo ""$tmpfile""",True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Convert all spaces at the beginning of lines in ""script.sh"" to tabs (assuming 4 spaces per tab).","sed -i 's/^\s\{4,\}/\t/g' script.sh",expand -t 4 -i script.sh > script_tmp.sh && mv script_tmp.sh script.sh,False,True,True,1
+Q5_K_M:2,Q5_K_M,2,Show the current firewall rules using iptables,sudo iptables -L -n,sudo iptables -L -v -n,False,True,True,4
+Q5_K_M:2,Q5_K_M,2,"Create a new virtual environment named ""venv"" using Python 3",python3 -m venv venv,python3 -m venv venv,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Check the syntax of the Bash script ""deploy.sh"" without executing it.",bash -n deploy.sh,bash -n deploy.sh,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Find all services that are enabled but not currently running, and start them automatically.","systemctl list-units --type=service --state=running --no-legend | awk '{print $1}' | while read svc; do systemctl enable ""$svc"" && systemctl start ""$svc""; done","systemctl list-unit-files --type=service --state=enabled | awk 'NR>1{print $1}' | while read svc; do
+  if ! systemctl is-active --quiet ""$svc""; then
+    systemctl start ""$svc""
+  fi
+done",False,True,True,2
+Q5_K_M:2,Q5_K_M,2,"List the top 10 IP addresses accessing the Apache access log, sorted by request count, and output the result as a JSON array of objects with fields ""ip"" and ""hits"".","awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -n 10 | awk '{print ""{\""ip\"": \""""$2""\"", \""hits\"": ""$1""}""}' | paste -sd',' - | sed 's/^/[/' -e 's/$/]/'","#!/usr/bin/env bash
+awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -10 \
+    | awk '{print ""{\""ip\"": \""""$2""\"", \""hits\"": ""$1""}""}' \
+    | jq -s '.'",False,True,True,1
+Q5_K_M:2,Q5_K_M,2,"Use sed to replace all occurrences of a specific string in a file, and then use diff to compare the original and modified files",sed 's/old_string/new_string/g' file.txt > file.tmp && diff file.txt file.tmp,sed 's/old_string/new_string/g' file.txt > modified_file.txt; diff file.txt modified_file.txt,False,True,True,4
+Q5_K_M:2,Q5_K_M,2,"Create a command that finds all files larger than 1 GiB, moves them to /mnt/large_files preserving directory structure, and logs the original and new paths to /var/log/large_file_moves.log.","#!/usr/bin/env bash
+find . -type f -size +1G -print0 | while IFS= read -r -d '' file; do
+  rel=${file#./}
+  dest=""/mnt/large_files/${rel}""
+  mkdir -p ""$(dirname ""$dest"")""
+  mv ""$file"" ""$dest"" && echo ""$(date +%F_%T) Moved $file to $dest"" >> /var/log/large_file_moves.log
+done","find / -type f -size +1G -print0 | while IFS= read -r -d '' f; do rel=${f#/}; dest=""/mnt/large_files/$rel""; mkdir -p ""$(dirname ""$dest"")"" && mv ""$f"" ""$dest"" && echo ""$(date +%F_%T) $f -> $dest"" >> /var/log/large_file_moves.log; done",False,True,True,4
+Q5_K_M:2,Q5_K_M,2,"Generate a report of disk usage per user on /home, sorted descending, and output as a JSON array.","printf '['; for d in /home/*; do [ -d ""$d"" ] || continue; user=$(basename ""$d""); usage=$(du -sh ""$d"" 2>/dev/null | cut -f1); printf ""{\""user\"": \""%s\"", \""usage\"": \""%s\""}%s"" ""$user"" ""$usage"" ""$(test ""$d"" != ""${d%/*}"" && echo "","" || echo """")""; done; printf ']';","du -sh /home/* 2>/dev/null | \
+  awk '{print $2"":""$1}' | \
+  while IFS="":"" read user size; do echo ""{\""user\"":\""${user#/home/}\"",\""size\"":\""$size\""}""; done | \
+  jq -s 'sort_by(.size|sub(""[KMG]$"";"""";""g"")|tonumber) | reverse'",False,True,True,3
+Q5_K_M:2,Q5_K_M,2,"Write a Bash script that generates a histogram of HTTP response codes from an Apache log, using awk to count each code and then printing a simple bar chart with '*' characters.","#!/usr/bin/env bash
+awk '{print $9}' /var/log/apache2/access.log | sort | uniq -c | while read count code; do
+  printf ""%s %s\n"" ""$code"" $(printf '%0.s*' $(seq 1 $((count/5))))
+done","#!/usr/bin/env bash\nlog=/var/log/apache2/access.log\nawk '{print $9}' ""$log"" |\n  sort | uniq -c |\n  awk '{printf ""%s %s %s\n"", $2, $1, sprintf(""%*s"", $1, """").gsub(/ /,""*"")}'",False,True,True,4
+Q5_K_M:2,Q5_K_M,2,List the files in a package named 'example',dpkg -L example,dpkg -L example,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Show detailed information of files in the /var/log directory, sorted by size descending.",find /var/log -type f -exec ls -lh {} + | sort -k5 -rh,ls -lhS /var/log,False,True,True,3
+Q5_K_M:2,Q5_K_M,2,Schedule a one‑time system shutdown at 23:30 today.,sudo shutdown -h +30,sudo shutdown -h 23:30,False,True,True,1
+Q5_K_M:2,Q5_K_M,2,"Using only bash and coreutils, generate a progress bar that shows the copy progress of a 5 GiB file src.bin to /mnt/backup/src.bin, updating every second.",pv src.bin > /mnt/backup/src.bin,"{ dd if=src.bin of=/mnt/backup/src.bin bs=4M status=none & pid=$!; while kill -0 $pid 2>/dev/null; do copied=$(stat --format=%s /mnt/backup/src.bin 2>/dev/null || echo 0); percent=$(( copied*100/5368709120 )); printf ""\rProgress: [%-50s] %3d%%"" $(printf ""#""{1..$((percent/2))}) $percent; sleep 1; done; wait $pid; echo; }",False,True,True,1
+Q5_K_M:2,Q5_K_M,2,"Print the contents of ""data.json"" with syntax highlighting using ""jq""",jq . data.json,"jq . data.json
+{
+  ""name"": ""example"",
+  ""value"": 42
+}",False,True,True,5
+Q5_K_M:2,Q5_K_M,2,Remove the directory temp_dir and all its contents without prompting,rm -rf temp_dir,rm -rf temp_dir,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Write a Bash one‑liner that lists all users on the system who have not logged in for more than 90 days, using /var/log/lastlog, and disables their accounts with usermod.","awk -F: '($3>=500){print $1}' /etc/passwd | while read user; do lastlog -u ""$user"" | awk 'NR==2 && $3<$(date -d ""90 days ago"" +%s) {print $1}' | xargs -r usermod -L; done","while IFS=: read -r user _ uid _ _ _ _; do
+  if ((uid>=1000)); then
+    last=$(lastlog -u ""$user"" | awk 'NR==2 {print $4,$5,$6}')
+    if [[ ""$last"" == '**Never logged in**' ]] || (( $(date -d ""$last"" +%s) < $(date -d '-90 days' +%s) )); then
+      usermod -L ""$user""
+    fi
+  fi
+done < <(cut -d: -f1,3 /etc/passwd)",False,True,True,3
+Q5_K_M:2,Q5_K_M,2,"List all Docker images sorted by size, showing the top 5","docker images --format ""{{.Repository}} {{.Tag}} {{.Size}}"" | sort -hr | head -n 5","docker images --format ""{{.Repository}}:{{.Tag}} {{.Size}}"" | sort -k2 -h | tail -n 5",False,True,True,3
+Q5_K_M:2,Q5_K_M,2,"Copy the local file report.pdf to the remote host /tmp directory using scp, preserving timestamps.",scp -p report.pdf user@remote:/tmp,scp -p report.pdf user@example.com:/tmp/,False,True,True,3
+Q5_K_M:2,Q5_K_M,2,Extract the contents of a compressed archive named 'archive.tar.gz',tar -xzvf archive.tar.gz,tar -xzvf archive.tar.gz,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Create a new file named 'example.txt' and write 'Hello World' to it,echo 'Hello World' > example.txt,echo 'Hello World' > example.txt,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Generate a random UUID and print it.,uuidgen,uuidgen,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Write a Bash one-liner that lists the 5 largest files in /var/www, showing size in human readable format and full path, sorted descending.",find /var/www -type f -exec du -h {} + | sort -hr | head -n 5,"#!/usr/bin/env bash
+find /var/www -type f -exec du -h {} + | sort -hr | head -5",False,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Write a Bash one‑liner that prints the number of CPUs, total memory in GB, and the system uptime in days, formatted as JSON.","cpu=$(nproc); mem=$(awk '/MemTotal/ {print $2/1024/1024/1024}' /proc/meminfo); up=$(awk '{print $2}' /proc/uptime); echo ""{\""cpu\"": $cpu, \""memory_gb\"": $mem, \""uptime_days\"": $up}""","printf '{""cpus"":%d,""memory_gb"":%.2f,""uptime_days"":%.2f}\n' ""$(nproc)"" ""$(awk '/MemTotal/ {printf $2/1024/1024}' /proc/meminfo)"" ""$(awk '{print $1/86400}' /proc/uptime)""",False,True,True,3
+Q5_K_M:2,Q5_K_M,2,"Create a Bash function that accepts a git branch name, checks out the branch, rebases it onto master, runs the test suite, and if successful, pushes the branch; otherwise, aborts the rebase and returns to the previous branch.","git_rebase_master() {
+  local branch=""$1""
+  git checkout ""$branch"" && git rebase master && if git diff --quiet; then git push origin ""$branch""; else git rebase --abort; git checkout ""$branch""; fi
+}","git_sync(){ local branch=""$1""; local cur=$(git rev-parse --abbrev-ref HEAD); git checkout ""$branch"" && git rebase master && if ./run_tests.sh; then git push origin ""$branch""; else git rebase --abort && git checkout ""$cur""; fi; }",False,True,True,1
+Q5_K_M:2,Q5_K_M,2,Create a zip archive of the 'example' directory,zip -r example.zip example,zip -r example.zip example,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Create a pipeline that reads a large log file, extracts JSON objects embedded in lines, pretty-prints them with jq, and writes to json_logs.txt, handling malformed JSON gracefully.",grep -a '{' large.log | grep -a '}' | jq -c . 2>/dev/null | tee json_logs.txt,"grep -o '{.*}' large.log |
+  while read line; do
+    echo ""$line"" | jq . 2>/dev/null || echo ""Malformed JSON: $line"" >> errors.log
+  done > json_logs.txt",False,True,True,2
+Q5_K_M:2,Q5_K_M,2,"Using curl, download the latest release tarball of jq from GitHub API, verify its SHA256 checksum against the value returned by the API, and extract it to ~/tools/jq_latest/ if verification succeeds.","api_url=""https://api.github.com/repos/stedolan/jq/releases/latest""
+latest=$(curl -s ""$api_url"" | jq -r '.tag_name')
+url=$(curl -s ""$api_url"" | jq -r '.assets[] | select(.name|endswith("".tar.gz"")) .browser_download_url')
+checksum=$(curl -s ""$api_url"" | jq -r '.assets[] | select(.name|endswith("".sha256"")) .browser_download_url' | xargs curl -sL)
+curl -L -o ~/tools/jq_latest/jq.tar.gz ""$url""
+if sha2","url=$(curl -s https://api.github.com/repos/stedolan/jq/releases/latest | jq -r '.assets[] | select(.name|test(""jq-.*\.tar\.gz"")) | .browser_download_url'); checksum=$(curl -s https://api.github.com/repos/stedolan/jq/releases/latest | jq -r '.assets[] | select(.name|test(""jq-.*\.tar\.gz\.sha256"")) | .browser_download_url' | xargs curl -sL); curl -L -o /tmp/jq.tar.gz ""$url""; echo ""$checksum  /tmp/jq.tar.gz"" | sha256sum -c - && mkdir -p ~/tools/jq_latest && tar -xzf /tmp/jq.tar.gz -C ~/tools/jq_latest",False,True,False,1
+Q5_K_M:2,Q5_K_M,2,"Create a pipeline that reads a CSV of user data, filters rows where age > 30, extracts the email column, removes duplicates, and writes them to emails.txt.","awk -F',' '$3>30 {print $4}' users.csv | sort -u > emails.txt","awk -F',' '$3>30 {print $5}' users.csv | sort -u > emails.txt",False,True,True,3
+Q5_K_M:2,Q5_K_M,2,Display the current bash version.,echo $BASH_VERSION,echo $BASH_VERSION,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Check the disk information,df -h,lsblk,False,True,True,5
+Q5_K_M:2,Q5_K_M,2,Create a new directory named 'test',mkdir test,mkdir test,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Create a symbolic link named ""latest"" pointing to ""release_v2.3""",ln -s release_v2.3 latest,ln -s release_v2.3 latest,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Display the current user's groups as a space‑separated list.,groups,id -Gn,False,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Find all ELF binaries in /usr/local/bin that are not owned by root, change their ownership to root:root, and set the setuid bit, logging each change to /var/log/setuid_changes.log.","find /usr/local/bin -type f -exec file {} \; | grep 'ELF' | cut -d: -f1 | while read bin; do if [ $(stat -c %U ""$bin"") != 'root' ]; then chown root:root ""$bin"" && chmod u+s ""$bin"" && echo ""$(date +%F_%T) Changed $bin to root:root and set setuid"" >> /var/log/setuid_changes.log; fi; done","#!/usr/bin/env bash
+find /usr/local/bin -type f -executable -exec file {} \; | grep -i ELF | cut -d: -f1 | while read -r bin; do
+  if [ $(stat -c %U ""$bin"") != ""root"" ]; then
+    chown root:root ""$bin""
+    chmod u+s ""$bin""
+    echo ""$(date '+%F %T') Modified $bin"" >> /var/log/setuid_changes.log
+  fi
+done",False,True,True,4
+Q5_K_M:2,Q5_K_M,2,"Write a Bash one‑liner that extracts all IPv4 addresses from access.log, counts occurrences, and prints the top 5 attackers.","awk '{print $1}' access.log | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | sort | uniq -c | sort -nr | head -n 5","awk '{for(i=1;i<=NF;i++) if($i ~ /([0-9]{1,3}\.){3}[0-9]{1,3}/) print $i}' access.log | sort | uniq -c | sort -nr | head -5",False,True,True,2
+Q5_K_M:2,Q5_K_M,2,Extract the tar.gz archive backup.tar.gz into /opt/backup,tar -xzvf backup.tar.gz -C /opt/backup,tar -xzf backup.tar.gz -C /opt/backup,False,True,True,4
+Q5_K_M:2,Q5_K_M,2,"Download the file from ""https://example.com/file.txt"" and save it as ""file.txt"".",curl -L -o file.txt https://example.com/file.txt,curl -L -o file.txt https://example.com/file.txt,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Write a pipeline that reads a list of URLs from urls.txt, downloads each with curl (max 3 retries, 10s timeout), computes its SHA256, and writes ""<url> <sha256>"" to checksums.txt, skipping URLs that fail after retries.","while read -r url; do
+  for i in {1..3}; do
+    if curl -m 10 -L ""$url"" -o ""/tmp/$(basename ""$url"")""; then
+      sha256sum ""/tmp/$(basename ""$url"")"" | awk '{print \""$url\"" \""\$1\""}' >> checksums.txt;
+      rm -f ""/tmp/$(basename ""$url"")"";
+      break;
+    fi;
+  done;
+done < urls.txt","while read -r url; do sha=$(curl -sSf --retry 3 --max-time 10 ""$url"" | sha256sum | awk '{print $1}') && echo ""$url $sha"" >> checksums.txt; done < urls.txt",False,True,True,4
+Q5_K_M:2,Q5_K_M,2,"Create a new user ""devuser"" with a home directory and default shell /bin/bash.",sudo useradd -m -s /bin/bash devuser,sudo useradd -m -s /bin/bash devuser,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,Change the permissions of a file named 'file.txt' to 'rwxr-x',chmod 755 file.txt,chmod 755 file.txt,True,True,True,5
+Q5_K_M:2,Q5_K_M,2,"Using find and chmod, locate all executable files in /opt/scripts that are not owned by root, and change their ownership to root while preserving the executable bits.",find /opt/scripts -type f -perm -111 ! -user root -exec chmod 755 {} \;,"find /opt/scripts -type f -executable ! -user root -exec chown root:{} \; -exec chmod u+x,g+x,o+x {} \;",False,True,True,2
+Q5_K_M:2,Q5_K_M,2,"Replace every occurrence of a UUID (format 8-4-4-4-12 hex) in all *.txt files under /data with a newly generated UUID, preserving the rest of the file content.","find /data -type f -name ""*.txt"" -print0 | xargs -0 -I{} sh -c 'uuid=$(cat /proc/sys/kernel/random/uuid); sed -i ""s/8-4-4-4-12/$(echo $uuid | tr '[:upper:]' '[:lower:]')/g"" ""{}""'","find /data -type f -name '*.txt' -print0 | xargs -0 -I{} bash -c 'sed -i -E ""s/[0-9a-fA-F]{8}(-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}/$(uuidgen)/g"" ""{}""'",False,True,True,1

@@ -1,0 +1,51 @@
+input_text,input_parameters,bash_command
+compile a shared library,"[""mylib.c""]",gcc -shared -fPIC -o libmylib.so mylib.c
+create a virtual bridge interface,"[""br0""]",sudo brctl addbr br0
+shuffle lines of a file,"[""list.txt""]",shuf list.txt
+follow journal logs for a service,"[""nginx""]",journalctl -u nginx -f
+show the number of words in a file,"[""essay.txt""]",wc -w essay.txt
+reverse the lines of a file,"[""file.txt""]",tac file.txt
+use pass to insert a new password,"[""web/example.com""]",pass insert web/example.com
+run a command and measure execution time,"[""./build.sh""]",time ./build.sh
+mirror a website with wget,"[""https://example.com""]",wget --mirror --convert-links --adjust-extension --page-requisites https://example.com
+change the MAC address of an interface,"[""eth0"", ""00:11:22:33:44:55""]",sudo ip link set eth0 address 00:11:22:33:44:55
+extract data from XML with xpath,"[""data.xml"", ""//title""]","xmllint --xpath ""//title"" data.xml"
+sum a column of numbers,"[""data.txt""]",awk '{sum+=$1} END {print sum}' data.txt
+merge split files back together,"[""output.txt""]",cat part_* > output.txt
+docker stop a container,"[""container_id""]",docker stop container_id
+kubernetes rollout status,"[""mydeployment""]",kubectl rollout status deployment/mydeployment
+remove a kernel module,"[""module_name""]",sudo modprobe -r module_name
+sync a local directory to a remote server,"[""local_dir/"", ""user@server:/remote_dir/""]",rsync -avz --progress local_dir/ user@server:/remote_dir/
+copy a directory recursively,"[""source/"", ""dest/""]",cp -r source/ dest/
+stop a systemd service,"[""nginx""]",sudo systemctl stop nginx
+mount a remote filesystem via SSHFS,"[""user@server:/remote/path"", ""/local/mount""]",sshfs user@server:/remote/path /local/mount
+create an incremental backup with rsync,"[""source/"", ""backup/""]",rsync -avz --delete source/ backup/
+kubernetes set a deployment image,"[""mydeployment"", ""myapp"", ""myapp:v2""]",kubectl set image deployment/mydeployment myapp=myapp:v2
+create a RAM disk,"[""/mnt/ramdisk""]",sudo mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk
+convert a markdown file to HTML,"[""document.md"", ""document.html""]",pandoc document.md -o document.html
+convert a video format,"[""input.avi"", ""output.mp4""]",ffmpeg -i input.avi output.mp4
+sample random lines from a file,"[""5"", ""data.txt""]",shuf -n 5 data.txt
+check if a remote port is open,"[""example.com"", ""443""]","timeout 5 bash -c 'cat < /dev/null > /dev/tcp/example.com/443' && echo ""Open"" || echo ""Closed"""
+bring a network interface down,"[""eth0""]",sudo ip link set eth0 down
+show file modification time,"[""file.txt""]",stat -c %y file.txt
+find all locations of a binary,"[""python""]",whereis python
+perform an OS detection scan,"[""192.168.1.1""]",sudo nmap -O 192.168.1.1
+show inode information for a file,"[""file.txt""]",stat -c %i file.txt
+run a Java program,"[""Main""]",java Main
+GCP deploy a Cloud Function,"[""myfunction""]",gcloud functions deploy myfunction --runtime python39 --trigger-http
+test disk speed with hdparm,"[""/dev/sda""]",sudo hdparm -Tt /dev/sda
+swap two columns in a file,"[""data.txt""]","awk '{print $2, $1}' data.txt"
+create a GRE tunnel,"[""10.0.0.1"", ""10.0.0.2""]",sudo ip tunnel add gre1 mode gre remote 10.0.0.2 local 10.0.0.1 ttl 255
+delete specific lines from a file,"[""3"", ""file.txt""]",sed -i '3d' file.txt
+transfer a file via netcat,"[""1234"", ""file.txt""]",nc -l 1234 < file.txt
+follow HTTP redirects and show all responses,"[""https://example.com""]","curl -L -v https://example.com 2>&1 | grep -E ""^[<>] """
+run ESLint on a file,"[""src/""]",npx eslint src/
+use fmt to reformat text to a specific width,"[""80"", ""file.txt""]",fmt -w 80 file.txt
+show protocol statistics from a pcap file,"[""capture.pcap""]","tshark -r capture.pcap -q -z io,stat,1"
+create a volume group,"[""myvg"", ""/dev/sdb""]",sudo vgcreate myvg /dev/sdb
+convert decimal to hexadecimal,"[""255""]",printf '%x\n' 255
+run a Java JAR file,"[""app.jar""]",java -jar app.jar
+show the full path of a command,"[""python3""]",type -a python3
+docker create a volume,"[""myvolume""]",docker volume create myvolume
+docker view logs with follow,"[""container_id""]",docker logs -f container_id
+check the status of a service,"[""nginx""]",sudo systemctl status nginx

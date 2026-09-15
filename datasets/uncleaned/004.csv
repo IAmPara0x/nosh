@@ -1,0 +1,51 @@
+input_text,input_parameters,bash_command
+change ownership of a file,"[""www-data"", ""index.html""]",chown www-data index.html
+format data as a table,"[""data.csv""]","column -t -s',' data.csv"
+remove an alias,"[""ll""]",unalias ll
+docker export a container filesystem,"[""container_id"", ""container.tar""]",docker export container_id > container.tar
+show file creation time,"[""file.txt""]",stat file.txt
+restore a PostgreSQL database,"[""database_name"", ""backup.sql""]",psql database_name < backup.sql
+process a CSV and extract specific columns,"[""data.csv"", ""1"", ""3""]","awk -F',' '{print $1"",""$3}' data.csv"
+add a static ARP entry,"[""192.168.1.1"", ""aa:bb:cc:dd:ee:ff""]",sudo arp -s 192.168.1.1 aa:bb:cc:dd:ee:ff
+bring a network interface up,"[""eth0""]",sudo ip link set eth0 up
+remove a package with apt,"[""nginx""]",sudo apt remove nginx
+find files containing a specific string recursively,"[""database_url""]","grep -rl ""database_url"" ."
+ansible run ad-hoc command on hosts,"[""all"", ""uptime""]","ansible all -m shell -a ""uptime"""
+concatenate two videos,"[""video1.mp4"", ""video2.mp4"", ""output.mp4""]",ffmpeg -i video1.mp4 -i video2.mp4 -filter_complex concat=n=2:v=1:a=1 output.mp4
+convert a Jupyter notebook to Python script,"[""notebook.ipynb""]",jupyter nbconvert --to script notebook.ipynb
+write a bash function to check if a file exists,"[""filepath""]","test -f filepath && echo ""exists"" || echo ""not found"""
+generate a flame graph,"[""./myapp""]",perf record -g ./myapp && perf script | stackcollapse-perf.pl | flamegraph.pl > flamegraph.svg
+change a user's password,"[""johndoe""]",sudo passwd johndoe
+show the most common lines in a file,"[""access.log""]",sort access.log | uniq -c | sort -rn | head -10
+run a command in the background,"[""./server""]",./server &
+check open files by a user,"[""johndoe""]",lsof -u johndoe
+create a file with specific size,"[""testfile"", ""1G""]",fallocate -l 1G testfile
+kubernetes exec into a pod,"[""mypod""]",kubectl exec -it mypod -- /bin/bash
+print the first and last line of a file,"[""file.txt""]",sed -n '1p;$p' file.txt
+append text to a file,"[""output.log"", ""new log entry""]","echo ""new log entry"" >> output.log"
+sort by a specific column,"[""data.csv""]","sort -t',' -k2 data.csv"
+show EXIF data of an image,"[""photo.jpg""]",exiftool photo.jpg
+check if a website is up,"[""https://example.com""]","curl -s -o /dev/null -w ""%{http_code}"" https://example.com"
+create multiple directories at once,"[""src"", ""docs"", ""tests""]",mkdir -p src docs tests
+stress test the system,"[""4"", ""60""]",stress --cpu 4 --timeout 60
+test UDP bandwidth,"[""server_ip""]",iperf3 -c server_ip -u
+show open files by a process,"[""nginx""]",lsof -c nginx
+docker push an image to a registry,"[""registry.example.com/myapp:v1""]",docker push registry.example.com/myapp:v1
+use screen to run a persistent command,"[""backup"", ""./backup.sh""]",screen -dmS backup ./backup.sh
+monitor HTTP endpoint health,"[""https://example.com/health""]","while true; do curl -s -o /dev/null -w ""%{http_code}"" https://example.com/health; sleep 60; done"
+show the MX records for a domain,"[""example.com""]",dig MX example.com
+AWS start an EC2 instance,"[""i-1234567890abcdef0""]",aws ec2 start-instances --instance-ids i-1234567890abcdef0
+install a package with apt,"[""nginx""]",sudo apt install -y nginx
+check filesystem for errors,"[""/dev/sda1""]",sudo fsck /dev/sda1
+use rsync with SSH,"[""local_dir/"", ""user@server:/remote_dir/""]",rsync -avz -e ssh local_dir/ user@server:/remote_dir/
+show file type information,"[""image.png""]",file image.png
+number all lines in a file,"[""file.txt""]",nl file.txt
+trace library calls of a process,"[""1234""]",ltrace -p 1234
+git create a worktree,"[""../feature-branch"", ""feature""]",git worktree add ../feature-branch feature
+continuously monitor a directory for changes,"[""/var/log""]",inotifywait -m -r /var/log
+download a file from a URL,"[""https://example.com/data.csv""]",wget https://example.com/data.csv
+use envsubst to template a file,"[""template.txt""]",envsubst < template.txt
+AWS get CloudWatch metrics,"[""CPUUtilization"", ""AWS/EC2""]",aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --period 300 --statistics Average --start-time $(date -u -d '1 hour ago' +%Y-%m-%dT%H:%M:%S) --end-time $(date -u +%Y-%m-%dT%H:%M:%S)
+translate lowercase to uppercase,"[""input.txt""]",tr 'a-z' 'A-Z' < input.txt
+copy a file to a remote server,"[""file.txt"", ""user@server:/path/""]",scp file.txt user@server:/path/
+docker run with volume mount,"[""/host/path"", ""/container/path"", ""nginx""]",docker run -d -v /host/path:/container/path nginx

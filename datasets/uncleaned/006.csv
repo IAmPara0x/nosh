@@ -1,0 +1,51 @@
+input_text,input_parameters,bash_command
+show the TXT records for a domain,"[""example.com""]",dig TXT example.com
+kubernetes drain a node for maintenance,"[""mynode""]",kubectl drain mynode --ignore-daemonsets --delete-emptydir-data
+setup a cron job for weekly backups,"[""backup.sh""]","echo ""0 2 * * 0 /path/to/backup.sh"" | crontab -"
+use ipcalc to calculate subnet information,"[""192.168.1.0/24""]",ipcalc 192.168.1.0/24
+compress a file with gzip,"[""data.txt""]",gzip data.txt
+trigger a GitHub Actions workflow,"[""deploy.yml""]",gh workflow run deploy.yml
+calculate average response time from logs,"[""access.log""]",awk '{sum+=$NF; n++} END {print sum/n}' access.log
+set file access control lists,"[""user:johndoe:rw"", ""/shared/file.txt""]",setfacl -m user:johndoe:rw /shared/file.txt
+create a backup with timestamp,"[""project/""]","tar -czf ""project_$(date +%Y%m%d_%H%M%S).tar.gz"" project/"
+sort a file numerically,"[""numbers.txt""]",sort -n numbers.txt
+create a CSR for SSL,"[""server.key"", ""server.csr""]",openssl req -new -key server.key -out server.csr
+verify an SSL certificate,"[""cert.pem""]",openssl x509 -in cert.pem -text -noout
+check if a command exists,"[""docker""]","command -v docker >/dev/null 2>&1 && echo ""installed"" || echo ""not installed"""
+create a new Rust project,"[""myproject""]",cargo new myproject
+disassemble a binary,"[""./myapp""]",objdump -d ./myapp
+kubernetes get all resources in a namespace,"[""production""]",kubectl get all -n production
+create a tar archive without compression,"[""archive.tar"", ""folder/""]",tar -cf archive.tar folder/
+enable promiscuous mode on an interface,"[""eth0""]",sudo ip link set eth0 promisc on
+wipe a disk securely,"[""/dev/sdb""]",sudo dd if=/dev/urandom of=/dev/sdb bs=4M status=progress
+check DNSSEC validation,"[""example.com""]",dig +dnssec example.com
+merge a GitHub pull request,"[""123""]",gh pr merge 123
+profile a command,"[""./myapp""]",perf stat ./myapp
+connect to a remote server via SSH,"[""user@192.168.1.100""]",ssh user@192.168.1.100
+create a network namespace,"[""mynamespace""]",sudo ip netns add mynamespace
+convert HTML to PDF,"[""page.html"", ""page.pdf""]",wkhtmltopdf page.html page.pdf
+format JSON output,"[""data.json""]",jq '.' data.json
+run a PostgreSQL query from command line,"[""SELECT NOW()""]","psql -c ""SELECT NOW()"""
+extend a logical volume,"[""mylv"", ""5G""]",sudo lvextend -L +5G /dev/myvg/mylv
+ansible list all hosts in inventory,"[""inventory.ini""]",ansible -i inventory.ini all --list-hosts
+create a self-extracting archive,"[""archive.tar.gz"", ""extract.sh""]",cat decompress.sh archive.tar.gz > extract.sh && chmod +x extract.sh
+send SIGUSR1 to a process,"[""1234""]",kill -USR1 1234
+scan a range of ports,"[""192.168.1.1"", ""1-1000""]",nmap -p 1-1000 192.168.1.1
+show symbols in a binary,"[""./myapp""]",nm ./myapp
+set the system locale,"[""en_US.UTF-8""]",sudo localectl set-locale LANG=en_US.UTF-8
+benchmark a website with ab,"[""https://example.com/""]",ab -n 1000 -c 10 https://example.com/
+create a named pipe,"[""mypipe""]",mkfifo mypipe
+show file access control lists,"[""/shared""]",getfacl /shared
+restart a systemd service,"[""nginx""]",sudo systemctl restart nginx
+attach to a screen session,"[""mysession""]",screen -r mysession
+extract a tar.gz archive,"[""archive.tar.gz""]",tar -xzf archive.tar.gz
+use sed to add line numbers to a file,"[""file.txt""]",sed = file.txt | sed 'N;s/\n/\t/'
+count JSON array elements,"[""data.json""]",jq '. | length' data.json
+create a database dump with mysqldump,"[""database_name"", ""backup.sql""]",mysqldump -u root -p database_name > backup.sql
+replace tabs with spaces in a file,"[""file.txt""]",expand file.txt
+use auditd to watch a file,"[""/etc/passwd""]",sudo auditctl -w /etc/passwd -p wa -k passwd_changes
+print lines matching a pattern with line numbers,"[""error"", ""log.txt""]","grep -n ""error"" log.txt"
+AWS create an SQS queue,"[""myqueue""]",aws sqs create-queue --queue-name myqueue
+ansible run a playbook with inventory,"[""playbook.yml"", ""inventory.ini""]",ansible-playbook -i inventory.ini playbook.yml
+run a command when a file changes,"[""main.py""]",inotifywait -m main.py -e modify | while read; do python3 main.py; done
+run a command in a network namespace,"[""mynamespace"", ""ip addr""]",sudo ip netns exec mynamespace ip addr

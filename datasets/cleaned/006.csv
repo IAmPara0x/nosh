@@ -1,0 +1,101 @@
+prompt,command
+change ownership of a file index.html to www-data,chown www-data index.html
+change ownership of a file,chown YOUR_USER YOUR_FILE
+format data.csv as a table,"column -t -s',' data.csv"
+format data as a table,"column -t -s',' YOUR_FILE"
+remove an alias ll,unalias ll
+remove an alias,unalias YOUR_ALIAS
+docker export a container filesystem container_id to container.tar,docker export container_id > container.tar
+docker export a container filesystem,docker export YOUR_CONTAINER_ID > YOUR_OUTPUT
+show file creation time for file.txt,stat file.txt
+show file creation time,stat YOUR_FILE
+restore a PostgreSQL database database_name from backup.sql,psql database_name < backup.sql
+restore a PostgreSQL database,psql YOUR_DATABASE < YOUR_BACKUP
+process a CSV data.csv and extract columns 1 and 3,"awk -F',' '{print $1"",""$3}' data.csv"
+process a CSV and extract specific columns,"awk -F',' '{print YOUR_COLUMNS}' YOUR_FILE"
+add a static ARP entry for 192.168.1.1 with MAC aa:bb:cc:dd:ee:ff,sudo arp -s 192.168.1.1 aa:bb:cc:dd:ee:ff
+add a static ARP entry,sudo arp -s YOUR_IP YOUR_MAC
+bring a network interface eth0 up,sudo ip link set eth0 up
+bring a network interface up,sudo ip link set YOUR_INTERFACE up
+remove a package nginx with apt,sudo apt remove nginx
+remove a package with apt,sudo apt remove YOUR_PACKAGE
+find files containing a specific string database_url recursively,"grep -rl ""database_url"" ."
+find files containing a specific string recursively,"grep -rl ""YOUR_STRING"" ."
+ansible run ad-hoc command uptime on hosts all,"ansible all -m shell -a ""uptime"""
+ansible run ad-hoc command on hosts,"ansible YOUR_HOSTS -m shell -a ""YOUR_COMMAND"""
+concatenate two videos video1.mp4 and video2.mp4 to output.mp4,ffmpeg -i video1.mp4 -i video2.mp4 -filter_complex concat=n=2:v=1:a=1 output.mp4
+concatenate two videos,ffmpeg -i YOUR_VIDEO1 -i YOUR_VIDEO2 -filter_complex concat=n=2:v=1:a=1 YOUR_OUTPUT
+convert a Jupyter notebook notebook.ipynb to Python script,jupyter nbconvert --to script notebook.ipynb
+convert a Jupyter notebook to Python script,jupyter nbconvert --to script YOUR_NOTEBOOK
+write a bash function to check if a file filepath exists,"test -f filepath && echo ""exists"" || echo ""not found"""
+write a bash function to check if a file exists,"test -f YOUR_FILEPATH && echo ""exists"" || echo ""not found"""
+generate a flame graph for ./myapp,perf record -g ./myapp && perf script | stackcollapse-perf.pl | flamegraph.pl > flamegraph.svg
+generate a flame graph,perf record -g YOUR_COMMAND && perf script | stackcollapse-perf.pl | flamegraph.pl > YOUR_OUTPUT
+change a user johndoe password,sudo passwd johndoe
+change a user password,sudo passwd YOUR_USERNAME
+show the most common 10 lines in a file access.log,sort access.log | uniq -c | sort -rn | head -10
+show the most common lines in a file,sort YOUR_FILE | uniq -c | sort -rn | head -10
+run a command ./server in the background,./server &
+run a command in the background,YOUR_COMMAND &
+check open files by a user johndoe,lsof -u johndoe
+check open files by a user,lsof -u YOUR_USERNAME
+create a file testfile with size 1G,fallocate -l 1G testfile
+create a file with specific size,fallocate -l YOUR_SIZE YOUR_FILE
+kubernetes exec into a pod mypod,kubectl exec -it mypod -- /bin/bash
+kubernetes exec into a pod,kubectl exec -it YOUR_POD -- /bin/bash
+print the first and last line of a file file.txt,sed -n '1p;$p' file.txt
+print the first and last line of a file,sed -n '1p;$p' YOUR_FILE
+append text new log entry to a file output.log,"echo ""new log entry"" >> output.log"
+append text to a file,"echo ""YOUR_TEXT"" >> YOUR_FILE"
+sort data.csv by column 2,"sort -t',' -k2 data.csv"
+sort by a specific column,"sort -t',' -kYOUR_COLUMN YOUR_FILE"
+show EXIF data of an image photo.jpg,exiftool photo.jpg
+show EXIF data of an image,exiftool YOUR_IMAGE
+check if a website https://example.com is up,"curl -s -o /dev/null -w ""%{http_code}"" https://example.com"
+check if a website is up,"curl -s -o /dev/null -w ""%{http_code}"" YOUR_URL"
+create multiple directories src docs tests at once,mkdir -p src docs tests
+create multiple directories at once,mkdir -p YOUR_DIRECTORIES
+stress test the system with 4 CPUs for 60 seconds,stress --cpu 4 --timeout 60
+stress test the system,stress --cpu YOUR_CPU_COUNT --timeout YOUR_TIMEOUT
+test UDP bandwidth to server_ip,iperf3 -c server_ip -u
+test UDP bandwidth,iperf3 -c YOUR_SERVER_IP -u
+show open files by a process nginx,lsof -c nginx
+show open files by a process,lsof -c YOUR_PROCESS
+docker push an image registry.example.com/myapp:v1 to a registry,docker push registry.example.com/myapp:v1
+docker push an image to a registry,docker push YOUR_REGISTRY/YOUR_IMAGE
+use screen to run a persistent command ./backup.sh with name backup,screen -dmS backup ./backup.sh
+use screen to run a persistent command,screen -dmS YOUR_SESSION YOUR_COMMAND
+monitor HTTP endpoint health at https://example.com/health,"while true; do curl -s -o /dev/null -w ""%{http_code}"" https://example.com/health; sleep 60; done"
+monitor HTTP endpoint health,"while true; do curl -s -o /dev/null -w ""%{http_code}"" YOUR_URL; sleep 60; done"
+show the MX records for a domain example.com,dig MX example.com
+show the MX records for a domain,dig MX YOUR_DOMAIN
+AWS start an EC2 instance i-1234567890abcdef0,aws ec2 start-instances --instance-ids i-1234567890abcdef0
+AWS start an EC2 instance,aws ec2 start-instances --instance-ids YOUR_INSTANCE_ID
+install a package nginx with apt,sudo apt install -y nginx
+install a package with apt,sudo apt install -y YOUR_PACKAGE
+check filesystem /dev/sda1 for errors,sudo fsck /dev/sda1
+check filesystem for errors,sudo fsck YOUR_DEVICE
+use rsync with SSH from local_dir/ to user@server:/remote_dir/,rsync -avz -e ssh local_dir/ user@server:/remote_dir/
+use rsync with SSH,rsync -avz -e ssh YOUR_SOURCE YOUR_DESTINATION
+show file type information for image.png,file image.png
+show file type information,file YOUR_FILE
+number all lines in a file file.txt,nl file.txt
+number all lines in a file,nl YOUR_FILE
+trace library calls of a process 1234,ltrace -p 1234
+trace library calls of a process,ltrace -p YOUR_PID
+git create a worktree ../feature-branch from feature,git worktree add ../feature-branch feature
+git create a worktree,git worktree add YOUR_PATH YOUR_BRANCH
+continuously monitor a directory /var/log for changes,inotifywait -m -r /var/log
+continuously monitor a directory for changes,inotifywait -m -r YOUR_DIRECTORY
+download a file https://example.com/data.csv from a URL,wget https://example.com/data.csv
+download a file from a URL,wget YOUR_URL
+use envsubst to template a file template.txt,envsubst < template.txt
+use envsubst to template a file,envsubst < YOUR_TEMPLATE
+AWS get CloudWatch metrics CPUUtilization for AWS/EC2,aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --period 300 --statistics Average --start-time $(date -u -d '1 hour ago' +%Y-%m-%dT%H:%M:%S) --end-time $(date -u +%Y-%m-%dT%H:%M:%S)
+AWS get CloudWatch metrics,aws cloudwatch get-metric-statistics --namespace YOUR_NAMESPACE --metric-name YOUR_METRIC --period 300 --statistics Average --start-time $(date -u -d '1 hour ago' +%Y-%m-%dT%H:%M:%S) --end-time $(date -u +%Y-%m-%dT%H:%M:%S)
+translate lowercase to uppercase in input.txt,tr 'a-z' 'A-Z' < input.txt
+translate lowercase to uppercase,tr 'a-z' 'A-Z' < YOUR_FILE
+copy a file file.txt to a remote server user@server:/path/,scp file.txt user@server:/path/
+copy a file to a remote server,scp YOUR_FILE YOUR_USER@YOUR_SERVER:/path/
+docker run with volume mount /host/path to /container/path using nginx,docker run -d -v /host/path:/container/path nginx
+docker run with volume mount,docker run -d -v YOUR_HOST_PATH:YOUR_CONTAINER_PATH YOUR_IMAGE

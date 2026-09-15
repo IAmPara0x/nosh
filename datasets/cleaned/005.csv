@@ -1,0 +1,101 @@
+prompt,command
+compile a shared library mylib.c,gcc -shared -fPIC -o libmylib.so mylib.c
+compile a shared library,gcc -shared -fPIC -o YOUR_LIBRARY YOUR_SOURCE
+create a virtual bridge interface br0,sudo brctl addbr br0
+create a virtual bridge interface,sudo brctl addbr YOUR_BRIDGE
+shuffle lines of a file list.txt,shuf list.txt
+shuffle lines of a file,shuf YOUR_FILE
+follow journal logs for a service nginx,journalctl -u nginx -f
+follow journal logs for a service,journalctl -u YOUR_SERVICE -f
+show the number of words in a file essay.txt,wc -w essay.txt
+show the number of words in a file,wc -w YOUR_FILE
+reverse the lines of a file file.txt,tac file.txt
+reverse the lines of a file,tac YOUR_FILE
+use pass to insert a new password web/example.com,pass insert web/example.com
+use pass to insert a new password,pass insert YOUR_PASSWORD_PATH
+run a command ./build.sh and measure execution time,time ./build.sh
+run a command and measure execution time,time YOUR_COMMAND
+mirror a website with wget https://example.com,wget --mirror --convert-links --adjust-extension --page-requisites https://example.com
+mirror a website with wget,wget --mirror --convert-links --adjust-extension --page-requisites YOUR_URL
+change the MAC address of interface eth0 to 00:11:22:33:44:55,sudo ip link set eth0 address 00:11:22:33:44:55
+change the MAC address of an interface,sudo ip link set YOUR_INTERFACE address YOUR_MAC_ADDRESS
+extract data from XML data.xml with xpath //title,"xmllint --xpath ""//title"" data.xml"
+extract data from XML with xpath,"xmllint --xpath ""YOUR_XPATH"" YOUR_FILE"
+sum a column of numbers in data.txt,awk '{sum+=$1} END {print sum}' data.txt
+sum a column of numbers,awk '{sum+=$1} END {print sum}' YOUR_FILE
+merge split files back together to output.txt,cat part_* > output.txt
+merge split files back together,cat YOUR_PATTERN > YOUR_OUTPUT
+docker stop a container container_id,docker stop container_id
+docker stop a container,docker stop YOUR_CONTAINER_ID
+kubernetes rollout status of deployment mydeployment,kubectl rollout status deployment/mydeployment
+kubernetes rollout status,kubectl rollout status deployment/YOUR_DEPLOYMENT
+remove a kernel module module_name,sudo modprobe -r module_name
+remove a kernel module,sudo modprobe -r YOUR_MODULE
+sync a local directory local_dir/ to a remote server user@server:/remote_dir/,rsync -avz --progress local_dir/ user@server:/remote_dir/
+sync a local directory to a remote server,rsync -avz --progress YOUR_SOURCE YOUR_DESTINATION
+copy a directory source/ recursively to dest/,cp -r source/ dest/
+copy a directory recursively,cp -r YOUR_SOURCE YOUR_DESTINATION
+stop a systemd service nginx,sudo systemctl stop nginx
+stop a systemd service,sudo systemctl stop YOUR_SERVICE
+mount a remote filesystem user@server:/remote/path via SSHFS to /local/mount,sshfs user@server:/remote/path /local/mount
+mount a remote filesystem via SSHFS,sshfs YOUR_REMOTE_PATH YOUR_LOCAL_MOUNT
+create an incremental backup with rsync from source/ to backup/,rsync -avz --delete source/ backup/
+create an incremental backup with rsync,rsync -avz --delete YOUR_SOURCE YOUR_BACKUP
+kubernetes set deployment mydeployment image myapp to myapp:v2,kubectl set image deployment/mydeployment myapp=myapp:v2
+kubernetes set a deployment image,kubectl set image deployment/YOUR_DEPLOYMENT YOUR_CONTAINER=YOUR_IMAGE
+create a RAM disk at /mnt/ramdisk,sudo mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk
+create a RAM disk,sudo mount -t tmpfs -o size=YOUR_SIZE tmpfs YOUR_MOUNT_POINT
+convert a markdown file document.md to HTML document.html,pandoc document.md -o document.html
+convert a markdown file to HTML,pandoc YOUR_INPUT -o YOUR_OUTPUT
+convert a video format from input.avi to output.mp4,ffmpeg -i input.avi output.mp4
+convert a video format,ffmpeg -i YOUR_INPUT YOUR_OUTPUT
+sample 5 random lines from a file data.txt,shuf -n 5 data.txt
+sample random lines from a file,shuf -n YOUR_COUNT YOUR_FILE
+check if a remote port example.com:443 is open,"timeout 5 bash -c 'cat < /dev/null > /dev/tcp/example.com/443' && echo ""Open"" || echo ""Closed"""
+check if a remote port is open,"timeout 5 bash -c 'cat < /dev/null > /dev/tcp/YOUR_HOST/YOUR_PORT' && echo ""Open"" || echo ""Closed"""
+bring a network interface eth0 down,sudo ip link set eth0 down
+bring a network interface down,sudo ip link set YOUR_INTERFACE down
+show file modification time for file.txt,stat -c %y file.txt
+show file modification time,stat -c %y YOUR_FILE
+find all locations of a binary python,whereis python
+find all locations of a binary,whereis YOUR_BINARY
+perform an OS detection scan on 192.168.1.1,sudo nmap -O 192.168.1.1
+perform an OS detection scan,sudo nmap -O YOUR_IP
+show inode information for a file file.txt,stat -c %i file.txt
+show inode information for a file,stat -c %i YOUR_FILE
+run a Java program Main,java Main
+run a Java program,java YOUR_CLASS
+GCP deploy a Cloud Function myfunction,gcloud functions deploy myfunction --runtime python39 --trigger-http
+GCP deploy a Cloud Function,gcloud functions deploy YOUR_FUNCTION --runtime YOUR_RUNTIME --trigger-http
+test disk speed with hdparm for /dev/sda,sudo hdparm -Tt /dev/sda
+test disk speed with hdparm,sudo hdparm -Tt YOUR_DEVICE
+swap two columns in a file data.txt,"awk '{print $2, $1}' data.txt"
+swap two columns in a file,"awk '{print $2, $1}' YOUR_FILE"
+create a GRE tunnel from 10.0.0.1 to 10.0.0.2,sudo ip tunnel add gre1 mode gre remote 10.0.0.2 local 10.0.0.1 ttl 255
+create a GRE tunnel,sudo ip tunnel add YOUR_TUNNEL mode gre remote YOUR_REMOTE_IP local YOUR_LOCAL_IP ttl 255
+delete line 3 from a file file.txt,sed -i '3d' file.txt
+delete specific lines from a file,sed -i 'YOUR_LINE_NUMBERd' YOUR_FILE
+transfer a file file.txt via netcat on port 1234,nc -l 1234 < file.txt
+transfer a file via netcat,nc -l YOUR_PORT < YOUR_FILE
+follow HTTP redirects and show all responses from https://example.com,"curl -L -v https://example.com 2>&1 | grep -E ""^[<>] """
+follow HTTP redirects and show all responses,"curl -L -v YOUR_URL 2>&1 | grep -E ""^[<>] """
+run ESLint on src/,npx eslint src/
+run ESLint on a file,npx eslint YOUR_DIRECTORY
+use fmt to reformat text to a width of 80 characters in file.txt,fmt -w 80 file.txt
+use fmt to reformat text to a specific width,fmt -w YOUR_WIDTH YOUR_FILE
+show protocol statistics from a pcap file capture.pcap,"tshark -r capture.pcap -q -z io,stat,1"
+show protocol statistics from a pcap file,"tshark -r YOUR_FILE -q -z io,stat,1"
+create a volume group myvg from /dev/sdb,sudo vgcreate myvg /dev/sdb
+create a volume group,sudo vgcreate YOUR_VG YOUR_DEVICE
+convert decimal 255 to hexadecimal,printf '%x\n' 255
+convert decimal to hexadecimal,printf '%x\n' YOUR_NUMBER
+run a Java JAR file app.jar,java -jar app.jar
+run a Java JAR file,java -jar YOUR_JAR
+show the full path of a command python3,type -a python3
+show the full path of a command,type -a YOUR_COMMAND
+docker create a volume myvolume,docker volume create myvolume
+docker create a volume,docker volume create YOUR_VOLUME
+docker view logs of container container_id with follow,docker logs -f container_id
+docker view logs with follow,docker logs -f YOUR_CONTAINER_ID
+check the status of a service nginx,sudo systemctl status nginx
+check the status of a service,sudo systemctl status YOUR_SERVICE

@@ -1,0 +1,101 @@
+prompt,command
+GCP copy a file file.txt to GCS gs://mybucket/,gsutil cp file.txt gs://mybucket/
+GCP copy a file to GCS,gsutil cp YOUR_FILE YOUR_GCS_BUCKET
+docker run a container nginx,docker run -d nginx
+docker run a container,docker run -d YOUR_IMAGE
+set an environment variable API_KEY to abc123,export API_KEY=abc123
+set an environment variable,export YOUR_VAR=YOUR_VALUE
+use rsync to delete files not in source/ from dest/,rsync -avz --delete source/ dest/
+use rsync to delete files not in source,rsync -avz --delete YOUR_SOURCE YOUR_DESTINATION
+create a GIF from a video input.mp4 to output.gif,"ffmpeg -i input.mp4 -vf ""fps=10,scale=320:-1"" output.gif"
+create a GIF from a video,"ffmpeg -i YOUR_INPUT -vf ""fps=10,scale=320:-1"" YOUR_OUTPUT"
+parse YAML from command line config.yaml,yq '.' config.yaml
+parse YAML from command line,yq '.' YOUR_FILE
+test a TCP connection to example.com:443,nc -zv example.com 443
+test a TCP connection to a port,nc -zv YOUR_HOST YOUR_PORT
+restore a MySQL database database_name from backup.sql,mysql -u root -p database_name < backup.sql
+restore a MySQL database from dump,mysql -u root -p YOUR_DATABASE < YOUR_BACKUP
+cut a video clip from 00:01:00 to 00:02:00 in input.mp4 to clip.mp4,ffmpeg -i input.mp4 -ss 00:01:00 -to 00:02:00 -c copy clip.mp4
+cut a video clip,ffmpeg -i YOUR_INPUT -ss YOUR_START -to YOUR_END -c copy YOUR_OUTPUT
+git show commits from 2024-01-01 to 2024-01-31,"git log --after=""2024-01-01"" --before=""2024-01-31"""
+git show commits from a specific date range,"git log --after=""YOUR_START_DATE"" --before=""YOUR_END_DATE"""
+kubernetes autoscale deployment mydeployment with min 2 and max 10,kubectl autoscale deployment mydeployment --min=2 --max=10 --cpu-percent=80
+kubernetes autoscale a deployment,kubectl autoscale deployment YOUR_DEPLOYMENT --min=YOUR_MIN --max=YOUR_MAX --cpu-percent=80
+use rsync with bandwidth limit of 1000 from source/ to dest/,rsync -avz --bwlimit=1000 source/ dest/
+use rsync with bandwidth limit,rsync -avz --bwlimit=YOUR_LIMIT YOUR_SOURCE YOUR_DESTINATION
+disable swap on /swapfile,sudo swapoff /swapfile
+disable swap,sudo swapoff YOUR_SWAPFILE
+kubernetes get logs from a pod mypod,kubectl logs mypod
+kubernetes get logs from a pod,kubectl logs YOUR_POD
+check if a port 8080 is in use,lsof -i :8080
+check if a port is in use,lsof -i :YOUR_PORT
+check if a directory dirpath exists,"test -d dirpath && echo ""exists"" || echo ""not found"""
+check if a directory exists,"test -d YOUR_DIRECTORY && echo ""exists"" || echo ""not found"""
+brute force directories on a web server http://example.com using wordlist.txt,dirb http://example.com wordlist.txt
+brute force directories on a web server,dirb YOUR_URL YOUR_WORDLIST
+move file data.csv to the archive directory archive/,mv data.csv archive/
+move file to the archive directory,mv YOUR_FILE YOUR_ARCHIVE_DIR
+apply a patch file changes.patch,patch -p1 < changes.patch
+apply a patch file,patch -p1 < YOUR_PATCH_FILE
+setup SSH passwordless authentication for user@server,ssh-copy-id user@server
+setup SSH passwordless authentication,ssh-copy-id YOUR_USER@YOUR_SERVER
+initialize a new React app my-app,npx create-react-app my-app
+initialize a new React app,npx create-react-app YOUR_APP_NAME
+change permissions recursively to 755 for project/,chmod -R 755 project/
+change permissions recursively,chmod -R YOUR_PERMISSIONS YOUR_DIRECTORY
+allow a port 22 through the firewall,sudo ufw allow 22
+allow a port through the firewall,sudo ufw allow YOUR_PORT
+search command history for a keyword docker,history | grep docker
+search command history for a keyword,history | grep YOUR_KEYWORD
+encrypt a file secret.txt with openssl,openssl enc -aes-256-cbc -salt -in secret.txt -out secret.enc
+encrypt a file with openssl,openssl enc -aes-256-cbc -salt -in YOUR_FILE -out YOUR_ENCRYPTED_FILE
+set a Redis key mykey to myvalue,redis-cli set mykey myvalue
+set a Redis key,redis-cli set YOUR_KEY YOUR_VALUE
+make kernel parameter net.ipv4.ip_forward = 1 persistent,"echo ""net.ipv4.ip_forward = 1"" | sudo tee -a /etc/sysctl.conf"
+make kernel parameter persistent,"echo ""YOUR_PARAMETER"" | sudo tee -a /etc/sysctl.conf"
+GCP create a compute instance myvm in zone us-central1-a,gcloud compute instances create myvm --zone=us-central1-a
+GCP create a compute instance,gcloud compute instances create YOUR_INSTANCE --zone=YOUR_ZONE
+curl a URL https://example.com and show response headers,curl -I https://example.com
+curl a URL and show response headers,curl -I YOUR_URL
+extract pages 1 to 5 from input.pdf to output.pdf,pdfseparate -f 1 -l 5 input.pdf output_%d.pdf
+extract pages from a PDF,pdfseparate -f YOUR_START -l YOUR_END YOUR_INPUT YOUR_OUTPUT
+find all hard links to a file target.txt,find . -samefile target.txt
+find all hard links to a file,find . -samefile YOUR_FILE
+search and replace old_function with new_function across multiple Python files,"find . -type f -name ""*.py"" -exec sed -i ""s/old_function/new_function/g"" {} +"
+search and replace across multiple files,"find . -type f -name ""YOUR_PATTERN"" -exec sed -i ""s/YOUR_OLD/YOUR_NEW/g"" {} +"
+run a command ./server that survives terminal close,nohup ./server &
+run a command that survives terminal close,nohup YOUR_COMMAND &
+get unique lines with count from access.log,sort access.log | uniq -c | sort -rn
+get unique lines with count,sort YOUR_FILE | uniq -c | sort -rn
+docker inspect a container container_id,docker inspect container_id
+docker inspect a container,docker inspect YOUR_CONTAINER_ID
+watch a command df -h execute every 2 seconds,watch -n 2 df -h
+watch a command execute every 2 seconds,watch -n 2 YOUR_COMMAND
+enable a service nginx to start on boot,sudo systemctl enable nginx
+enable a service to start on boot,sudo systemctl enable YOUR_SERVICE
+create a new partition on /dev/sdb,sudo fdisk /dev/sdb
+create a new partition,sudo fdisk YOUR_DEVICE
+compile a C++ program main.cpp to output,g++ -o output main.cpp
+compile a C++ program,g++ -o YOUR_OUTPUT YOUR_SOURCE
+unzip a file backup.zip,unzip backup.zip
+unzip a file,unzip YOUR_FILE
+ansible check playbook syntax for playbook.yml,ansible-playbook --syntax-check playbook.yml
+ansible check playbook syntax,ansible-playbook --syntax-check YOUR_PLAYBOOK
+docker build an image myapp from a Dockerfile,docker build -t myapp .
+docker build an image from a Dockerfile,docker build -t YOUR_IMAGE .
+block an IP address 10.0.0.5 with iptables,sudo iptables -A INPUT -s 10.0.0.5 -j DROP
+block an IP address with iptables,sudo iptables -A INPUT -s YOUR_IP -j DROP
+unmount a filesystem /mnt/usb,sudo umount /mnt/usb
+unmount a filesystem,sudo umount YOUR_MOUNT_POINT
+use screen to start a detached session mysession,screen -S mysession -d -m
+use screen to start a detached session,screen -S YOUR_SESSION -d -m
+check for memory leaks in ./myapp,valgrind --leak-check=full ./myapp
+check for memory leaks,valgrind --leak-check=full YOUR_COMMAND
+run a MySQL query SELECT * FROM users on database mydb from command line,"mysql -u root -p mydb -e ""SELECT * FROM users"""
+run a MySQL query from command line,"mysql -u root -p YOUR_DATABASE -e ""YOUR_QUERY"""
+display a file binary.dat in octal,od binary.dat | head -20
+display a file in octal,od YOUR_FILE | head -20
+run a command echo done after a delay of 5 seconds,sleep 5 && echo done
+run a command after a delay of 5 seconds,sleep 5 && YOUR_COMMAND
+add a watermark watermark.png to an image image.jpg to output.jpg,composite -dissolve 50% -gravity southeast watermark.png image.jpg output.jpg
+add a watermark to an image,composite -dissolve 50% -gravity southeast YOUR_WATERMARK YOUR_IMAGE YOUR_OUTPUT

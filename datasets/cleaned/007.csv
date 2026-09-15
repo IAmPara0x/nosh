@@ -1,0 +1,100 @@
+prompt,command
+extract a specific file file.txt from tar archive.tar,tar -xf archive.tar file.txt
+extract a specific file from tar,tar -xf YOUR_ARCHIVE YOUR_FILE
+show the calendar for a specific year 2025,cal 2025
+show the calendar for a specific year,cal YOUR_YEAR
+fork a GitHub repository owner/repo,gh repo fork owner/repo
+fork a GitHub repository,gh repo fork YOUR_OWNER/YOUR_REPO
+show the manual page for a command grep,man grep
+show the manual page for a command,man YOUR_COMMAND
+run make and then make install if make succeeds,make && make install
+run a command only if the previous one succeeds,YOUR_COMMAND1 && YOUR_COMMAND2
+transfer files with SFTP to user@server,sftp user@server
+transfer files with SFTP,sftp YOUR_USER@YOUR_SERVER
+vacuum journal logs to a specific size 500M,sudo journalctl --vacuum-size=500M
+vacuum journal logs to a specific size,sudo journalctl --vacuum-size=YOUR_SIZE
+kubernetes port forward mypod port 8080 to 80,kubectl port-forward mypod 8080:80
+kubernetes port forward to a pod,kubectl port-forward YOUR_POD YOUR_LOCAL_PORT:YOUR_REMOTE_PORT
+print the last field of each line in file.txt,awk '{print $NF}' file.txt
+print the last field of each line,awk '{print $NF}' YOUR_FILE
+resize a filesystem /dev/myvg/mylv after extending LV,sudo resize2fs /dev/myvg/mylv
+resize a filesystem after extending LV,sudo resize2fs YOUR_DEVICE
+measure website response time for https://example.com,"curl -s -o /dev/null -w ""Connect: %{time_connect}s\nTTFB: %{time_starttransfer}s\nTotal: %{time_total}s\n"" https://example.com"
+measure website response time,"curl -s -o /dev/null -w ""Connect: %{time_connect}s\nTTFB: %{time_starttransfer}s\nTotal: %{time_total}s\n"" YOUR_URL"
+test DNS resolution speed for example.com,time dig example.com
+test DNS resolution speed,time dig YOUR_DOMAIN
+docker run with environment variables MY_VAR=value using nginx,docker run -d -e MY_VAR=value nginx
+docker run with environment variables,docker run -d -e YOUR_VAR=YOUR_VALUE YOUR_IMAGE
+parse XML data.xml from command line,xmllint --format data.xml
+parse XML from command line,xmllint --format YOUR_FILE
+send a command ls to a tmux session work,"tmux send-keys -t work ""ls"" Enter"
+send a command to a tmux session,"tmux send-keys -t YOUR_SESSION ""YOUR_COMMAND"" Enter"
+calculate file checksum for file.txt,sha256sum file.txt
+calculate file checksum,sha256sum YOUR_FILE
+reverse each line character by character in file.txt,rev file.txt
+reverse each line character by character,rev YOUR_FILE
+AWS sync a directory ./local_dir to s3://mybucket/remote_dir,aws s3 sync ./local_dir s3://mybucket/remote_dir
+AWS sync a directory to S3,aws s3 sync YOUR_LOCAL_DIR YOUR_S3_BUCKET
+adjust OOM killer score for process 1234 to -500,echo -500 > /proc/1234/oom_score_adj
+adjust OOM killer score,echo YOUR_SCORE > /proc/YOUR_PID/oom_score_adj
+create a GitHub issue Bug: login broken,"gh issue create --title ""Bug: login broken"""
+create a GitHub issue,"gh issue create --title ""YOUR_ISSUE_TITLE"""
+mount a partition with UUID UUID to /mnt/data,sudo mount UUID=UUID /mnt/data
+mount a partition by UUID,sudo mount UUID=YOUR_UUID YOUR_MOUNT_POINT
+create a patch file from old/ and new/ to changes.patch,diff -ruN old/ new/ > changes.patch
+create a patch file,diff -ruN YOUR_OLD YOUR_NEW > YOUR_PATCH
+monitor a process myapp and restart if it dies,"while true; do ./myapp; echo ""Process crashed, restarting...""; sleep 5; done"
+monitor a process and restart if it dies,"while true; do YOUR_COMMAND; echo ""Process crashed, restarting...""; sleep 5; done"
+generate a new locale en_US.UTF-8,sudo locale-gen en_US.UTF-8
+generate a new locale,sudo locale-gen YOUR_LOCALE
+analyze HTTP status codes from access log access.log,awk '{print $9}' access.log | sort | uniq -c | sort -rn
+analyze HTTP status codes from access log,awk '{print $9}' YOUR_LOGFILE | sort | uniq -c | sort -rn
+create a symbolic link from target to link_name,ln -s target link_name
+create a symbolic link,ln -s YOUR_TARGET YOUR_LINK_NAME
+convert a Jupyter notebook notebook.ipynb to HTML,jupyter nbconvert --to html notebook.ipynb
+convert a Jupyter notebook to HTML,jupyter nbconvert --to html YOUR_NOTEBOOK
+make a script deploy.sh executable,chmod +x deploy.sh
+make a script executable,chmod +x YOUR_SCRIPT
+convert epoch time 1700000000 to human readable date,date -d @1700000000
+convert epoch to human readable date,date -d @YOUR_EPOCH
+show process tree for a specific user www-data,pstree -u www-data
+show process tree for a specific user,pstree -u YOUR_USERNAME
+capture network packets on an interface eth0,sudo tcpdump -i eth0
+capture network packets on an interface,sudo tcpdump -i YOUR_INTERFACE
+create a VLAN interface eth0.100 from eth0 with ID 100,sudo ip link add link eth0 name eth0.100 type vlan id 100
+create a VLAN interface,sudo ip link add link YOUR_INTERFACE name YOUR_VLAN_NAME type vlan id YOUR_VLAN_ID
+run a command uptime on a remote server user@server via SSH,"ssh user@server ""uptime"""
+run a command on a remote server via SSH,"ssh YOUR_USER@YOUR_SERVER ""YOUR_COMMAND"""
+sign a file file.txt with GPG,gpg --sign file.txt
+sign a file with GPG,gpg --sign YOUR_FILE
+count occurrences of a pattern error in log.txt,"grep -c ""error"" log.txt"
+count occurrences of a pattern in a file,"grep -c ""YOUR_PATTERN"" YOUR_FILE"
+enable swap on /swapfile,sudo swapon /swapfile
+enable swap,sudo swapon YOUR_SWAPFILE
+use tshark to capture packets on eth0,sudo tshark -i eth0
+use tshark to capture packets,sudo tshark -i YOUR_INTERFACE
+use whois to look up domain information for example.com,whois example.com
+use whois to look up domain information,whois YOUR_DOMAIN
+verify file against checksum file.txt.sha256,sha256sum -c file.txt.sha256
+verify file against checksum,sha256sum -c YOUR_CHECKSUM_FILE
+convert audio format from input.wav to output.mp3,ffmpeg -i input.wav output.mp3
+convert audio format,ffmpeg -i YOUR_INPUT YOUR_OUTPUT
+stress test memory with 2G for 60 seconds,stress --vm 1 --vm-bytes 2G --timeout 60
+stress test memory,stress --vm 1 --vm-bytes YOUR_SIZE --timeout YOUR_TIMEOUT
+compress a file data.txt with bzip2,bzip2 data.txt
+compress a file with bzip2,bzip2 YOUR_FILE
+unmount a SSHFS mount /local/mount,fusermount -u /local/mount
+unmount a SSHFS mount,fusermount -u YOUR_MOUNT_POINT
+add a user johndoe to a group docker,sudo usermod -aG docker johndoe
+add a user to a group,sudo usermod -aG YOUR_GROUP YOUR_USERNAME
+set AppArmor profile for nginx to complain mode,sudo aa-complain /etc/apparmor.d/usr.sbin.nginx
+set AppArmor profile to complain mode,sudo aa-complain YOUR_APPARMOR_PROFILE
+capture only HTTP traffic on eth0,"sudo tshark -i eth0 -f ""tcp port 80"""
+capture only HTTP traffic,"sudo tshark -i YOUR_INTERFACE -f ""tcp port YOUR_PORT"""
+set environment variable API_KEY to secret123 permanently,echo 'export API_KEY=secret123' >> ~/.bashrc && source ~/.bashrc
+set environment variable permanently,echo 'export YOUR_VAR=YOUR_VALUE' >> ~/.bashrc && source ~/.bashrc
+view GitHub Actions run details for run 12345,gh run view 12345
+view GitHub Actions run details,gh run view YOUR_RUN_ID
+set CPU affinity for a process,taskset -cp YOUR_CORES YOUR_PID
+compile main.c with optimization flag O2 to output,gcc -O2 -o output main.c
+compile with optimization,gcc -O2 -o YOUR_OUTPUT YOUR_SOURCE

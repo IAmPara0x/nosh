@@ -1,0 +1,101 @@
+prompt,command
+display the contents of config.yaml,cat config.yaml
+display the contents of a file,cat YOUR_FILE
+calculate the MD5 hash of a file document.pdf,md5sum document.pdf
+calculate the MD5 hash of a file,md5sum YOUR_FILE
+initialize a Go module github.com/user/myproject,go mod init github.com/user/myproject
+initialize a Go module,go mod init YOUR_MODULE_PATH
+helm add a repository bitnami at https://charts.bitnami.com/bitnami,helm repo add bitnami https://charts.bitnami.com/bitnami
+helm add a repository,helm repo add YOUR_REPO_NAME YOUR_REPO_URL
+replace old_text with new_text in file.txt,"sed -i ""s/old_text/new_text/g"" file.txt"
+replace text in a file,"sed -i ""s/YOUR_OLD_TEXT/YOUR_NEW_TEXT/g"" YOUR_FILE"
+check SSL certificate expiry of a website example.com,echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -dates
+check SSL certificate expiry of a website,echo | openssl s_client -connect YOUR_DOMAIN:443 2>/dev/null | openssl x509 -noout -dates
+add a default gateway 192.168.1.1,sudo ip route add default via 192.168.1.1
+add a default gateway,sudo ip route add default via YOUR_GATEWAY
+test IPv6 connectivity to ipv6.google.com,ping6 -c 4 ipv6.google.com
+test IPv6 connectivity,ping6 -c 4 YOUR_HOST
+format a partition /dev/sdb1 as ext4,sudo mkfs.ext4 /dev/sdb1
+format a partition as ext4,sudo mkfs.ext4 YOUR_DEVICE
+read user input in a script for name,"read -p ""Enter your name: "" name"
+read user input in a script,"read -p ""YOUR_PROMPT: "" YOUR_VARIABLE"
+write hello world to a file hello.txt,"echo ""Hello World"" > hello.txt"
+write hello world to a file,"echo ""YOUR_TEXT"" > YOUR_FILE"
+limit a process ./task to a specific CPU core 0,taskset -c 0 ./task
+limit a process to a specific CPU core,taskset -c YOUR_CORE YOUR_COMMAND
+extract a specific field name from JSON data.json,jq '.name' data.json
+extract a specific field from JSON,jq '.YOUR_FIELD' YOUR_FILE
+check if a package curl is installed,dpkg -l | grep curl
+check if a package is installed,dpkg -l | grep YOUR_PACKAGE
+view logs for a specific service nginx,journalctl -u nginx
+view logs for a specific service,journalctl -u YOUR_SERVICE
+compare two files file1.txt and file2.txt,diff file1.txt file2.txt
+compare two files,diff YOUR_FILE1 YOUR_FILE2
+convert a CSV data.csv to JSON,"python3 -c ""import csv,json,sys; print(json.dumps(list(csv.DictReader(open('data.csv')))))"""
+convert a CSV to JSON,"python3 -c ""import csv,json,sys; print(json.dumps(list(csv.DictReader(open('YOUR_FILE')))))"""
+merge two JSON files a.json and b.json,jq -s '.[0] * .[1]' a.json b.json
+merge two JSON files,jq -s '.[0] * .[1]' YOUR_FILE1 YOUR_FILE2
+kubernetes apply a configuration file deployment.yaml,kubectl apply -f deployment.yaml
+kubernetes apply a configuration file,kubectl apply -f YOUR_CONFIG_FILE
+set the sticky bit on a directory /shared,chmod +t /shared
+set the sticky bit on a directory,chmod +t YOUR_DIRECTORY
+capture packets on eth0 and save to capture.pcap,sudo tcpdump -i eth0 -w capture.pcap
+capture packets and save to file,sudo tcpdump -i YOUR_INTERFACE -w YOUR_OUTPUT
+force kill a process 5678,kill -9 5678
+force kill a process,kill -9 YOUR_PID
+check and repair a filesystem /dev/sda1,sudo e2fsck -f /dev/sda1
+check and repair a filesystem,sudo e2fsck -f YOUR_DEVICE
+run uptime command on multiple remote servers server1 server2,"for host in server1 server2; do echo ""=== $host ==="" && ssh $host ""uptime""; done"
+run multiple commands on remote servers,"for host in YOUR_HOSTS; do echo ""=== $host ==="" && ssh $host ""YOUR_COMMAND""; done"
+check SSL/TLS protocols supported by a server example.com,nmap --script ssl-enum-ciphers -p 443 example.com
+check SSL/TLS protocols supported by a server,nmap --script ssl-enum-ciphers -p 443 YOUR_DOMAIN
+remove all blank lines from a file file.txt,sed '/^$/d' file.txt
+remove all blank lines from a file,sed '/^$/d' YOUR_FILE
+test mail delivery to user@example.com,"echo ""Test"" | sendmail user@example.com"
+test mail delivery,"echo ""YOUR_MESSAGE"" | sendmail YOUR_EMAIL"
+kubernetes get pod details for mypod,kubectl describe pod mypod
+kubernetes get pod details,kubectl describe pod YOUR_POD
+curl with authentication user:pass to https://api.example.com,curl -u user:pass https://api.example.com
+curl with authentication,curl -u YOUR_USER:YOUR_PASS YOUR_URL
+install a specific npm package express,npm install express
+install a specific npm package,npm install YOUR_PACKAGE
+git show file main.py at a specific commit abc1234,git show abc1234:main.py
+git show file at a specific commit,git show YOUR_COMMIT:YOUR_FILE
+"check if a string '{""key"":""value""}' is a valid JSON","echo '{""key"":""value""}' | jq . > /dev/null 2>&1 && echo ""Valid"" || echo ""Invalid"""
+check if a string is a valid JSON,"echo YOUR_JSON | jq . > /dev/null 2>&1 && echo ""Valid"" || echo ""Invalid"""
+find files newer than a reference file reference.txt,find . -newer reference.txt
+find files newer than a reference file,find . -newer YOUR_REFERENCE_FILE
+check if a file file is a binary or text,file file
+check if a file is a binary or text,file YOUR_FILE
+use awk to process Apache access logs access.log,awk '{print $1}' access.log | sort | uniq -c | sort -rn | head -20
+use awk to process Apache access logs,awk '{print $1}' YOUR_LOGFILE | sort | uniq -c | sort -rn | head -20
+automate FTP file transfer of file.txt to server as user:pass,curl -T file.txt ftp://server --user user:pass
+automate FTP file transfer,curl -T YOUR_FILE ftp://YOUR_SERVER --user YOUR_USER:YOUR_PASS
+record system performance data for 30 seconds,sar -u 1 30
+record system performance data,sar -u 1 YOUR_DURATION
+run a local script script.sh on a remote server user@server,ssh user@server 'bash -s' < script.sh
+run a local script on a remote server,ssh YOUR_USER@YOUR_SERVER 'bash -s' < YOUR_SCRIPT
+terraform import an existing resource aws_instance.web with ID i-1234567890abcdef0,terraform import aws_instance.web i-1234567890abcdef0
+terraform import an existing resource,terraform import YOUR_RESOURCE_TYPE YOUR_RESOURCE_ID
+find files owned by a specific user root,find . -user root
+find files owned by a specific user,find . -user YOUR_USERNAME
+run a Python script main.py,python3 main.py
+run a Python script,python3 YOUR_SCRIPT
+find the location of a binary python3,which python3
+find the location of a binary,which YOUR_BINARY
+run a Node.js script app.js,node app.js
+run a Node.js script,node YOUR_SCRIPT
+check systemd service dependencies for nginx,systemctl list-dependencies nginx
+check systemd service dependencies,systemctl list-dependencies YOUR_SERVICE
+add text footer text at the end of a file file.txt,"echo ""footer text"" >> file.txt"
+add text at the end of a file,"echo ""YOUR_TEXT"" >> YOUR_FILE"
+docker pull an image ubuntu:latest,docker pull ubuntu:latest
+docker pull an image,docker pull YOUR_IMAGE
+remove the directory called temp,rm -rf temp
+remove the directory called,rm -rf YOUR_DIRECTORY
+set maximum open files limit to 65535,ulimit -n 65535
+set maximum open files limit,ulimit -n YOUR_LIMIT
+search for a shared library libssl,ldconfig -p | grep libssl
+search for a shared library,ldconfig -p | grep YOUR_LIBRARY
+show password policy for a user johndoe,sudo chage -l johndoe
+show password policy for a user,sudo chage -l YOUR_USERNAME

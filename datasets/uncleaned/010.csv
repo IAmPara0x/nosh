@@ -1,0 +1,51 @@
+input_text,input_parameters,bash_command
+get a Redis key,"[""mykey""]",redis-cli get mykey
+docker remove a container,"[""container_id""]",docker rm container_id
+search recursively for a pattern,"[""TODO""]","grep -r ""TODO"" ."
+create a watchdog script for a service,"[""nginx""]",while true; do systemctl is-active --quiet nginx || systemctl restart nginx; sleep 30; done
+unlock a user account,"[""johndoe""]",sudo usermod -U johndoe
+create a FIFO special file,"[""myfifo""]",mkfifo myfifo
+scan a host for open ports,"[""192.168.1.1""]",nmap 192.168.1.1
+paste two files side by side,"[""file1.txt"", ""file2.txt""]",paste file1.txt file2.txt
+use at to schedule a one-time job,"[""echo done"", ""10:00""]","echo ""echo done"" | at 10:00"
+docker execute a command in a running container,"[""container_id""]",docker exec -it container_id /bin/bash
+git delete a remote branch,"[""old-feature""]",git push origin --delete old-feature
+show requests per hour from log,"[""access.log""]",awk '{print $4}' access.log | cut -d: -f2 | sort | uniq -c
+show the MTU of an interface,"[""eth0""]",cat /sys/class/net/eth0/mtu
+show the last 20 lines of error.log,"[""error.log""]",tail -20 error.log
+schedule a cron job to run every hour,"[""script.sh""]","echo ""0 * * * * /path/to/script.sh"" | crontab -"
+kubernetes debug a pod with a temporary container,"[""mypod""]",kubectl debug mypod -it --image=busybox
+delete a group,"[""developers""]",sudo groupdel developers
+create an empty file called notes.txt,"[""notes.txt""]",touch notes.txt
+AWS describe a CloudFormation stack,"[""mystack""]",aws cloudformation describe-stacks --stack-name mystack
+ansible ping all hosts,"[""inventory.ini""]",ansible -i inventory.ini all -m ping
+format code with Prettier,"[""src/""]",npx prettier --write src/
+compare directory contents,"[""dir1/"", ""dir2/""]",diff -rq dir1/ dir2/
+kill a process by its PID,"[""1234""]",kill 1234
+join two sorted files,"[""file1.txt"", ""file2.txt""]",join file1.txt file2.txt
+run a Python one-liner to calculate something,"[""2**10""]","python3 -c ""print(2**10)"""
+insert text at the beginning of a file,"[""header text"", ""file.txt""]",sed -i '1i header text' file.txt
+run a DNS server query with specific nameserver,"[""example.com"", ""8.8.8.8""]",dig @8.8.8.8 example.com
+git merge a branch,"[""feature-branch""]",git merge feature-branch
+use socat to create a simple TCP server,"[""1234""]","socat TCP-LISTEN:1234,reuseaddr,fork EXEC:/bin/bash"
+extract email addresses from a file,"[""file.txt""]","grep -oP '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}' file.txt"
+find a file quickly with locate,"[""nginx.conf""]",locate nginx.conf
+remove duplicate lines from a file,"[""data.txt""]",sort -u data.txt
+debug a bash script,"[""script.sh""]",bash -x script.sh
+format Python code with black,"[""main.py""]",black main.py
+check bash script syntax without running,"[""script.sh""]",bash -n script.sh
+set up a swap file,"[""2G""]",sudo fallocate -l 2G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile
+create a cgroup for resource limiting,"[""mygroup""]","sudo cgcreate -g cpu,memory:mygroup"
+resize an image,"[""300x200"", ""image.jpg"", ""resized.jpg""]",convert image.jpg -resize 300x200 resized.jpg
+kubernetes create a configmap,"[""myconfig"", ""config.properties""]",kubectl create configmap myconfig --from-file=config.properties
+set the SUID bit on a file,"[""/usr/local/bin/myapp""]",chmod u+s /usr/local/bin/myapp
+kubernetes scale a deployment,"[""mydeployment"", ""3""]",kubectl scale deployment mydeployment --replicas=3
+look up the IP address of a domain,"[""example.com""]",nslookup example.com
+print a PDF from command line,"[""document.pdf""]",lpr document.pdf
+use tee to save output and display it,"[""command"", ""output.log""]",command | tee output.log
+remove a scheduled at job,"[""1""]",atrm 1
+use strace to trace file operations,"[""./myapp""]",strace -e trace=file ./myapp
+use expect to automate interactive commands,"[""password"", ""user@server""]","expect -c 'spawn ssh user@server; expect ""password:""; send ""password\r""; interact'"
+scan for common web vulnerabilities,"[""http://example.com""]",nikto -h http://example.com
+verify a GPG signature,"[""file.txt.gpg""]",gpg --verify file.txt.gpg
+create a simple chat server with netcat,"[""1234""]",nc -l -p 1234

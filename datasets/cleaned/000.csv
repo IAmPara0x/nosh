@@ -1,0 +1,1030 @@
+prompt,command
+delete all python files,rm *.py
+list all files in the current directory,ls
+show hidden files,ls -a
+create a new directory called projects,mkdir projects
+remove an empty directory called temp,rmdir temp
+copy file.txt to backup.txt,cp file.txt backup.txt
+move report.pdf to the documents folder,mv report.pdf documents/
+display the contents of config.txt,cat config.txt
+show the first 10 lines of log.txt,head log.txt
+show the last 20 lines of error.log,tail -20 error.log
+count the number of lines in data.csv,wc -l data.csv
+find all jpg files in the current directory,"find . -name ""*.jpg"""
+search for the word error in log.txt,"grep ""error"" log.txt"
+print the current working directory,pwd
+change directory to home,cd ~
+create an empty file called notes.txt,touch notes.txt
+display disk usage in human readable format,df -h
+show the size of each file in the current directory,du -sh *
+check how much free memory is available,free -h
+display running processes,ps aux
+kill process with PID 1234,kill 1234
+show the current date and time,date
+display the username of the current user,whoami
+compress a folder called backup into a tar.gz file,tar -czf backup.tar.gz backup/
+extract a tar.gz file called archive.tar.gz,tar -xzf archive.tar.gz
+download a file from a URL,wget https://example.com/file.zip
+find all files larger than 100MB,find / -size +100M
+change file permissions to make script.sh executable,chmod +x script.sh
+show the last 5 commands from history,history 5
+display the IP address of the machine,hostname -I
+ping google.com 5 times,ping -c 5 google.com
+check which port a service is running on,netstat -tlnp
+sort the contents of names.txt alphabetically,sort names.txt
+remove duplicate lines from sorted.txt,uniq sorted.txt
+replace all occurrences of foo with bar in file.txt,sed -i 's/foo/bar/g' file.txt
+count the number of words in essay.txt,wc -w essay.txt
+display system information,uname -a
+show the top 10 memory consuming processes,ps aux --sort=-%mem | head -10
+find files modified in the last 24 hours,find . -mtime -1
+create a symbolic link to a file,ln -s /path/to/file linkname
+add a new user called john,sudo useradd john
+change the owner of file.txt to user alice,sudo chown alice file.txt
+display environment variables,env
+set an environment variable called API_KEY,"export API_KEY=""your_key_here"""
+show the contents of the PATH variable,echo $PATH
+append text to the end of a file,"echo ""new line"" >> file.txt"
+overwrite a file with new text,"echo ""new content"" > file.txt"
+compare two files side by side,diff file1.txt file2.txt
+find and delete all .tmp files,"find . -name ""*.tmp"" -delete"
+list all installed packages on Ubuntu,dpkg --list
+install a package called vim on Ubuntu,sudo apt install vim
+update all packages on Ubuntu,sudo apt update && sudo apt upgrade -y
+uninstall a package called nginx,sudo apt remove nginx
+check the version of python installed,python3 --version
+create a virtual environment in python,python3 -m venv myenv
+install a python package using pip,pip install requests
+list all running docker containers,docker ps
+stop a docker container by ID,docker stop container_id
+remove all stopped docker containers,docker container prune -f
+build a docker image from current directory,docker build -t myimage .
+run a docker container in background,docker run -d myimage
+show docker container logs,docker logs container_id
+list all docker images,docker images
+remove a docker image,docker rmi image_id
+initialize a new git repository,git init
+clone a git repository,git clone https://github.com/user/repo.git
+check the status of a git repository,git status
+add all changes to git staging area,git add .
+commit changes with a message,"git commit -m ""initial commit"""
+push changes to the remote repository,git push origin main
+pull latest changes from remote,git pull origin main
+create a new git branch called feature,git checkout -b feature
+switch to the main branch,git checkout main
+merge feature branch into current branch,git merge feature
+view git commit history,git log
+show the difference between staged changes,git diff --staged
+stash current changes,git stash
+apply stashed changes,git stash pop
+delete a git branch called old-feature,git branch -d old-feature
+list all remote branches,git branch -r
+revert the last commit,git revert HEAD
+show who changed each line of a file,git blame file.txt
+create a git tag called v1.0,git tag v1.0
+show all files tracked by git,git ls-files
+count the number of files in a directory,ls | wc -l
+find all empty files in the current directory,find . -empty -type f
+display the largest files in a directory,ls -lS
+show file type information,file document.pdf
+calculate the md5 checksum of a file,md5sum file.txt
+watch a log file in real time,tail -f /var/log/syslog
+run a command every 2 seconds,"watch -n 2 ""date"""
+list open files by a process,lsof -p 1234
+check if a port is in use,lsof -i :8080
+find which process is using port 3000,lsof -i :3000
+redirect stderr to a file,command 2> error.log
+redirect both stdout and stderr to a file,command &> output.log
+run a command in the background,long_running_command &
+bring a background job to foreground,fg
+list all background jobs,jobs
+schedule a cron job to run every hour,crontab -e
+display the crontab for current user,crontab -l
+convert text to uppercase,"echo ""hello"" | tr 'a-z' 'A-Z'"
+convert text to lowercase,"echo ""HELLO"" | tr 'A-Z' 'a-z'"
+remove all blank lines from a file,sed '/^$/d' file.txt
+number all lines in a file,nl file.txt
+display a calendar for the current month,cal
+display a calendar for the year 2024,cal 2024
+show disk usage of the current directory,du -sh .
+find the 10 largest directories,du -h --max-depth=1 | sort -rh | head -10
+monitor system resources in real time,top
+monitor system resources with a nicer interface,htop
+show network interfaces and their IPs,ip addr show
+display the routing table,ip route show
+trace the route to a host,traceroute google.com
+lookup DNS records for a domain,nslookup example.com
+show DNS information for a domain,dig example.com
+transfer a file to a remote server via SCP,scp file.txt user@host:/path/
+connect to a remote server via SSH,ssh user@hostname
+generate an SSH key pair,ssh-keygen -t rsa -b 4096
+copy SSH key to remote server,ssh-copy-id user@hostname
+list all listening TCP ports,ss -tlnp
+monitor network traffic,sudo tcpdump -i eth0
+test HTTP endpoint with curl,curl -I https://example.com
+send a POST request with curl,"curl -X POST -d '{""key"":""value""}' https://api.example.com"
+download and save a file with curl,curl -o output.html https://example.com
+show all system services,systemctl list-units --type=service
+start a service called nginx,sudo systemctl start nginx
+stop a service called apache2,sudo systemctl stop apache2
+restart a service,sudo systemctl restart nginx
+enable a service to start on boot,sudo systemctl enable nginx
+check the status of a service,sudo systemctl status nginx
+view system logs with journalctl,journalctl -xe
+show kernel messages,dmesg
+display CPU information,lscpu
+display block device information,lsblk
+show USB devices,lsusb
+show PCI devices,lspci
+mount a USB drive,sudo mount /dev/sdb1 /mnt/usb
+unmount a drive,sudo umount /mnt/usb
+check filesystem for errors,sudo fsck /dev/sda1
+format a partition as ext4,sudo mkfs.ext4 /dev/sdb1
+show all mounted filesystems,mount | column -t
+create a swap file of 1GB,sudo fallocate -l 1G /swapfile
+check swap usage,swapon --show
+show system uptime,uptime
+reboot the system,sudo reboot
+shutdown the system now,sudo shutdown now
+schedule a shutdown in 30 minutes,sudo shutdown +30
+cancel a scheduled shutdown,sudo shutdown -c
+set the system timezone,sudo timedatectl set-timezone America/New_York
+synchronize system clock with NTP,sudo timedatectl set-ntp true
+add user to a group,sudo usermod -aG docker john
+list all groups for a user,groups john
+change password for a user,sudo passwd john
+lock a user account,sudo usermod -L john
+unlock a user account,sudo usermod -U john
+delete a user and their home directory,sudo userdel -r john
+list all users on the system,cat /etc/passwd
+list all groups on the system,cat /etc/group
+show the last logins,last
+show who is currently logged in,who
+display the hostname,hostname
+change the hostname,sudo hostnamectl set-hostname newhostname
+show the system's OS information,cat /etc/os-release
+check kernel version,uname -r
+show the architecture of the system,uname -m
+list all aliases defined,alias
+create an alias for a command,alias ll='ls -la'
+remove an alias,unalias ll
+source a bash profile,source ~/.bashrc
+edit the bash profile,nano ~/.bashrc
+check the exit status of the last command,echo $?
+run a command only if the previous one succeeded,command1 && command2
+run a command only if the previous one failed,command1 || command2
+run multiple commands regardless of success,command1; command2
+create a zip file from a directory,zip -r archive.zip directory/
+unzip a file to a specific directory,unzip archive.zip -d /path/to/dir
+create a gzip compressed file,gzip file.txt
+decompress a gzip file,gunzip file.txt.gz
+create a bzip2 compressed file,bzip2 file.txt
+decompress a bzip2 file,bunzip2 file.txt.bz2
+list contents of a tar archive,tar -tf archive.tar
+add a file to an existing tar archive,tar -rf archive.tar newfile.txt
+create a compressed archive excluding a directory,tar -czf archive.tar.gz --exclude=node_modules project/
+split a large file into 100MB chunks,split -b 100M largefile.bin chunk_
+reassemble split files,cat chunk_* > largefile.bin
+encrypt a file with gpg,gpg -c secret.txt
+decrypt a gpg encrypted file,gpg secret.txt.gpg
+generate a random password,openssl rand -base64 32
+create a self-signed SSL certificate,openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+check SSL certificate of a website,openssl s_client -connect example.com:443
+calculate SHA256 checksum of a file,sha256sum file.txt
+base64 encode a string,"echo ""hello"" | base64"
+base64 decode a string,"echo ""aGVsbG8="" | base64 -d"
+find all files containing a specific string,"grep -rl ""search_term"" /path/to/search"
+search for a pattern recursively in all files,"grep -rn ""pattern"" ."
+search for a pattern ignoring case,"grep -i ""pattern"" file.txt"
+show lines that do not match a pattern,"grep -v ""exclude"" file.txt"
+count occurrences of a pattern in a file,"grep -c ""pattern"" file.txt"
+show only matching part of lines,"grep -o ""pattern"" file.txt"
+search with extended regular expressions,"grep -E ""pattern1|pattern2"" file.txt"
+search for whole words only,"grep -w ""word"" file.txt"
+show context lines around matches,"grep -C 3 ""error"" log.txt"
+extract specific columns from a CSV,"cut -d',' -f1,3 data.csv"
+extract characters 1 through 10 from each line,cut -c1-10 file.txt
+join two files on a common field,join file1.txt file2.txt
+paste two files side by side,paste file1.txt file2.txt
+reverse the contents of a file,tac file.txt
+reverse each line of a file,rev file.txt
+print specific columns using awk,"awk '{print $1, $3}' file.txt"
+sum a column of numbers using awk,awk '{sum+=$1} END {print sum}' numbers.txt
+filter rows where a column matches a condition,awk '$3 > 100' data.txt
+print lines between two patterns,"sed -n '/start/,/end/p' file.txt"
+delete lines matching a pattern,sed -i '/pattern/d' file.txt
+insert a line before a match,sed -i '/pattern/i\new line' file.txt
+insert a line after a match,sed -i '/pattern/a\new line' file.txt
+replace text only on specific lines,sed -i '5s/old/new/' file.txt
+print line numbers of matching lines,"grep -n ""pattern"" file.txt"
+sort a file numerically,sort -n numbers.txt
+sort a file in reverse order,sort -r file.txt
+sort by a specific column,"sort -k2 -t',' data.csv"
+get unique lines with their count,sort file.txt | uniq -c
+get only duplicate lines,sort file.txt | uniq -d
+translate characters in a string,"echo ""hello"" | tr 'helo' 'HELO'"
+squeeze repeated characters,"echo ""heeello"" | tr -s 'e'"
+delete specific characters from text,"echo ""hello 123"" | tr -d '0-9'"
+format text into columns,column -t file.txt
+wrap text to a specific width,fold -w 80 file.txt
+format text with fixed width fields,"printf ""%-20s %10d\n"" ""name"" 42"
+print the nth line of a file,sed -n '5p' file.txt
+print lines from line 10 to line 20,"sed -n '10,20p' file.txt"
+remove the first line of a file,sed -i '1d' file.txt
+remove the last line of a file,sed -i '$d' file.txt
+add a header line to a file,sed -i '1i\header line' file.txt
+remove carriage returns from a file,sed -i 's/\r$//' file.txt
+convert tabs to spaces,expand file.txt
+convert spaces to tabs,unexpand file.txt
+show differences between two directories,diff -rq dir1/ dir2/
+create a patch file,diff -u original.txt modified.txt > changes.patch
+apply a patch file,patch < changes.patch
+show file in octal dump format,od file.bin
+show file in hexadecimal format,xxd file.bin
+edit a binary file with hexdump,xxd file.bin | vim -
+check the type and encoding of a file,file --mime file.txt
+convert file encoding from ISO to UTF-8,iconv -f ISO-8859-1 -t UTF-8 input.txt -o output.txt
+display a file with line numbers,cat -n file.txt
+display non-printing characters,cat -A file.txt
+display file with page breaks,less file.txt
+write output to both file and terminal,"echo ""test"" | tee output.txt"
+append output to a file and display it,"echo ""test"" | tee -a output.txt"
+send an email from command line,"echo ""body"" | mail -s ""subject"" user@example.com"
+check the mail queue,mailq
+download an entire website for offline viewing,wget -r -l 5 https://example.com
+resume a partially downloaded file,wget -c https://example.com/largefile.zip
+download files matching a pattern,"wget -r -A ""*.pdf"" https://example.com"
+limit download speed,wget --limit-rate=500k https://example.com/file.zip
+mirror a website,wget --mirror --convert-links https://example.com
+test API with authentication,curl -u username:password https://api.example.com
+send form data with curl,"curl -X POST -F ""file=@upload.txt"" https://example.com/upload"
+send JSON data with curl,"curl -H ""Content-Type: application/json"" -d '{""name"":""test""}' https://api.example.com"
+follow redirects with curl,curl -L https://example.com
+show only response headers,curl -s -D - -o /dev/null https://example.com
+measure response time with curl,"curl -o /dev/null -s -w ""%{time_total}\n"" https://example.com"
+upload a file via FTP,curl -T file.txt ftp://ftp.example.com/ --user user:pass
+connect to a remote database,mysql -u root -p -h hostname database_name
+dump a MySQL database,mysqldump -u root -p database > backup.sql
+restore a MySQL database,mysql -u root -p database < backup.sql
+run a SQL query from command line,"mysql -u root -p -e ""SELECT * FROM users"" database"
+connect to PostgreSQL database,psql -U postgres -h localhost -d mydb
+dump a PostgreSQL database,pg_dump -U postgres mydb > backup.sql
+restore a PostgreSQL database,psql -U postgres mydb < backup.sql
+start a Redis CLI session,redis-cli
+check MongoDB status,"mongosh --eval ""db.serverStatus()"""
+find files by permission,find . -perm 644
+find files owned by a specific user,find . -user john
+find directories only,find . -type d
+find files only,find . -type f
+find and execute a command on results,"find . -name ""*.log"" -exec rm {} \;"
+find files modified more than 7 days ago,find . -mtime +7
+find files accessed in the last hour,find . -amin -60
+find files and sort by size,find . -type f -exec ls -lS {} + | sort -k5 -rn
+find duplicate files by checksum,find . -type f -exec md5sum {} + | sort | uniq -d -w32
+find broken symbolic links,find . -xtype l
+find files with specific extension and move them,"find . -name ""*.bak"" -exec mv {} /backup/ \;"
+find and replace text in multiple files,"find . -name ""*.txt"" -exec sed -i 's/old/new/g' {} \;"
+find files not matching a pattern,"find . -not -name ""*.py"""
+find files matching multiple patterns,"find . \( -name ""*.py"" -o -name ""*.js"" \)"
+find files between two sizes,find . -size +10M -size -100M
+find recently modified configuration files,"find /etc -name ""*.conf"" -mtime -7"
+list all cron jobs for all users,for user in $(cut -f1 -d: /etc/passwd); do crontab -u $user -l 2>/dev/null; done
+run a script at system startup,sudo crontab -e
+schedule a task for midnight every day,"echo ""0 0 * * * /path/to/script.sh"" | crontab -"
+schedule a task for every Monday at 9am,"echo ""0 9 * * 1 /path/to/script.sh"" | crontab -"
+run a command at a specific time,"echo ""command"" | at 10:00"
+list scheduled at jobs,atq
+remove a scheduled at job,atrm 1
+monitor file system events,inotifywait -m /path/to/watch
+run a script when a file changes,inotifywait -e modify /path/to/file && /path/to/script.sh
+create a RAM disk,sudo mount -t tmpfs -o size=512m tmpfs /mnt/ramdisk
+benchmark disk I/O speed,dd if=/dev/zero of=testfile bs=1G count=1 oflag=direct
+check disk health with SMART,sudo smartctl -a /dev/sda
+list all partitions,sudo fdisk -l
+resize a partition,sudo resize2fs /dev/sda1
+show inode usage,df -i
+find files consuming the most inodes,find / -xdev -printf '%h\n' | sort | uniq -c | sort -rn | head -20
+check for open file descriptors,ls /proc/self/fd
+set file access control lists,setfacl -m u:john:rwx file.txt
+get file access control lists,getfacl file.txt
+set immutable attribute on a file,sudo chattr +i important.txt
+remove immutable attribute,sudo chattr -i important.txt
+list extended attributes,lsattr file.txt
+create a hard link,ln original.txt hardlink.txt
+find all hard links to a file,find / -samefile file.txt
+change default shell for a user,sudo chsh -s /bin/zsh john
+list available shells,cat /etc/shells
+run a command as another user,sudo -u john command
+run a command with a clean environment,env -i command
+set a variable for a single command,VAR=value command
+export a function in bash,export -f function_name
+show all exported variables,export -p
+trap a signal in a script,trap 'echo caught signal' SIGINT
+send a specific signal to a process,kill -SIGUSR1 1234
+forcefully kill a process,kill -9 1234
+kill all processes by name,killall process_name
+kill processes matching a pattern,"pkill -f ""pattern"""
+find process ID by name,"pgrep -f ""process_name"""
+run a process with low priority,nice -n 19 command
+change priority of a running process,renice -n 10 -p 1234
+limit CPU usage of a process,cpulimit -p 1234 -l 50
+run a process immune to hangups,nohup command &
+run a command with a timeout,timeout 30s command
+run a command and measure its execution time,time command
+show a process tree,pstree
+trace system calls of a process,strace -p 1234
+trace library calls of a process,ltrace command
+profile a command's execution,perf stat command
+show open network connections,ss -tunap
+show bandwidth usage per interface,iftop
+monitor network connections in real time,nethogs
+scan open ports on a host,nmap -sT hostname
+check if a remote port is open,nc -zv hostname 80
+create a simple TCP server,nc -l -p 8080
+transfer files over network with netcat,nc -l -p 1234 > received_file
+set up a simple HTTP server,python3 -m http.server 8080
+add a static route,sudo ip route add 10.0.0.0/24 via 192.168.1.1
+show ARP cache,arp -a
+flush DNS cache,sudo systemd-resolve --flush-caches
+configure a network interface,sudo ip addr add 192.168.1.100/24 dev eth0
+bring a network interface up,sudo ip link set eth0 up
+bring a network interface down,sudo ip link set eth0 down
+show firewall rules,sudo iptables -L -n
+allow incoming traffic on port 80,sudo iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+block an IP address,sudo iptables -A INPUT -s 10.0.0.1 -j DROP
+save firewall rules,sudo iptables-save > /etc/iptables.rules
+set up port forwarding,sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+show UFW firewall status,sudo ufw status verbose
+enable UFW firewall,sudo ufw enable
+allow a port through UFW,sudo ufw allow 22/tcp
+deny a port through UFW,sudo ufw deny 23
+create an SSH tunnel,ssh -L 8080:localhost:80 user@remote
+create a reverse SSH tunnel,ssh -R 8080:localhost:80 user@remote
+run a command on a remote server,"ssh user@host ""command"""
+copy a directory recursively via SCP,scp -r local_dir user@host:/remote/path
+sync files between directories,rsync -av source/ destination/
+sync files to a remote server,rsync -avz -e ssh source/ user@host:/dest/
+sync and delete files not in source,rsync -av --delete source/ destination/
+show rsync progress,rsync -av --progress source/ destination/
+dry run rsync to see what would change,rsync -avn source/ destination/
+create a screen session,screen -S mysession
+detach from a screen session,screen -d
+reattach to a screen session,screen -r mysession
+list screen sessions,screen -ls
+create a tmux session,tmux new -s mysession
+detach from tmux session,tmux detach
+attach to a tmux session,tmux attach -t mysession
+list tmux sessions,tmux ls
+split tmux pane vertically,tmux split-window -v
+split tmux pane horizontally,tmux split-window -h
+kill a tmux session,tmux kill-session -t mysession
+send keys to a tmux pane,"tmux send-keys ""command"" Enter"
+run a python script,python3 script.py
+run a python script in the background,python3 script.py &
+run a node.js application,node app.js
+install node.js dependencies,npm install
+run npm start script,npm start
+run npm test,npm test
+initialize a new npm project,npm init -y
+install a global npm package,npm install -g package_name
+list globally installed npm packages,npm list -g --depth=0
+clear npm cache,npm cache clean --force
+install ruby gems from Gemfile,bundle install
+run a ruby script,ruby script.rb
+compile a C program,gcc -o program program.c
+compile a C++ program,g++ -o program program.cpp
+compile with debugging symbols,gcc -g -o program program.c
+run make to build a project,make
+clean build artifacts,make clean
+install compiled program,sudo make install
+compile and run a Java program,javac Main.java && java Main
+create a JAR file,jar cf app.jar *.class
+run a Go program,go run main.go
+build a Go binary,go build -o app main.go
+run Go tests,go test ./...
+format Go code,gofmt -w .
+run Rust program,cargo run
+build Rust project,cargo build --release
+run Rust tests,cargo test
+install Rust dependencies,cargo build
+create a new Rust project,cargo new project_name
+show current iptables NAT rules,sudo iptables -t nat -L -n
+watch changes to a directory,watch -n 1 ls -la
+continuously monitor a log file for errors,tail -f /var/log/syslog | grep -i error
+show the amount of data written to disk,iostat -d
+check memory usage details,vmstat
+show CPU usage per core,mpstat -P ALL
+count the number of TCP connections by state,ss -s
+find the largest directories on the root partition,du -h --max-depth=1 / 2>/dev/null | sort -rh | head -20
+find all setuid files on the system,find / -perm -4000 -type f 2>/dev/null
+display shared library dependencies,ldd /usr/bin/ls
+check which package provides a file,dpkg -S /usr/bin/vim
+search for available packages,apt-cache search keyword
+show package details,apt-cache show package_name
+list files installed by a package,dpkg -L package_name
+hold a package at current version,sudo apt-mark hold package_name
+show package upgrade history,cat /var/log/apt/history.log
+fix broken package dependencies,sudo apt --fix-broken install
+clean up unused packages,sudo apt autoremove -y
+add a PPA repository,sudo add-apt-repository ppa:user/repo
+remove a PPA repository,sudo add-apt-repository --remove ppa:user/repo
+list all PPAs,"grep -r ""^deb "" /etc/apt/sources.list.d/"
+install a .deb package,sudo dpkg -i package.deb
+check for security updates,sudo apt list --upgradable
+show systemd boot time,systemd-analyze
+show services that slow down boot,systemd-analyze blame
+show systemd service dependencies,systemd-analyze critical-chain
+create a systemd service file,sudo systemctl edit --force --full myservice.service
+reload systemd daemon,sudo systemctl daemon-reload
+show journal logs for a specific service,journalctl -u nginx.service
+show journal logs since last boot,journalctl -b
+show journal logs from a specific time,"journalctl --since ""2024-01-01"" --until ""2024-01-02"""
+clear old journal logs,sudo journalctl --vacuum-size=500M
+follow journal logs in real time,journalctl -f
+write a message to system log,"logger ""Custom log message"""
+check SELinux status,sestatus
+set SELinux to permissive mode,sudo setenforce 0
+show AppArmor status,sudo aa-status
+find world-writable files,find / -perm -002 -type f 2>/dev/null
+find files with no owner,find / -nouser 2>/dev/null
+check for failed login attempts,"grep ""Failed password"" /var/log/auth.log"
+show sudo command history,grep sudo /var/log/auth.log
+list open ports and associated processes,sudo lsof -i -P -n
+check for rootkits,sudo rkhunter --check
+scan for viruses with ClamAV,sudo clamscan -r /home
+generate a random string,cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 32
+create a password hash,openssl passwd -6 -salt xyz password
+verify a file's GPG signature,gpg --verify file.sig file
+create a GPG key pair,gpg --full-generate-key
+encrypt a file for a recipient,gpg -e -r recipient@email.com file.txt
+sign a file with GPG,gpg --sign file.txt
+check system load average,cat /proc/loadavg
+show CPU temperature,sensors
+show battery status on laptop,upower -i /org/freedesktop/UPower/devices/battery_BAT0
+list all block devices with filesystem info,lsblk -f
+show detailed hardware information,sudo lshw -short
+display DMI/BIOS information,sudo dmidecode -t bios
+check if a command exists,which command_name
+find all locations of a command,whereis command_name
+show the manual page for a command,man command_name
+search man pages by keyword,apropos keyword
+display brief command description,whatis command_name
+show command type,type command_name
+display command help,command_name --help
+run the previous command with sudo,sudo !!
+repeat the last command,!!
+search command history,"history | grep ""search_term"""
+clear command history,history -c
+execute a specific command from history,!42
+show real-time I/O statistics,iotop
+trace file system operations,fatrace
+show open files in a directory,lsof +D /path/to/dir
+limit memory usage for a process,ulimit -v 1048576
+show system resource limits,ulimit -a
+set max open files limit,ulimit -n 65536
+create a core dump,kill -ABRT pid
+analyze a core dump,gdb program core
+show shared memory segments,ipcs
+remove a shared memory segment,ipcrm -m shmid
+show message queues,ipcs -q
+show semaphores,ipcs -s
+run a command in a new namespace,unshare --mount --pid --fork command
+enter a running container's namespace,nsenter -t pid --mount --pid
+create a cgroup for resource limiting,sudo cgcreate -g cpu:/mygroup
+set CPU limit for a cgroup,sudo cgset -r cpu.cfs_quota_us=50000 mygroup
+run a command in a cgroup,sudo cgexec -g cpu:mygroup command
+list all network namespaces,ip netns list
+create a network namespace,sudo ip netns add mynamespace
+run a command in a network namespace,sudo ip netns exec mynamespace command
+show virtual network interfaces,ip link show type veth
+create a virtual ethernet pair,sudo ip link add veth0 type veth peer name veth1
+show iptables packet counts,sudo iptables -L -v -n
+log iptables dropped packets,"sudo iptables -A INPUT -j LOG --log-prefix ""Dropped: """
+rate limit connections with iptables,sudo iptables -A INPUT -p tcp --dport 80 -m limit --limit 25/minute -j ACCEPT
+show connection tracking table,sudo conntrack -L
+flush connection tracking table,sudo conntrack -F
+capture network packets to a file,sudo tcpdump -w capture.pcap -i eth0
+read a packet capture file,tcpdump -r capture.pcap
+filter packet capture by port,sudo tcpdump -i eth0 port 80
+filter packet capture by host,sudo tcpdump -i eth0 host 192.168.1.1
+show HTTP traffic only,sudo tcpdump -i eth0 -A -s 0 'tcp port 80'
+create an encrypted tar archive,tar -czf - directory/ | openssl enc -aes-256-cbc -out encrypted.tar.gz.enc
+decrypt and extract an encrypted archive,openssl enc -d -aes-256-cbc -in encrypted.tar.gz.enc | tar -xzf -
+securely delete a file,shred -vfz -n 5 sensitive_file.txt
+generate an SSH key with a comment,"ssh-keygen -t ed25519 -C ""user@example.com"""
+test SSH connection without logging in,ssh -T git@github.com
+create an SSH config file entry,"echo 'Host myserver
+  HostName 192.168.1.100
+  User admin
+  Port 2222' >> ~/.ssh/config"
+forward local port through SSH,ssh -L 3306:localhost:3306 user@remote
+use SSH as a SOCKS proxy,ssh -D 1080 user@remote
+batch rename files with a pattern,rename 's/\.txt$/\.md/' *.txt
+rename files to lowercase,rename 'y/A-Z/a-z/' *
+add a prefix to all files,"for f in *; do mv ""$f"" ""prefix_$f""; done"
+add a suffix before the extension,"for f in *.txt; do mv ""$f"" ""${f%.txt}_backup.txt""; done"
+number files sequentially,"i=1; for f in *.jpg; do mv ""$f"" ""$(printf '%03d' $i).jpg""; i=$((i+1)); done"
+remove spaces from filenames,"for f in *\ *; do mv ""$f"" ""${f// /_}""; done"
+convert file extensions,"for f in *.jpeg; do mv ""$f"" ""${f%.jpeg}.jpg""; done"
+create multiple directories at once,"mkdir -p project/{src,test,docs,config}"
+create a directory tree structure,"mkdir -p app/{frontend/{components,pages,styles},backend/{routes,models,middleware}}"
+copy directory structure without files,find source/ -type d -exec mkdir -p dest/{} \;
+merge contents of two directories,rsync -av dir1/ dir2/
+find and remove empty directories,find . -type d -empty -delete
+change permissions recursively,chmod -R 755 directory/
+change ownership recursively,sudo chown -R user:group directory/
+set default permissions for new files,umask 022
+set sticky bit on a directory,chmod +t /shared_dir
+set setgid bit on a directory,chmod g+s /shared_dir
+create a temporary file,mktemp
+create a temporary directory,mktemp -d
+write a here document to a file,"cat <<EOF > config.txt
+setting1=value1
+setting2=value2
+EOF"
+process substitution to compare outputs,diff <(ls dir1) <(ls dir2)
+use xargs to pass arguments to a command,"find . -name ""*.txt"" | xargs grep ""pattern"""
+use xargs with null delimiter for special characters,"find . -name ""*.txt"" -print0 | xargs -0 grep ""pattern"""
+parallel execution with xargs,"find . -name ""*.png"" -print0 | xargs -0 -P 4 -I {} convert {} -resize 50% {}"
+use xargs to batch delete files,"find . -name ""*.tmp"" -print0 | xargs -0 rm"
+use parallel to process files concurrently,"find . -name ""*.csv"" | parallel gzip"
+run a command for each line in a file,"while read line; do echo ""$line""; done < file.txt"
+process a CSV file line by line,"while IFS=',' read -r col1 col2 col3; do echo ""$col1: $col2""; done < data.csv"
+read input with a prompt,read -p 'Enter your name: ' name
+read input silently for passwords,read -sp 'Enter password: ' password
+loop through files in a directory,"for f in /path/to/dir/*; do echo ""$f""; done"
+loop with a counter,"for i in $(seq 1 10); do echo ""$i""; done"
+infinite loop with sleep,"while true; do echo ""running""; sleep 5; done"
+conditional file check,"test -f file.txt && echo ""exists"" || echo ""not found"""
+check if a directory exists,"[ -d /path/to/dir ] && echo ""exists"""
+check if a variable is empty,"[ -z ""$VAR"" ] && echo ""empty"""
+check if a string is not empty,"[ -n ""$VAR"" ] && echo ""not empty"""
+arithmetic in bash,echo $((5 + 3))
+floating point arithmetic,"echo ""5.5 + 3.2"" | bc"
+calculate percentage,"echo ""scale=2; 75/200*100"" | bc"
+convert between number bases,"echo ""obase=16; 255"" | bc"
+generate a sequence of numbers,seq 1 100
+generate a sequence with a step,seq 0 5 100
+pad numbers with zeros,seq -w 1 100
+create a numbered list from a file,cat -n file.txt
+pretty print JSON,cat data.json | python3 -m json.tool
+extract a field from JSON with jq,cat data.json | jq '.field'
+filter JSON array with jq,cat data.json | jq '.[] | select(.age > 30)'
+transform JSON with jq,"cat data.json | jq '{name: .first, age: .years}'"
+convert JSON to CSV with jq,"cat data.json | jq -r '.[] | [.name, .age] | @csv'"
+merge two JSON files with jq,jq -s '.[0] * .[1]' file1.json file2.json
+validate JSON syntax,"python3 -c ""import json; json.load(open('data.json'))"""
+convert CSV to JSON,"python3 -c ""import csv,json; print(json.dumps(list(csv.DictReader(open('data.csv')))))"""
+convert YAML to JSON,"python3 -c ""import yaml,json; print(json.dumps(yaml.safe_load(open('config.yaml'))))"""
+pretty print XML,xmllint --format file.xml
+validate XML against a schema,xmllint --schema schema.xsd file.xml
+extract data from XML with xpath,"xmllint --xpath ""//element"" file.xml"
+convert markdown to HTML,pandoc README.md -o output.html
+convert HTML to PDF,wkhtmltopdf page.html output.pdf
+extract text from a PDF,pdftotext document.pdf output.txt
+merge multiple PDFs,pdfunite file1.pdf file2.pdf merged.pdf
+split a PDF into individual pages,pdfseparate input.pdf page_%d.pdf
+rotate a PDF page,pdftk input.pdf rotate 1-endright output rotated.pdf
+resize an image,convert input.jpg -resize 800x600 output.jpg
+convert image format,convert input.png output.jpg
+create a thumbnail,convert input.jpg -thumbnail 150x150^ -gravity center -extent 150x150 thumb.jpg
+batch convert images,mogrify -format png *.jpg
+add a watermark to an image,composite -dissolve 30% -gravity southeast watermark.png input.jpg output.jpg
+get image dimensions,"identify -format ""%wx%h"" image.jpg"
+strip EXIF data from images,exiftool -all= photo.jpg
+optimize PNG files,optipng *.png
+optimize JPEG files,jpegoptim --strip-all *.jpg
+convert video format,ffmpeg -i input.avi output.mp4
+extract audio from video,ffmpeg -i video.mp4 -vn -acodec mp3 audio.mp3
+resize a video,ffmpeg -i input.mp4 -vf scale=1280:720 output.mp4
+trim a video clip,ffmpeg -i input.mp4 -ss 00:01:00 -to 00:02:00 -c copy clip.mp4
+concatenate video files,ffmpeg -f concat -i filelist.txt -c copy output.mp4
+create a GIF from a video,"ffmpeg -i input.mp4 -vf ""fps=10,scale=320:-1"" output.gif"
+add subtitles to a video,ffmpeg -i input.mp4 -vf subtitles=subs.srt output.mp4
+extract frames from a video,"ffmpeg -i input.mp4 -vf ""fps=1"" frame_%04d.png"
+record screen,ffmpeg -f x11grab -s 1920x1080 -i :0.0 output.mp4
+record audio from microphone,arecord -f cd -d 10 output.wav
+play an audio file,aplay output.wav
+convert audio format,ffmpeg -i input.wav output.mp3
+adjust audio volume,"ffmpeg -i input.mp3 -af ""volume=2.0"" output.mp3"
+show total size of a directory tree,du -sh directory/
+find all files with a specific extension,"find . -name ""*.log"" -type f"
+list files sorted by modification time,ls -lt
+list files sorted by size,ls -lS
+show only directories,ls -d */
+show file permissions in octal,"stat -c ""%a %n"" *"
+find the newest file in a directory,ls -t | head -1
+find the oldest file in a directory,ls -t | tail -1
+show hidden files only,ls -d .*
+display directory tree structure,tree
+display tree with file sizes,tree -sh
+display tree limited to 2 levels,tree -L 2
+display tree showing only directories,tree -d
+watch disk space usage in real time,watch -n 5 df -h
+monitor a specific directory for changes,inotifywait -mr /path/to/dir
+count files by extension in a directory,find . -type f | sed 's/.*\.//' | sort | uniq -c | sort -rn
+calculate total size of files by extension,"find . -name ""*.log"" -exec du -ch {} + | tail -1"
+show the most recently modified files,"find . -type f -printf ""%T@ %p\n"" | sort -rn | head -20"
+archive files older than 30 days,find . -mtime +30 -exec tar -rvf old_files.tar {} \;
+delete files older than 90 days,find . -mtime +90 -delete
+compress all log files,"find . -name ""*.log"" -exec gzip {} \;"
+find files that are hardlinked,find . -type f -links +1
+show inode number of a file,ls -i file.txt
+monitor CPU usage continuously,sar -u 1
+monitor memory usage continuously,sar -r 1
+monitor disk I/O continuously,sar -d 1
+monitor network traffic continuously,sar -n DEV 1
+show historical CPU usage,sar -u -f /var/log/syslog
+check if a website is up,"curl -s -o /dev/null -w ""%{http_code}"" https://example.com"
+monitor website availability,"while true; do curl -s -o /dev/null -w ""%{http_code}\n"" https://example.com; sleep 60; done"
+send a notification when a process finishes,"long_command; notify-send ""Done"""
+create a countdown timer,"for i in $(seq 10 -1 1); do echo ""$i""; sleep 1; done; echo ""Done!"""
+display a progress bar for a copy operation,rsync -ah --progress source dest
+show calendar for a specific month,cal 3 2024
+convert epoch timestamp to date,date -d @1609459200
+get current epoch timestamp,date +%s
+convert date format,"date -d ""2024-01-15"" +""%B %d, %Y"""
+calculate days between two dates,"echo $(( ($(date -d ""2024-12-31"" +%s) - $(date -d ""2024-01-01"" +%s)) / 86400 )) days"
+show timezone information,timedatectl
+set system date and time,"sudo date -s ""2024-01-15 10:30:00"""
+display all timezones,timedatectl list-timezones
+show git log as a graph,git log --oneline --graph --all
+show changes in a specific commit,git show commit_hash
+cherry pick a commit,git cherry-pick commit_hash
+interactive rebase last 5 commits,git rebase -i HEAD~5
+squash last 3 commits,git reset --soft HEAD~3 && git commit
+undo the last commit keeping changes,git reset --soft HEAD~1
+discard all uncommitted changes,git checkout -- .
+show all git remotes with URLs,git remote -v
+add a new git remote,git remote add upstream https://github.com/user/repo.git
+fetch from all remotes,git fetch --all
+create a patch from the last commit,git format-patch -1 HEAD
+apply a git patch,git apply patch.patch
+show files changed in last commit,git diff-tree --no-commit-id --name-only -r HEAD
+find a commit that introduced a bug,git bisect start && git bisect bad && git bisect good commit_hash
+show commits by a specific author,"git log --author=""name"""
+show commits in a date range,"git log --after=""2024-01-01"" --before=""2024-02-01"""
+count commits by each author,git shortlog -sn
+show the git configuration,git config --list
+set git user name,"git config --global user.name ""Your Name"""
+set git user email,"git config --global user.email ""email@example.com"""
+clean untracked files,git clean -fd
+show all git tags,git tag -l
+push all tags to remote,git push --tags
+delete a remote branch,git push origin --delete branch_name
+rename a branch,git branch -m old_name new_name
+show git stash list,git stash list
+show the contents of a stash,git stash show -p stash@{0}
+drop a specific stash,git stash drop stash@{0}
+clear all stashes,git stash clear
+create a worktree,git worktree add ../feature-branch feature
+list worktrees,git worktree list
+archive a branch as zip,git archive --format=zip --output=archive.zip branch_name
+show file at a specific commit,git show commit_hash:path/to/file
+search commit messages,"git log --grep=""search term"""
+show branches containing a commit,git branch --contains commit_hash
+set up git hooks directory,git config core.hooksPath .githooks
+build and run a docker compose stack,docker compose up -d
+stop docker compose services,docker compose down
+rebuild docker compose services,docker compose up -d --build
+show docker compose logs,docker compose logs -f
+scale a docker compose service,docker compose up -d --scale web=3
+enter a running docker container shell,docker exec -it container_id bash
+copy a file from docker container,docker cp container_id:/path/to/file ./local_path
+copy a file to docker container,docker cp ./local_file container_id:/path/to/destination
+inspect a docker container,docker inspect container_id
+show docker container resource usage,docker stats
+remove all unused docker resources,docker system prune -af
+show docker disk usage,docker system df
+create a docker volume,docker volume create myvolume
+list docker volumes,docker volume ls
+remove unused docker volumes,docker volume prune -f
+create a docker network,docker network create mynetwork
+list docker networks,docker network ls
+inspect a docker network,docker network inspect mynetwork
+tag a docker image,docker tag source_image:tag target_image:tag
+push a docker image to registry,docker push registry.example.com/image:tag
+pull a docker image,docker pull image:tag
+save a docker image to file,docker save -o image.tar image:tag
+load a docker image from file,docker load -i image.tar
+show docker image history,docker history image:tag
+build docker image with no cache,docker build --no-cache -t myimage .
+run docker container with environment variables,"docker run -e ""VAR=value"" myimage"
+run docker container with volume mount,docker run -v /host/path:/container/path myimage
+run docker container with port mapping,docker run -p 8080:80 myimage
+run docker container with memory limit,docker run --memory=512m myimage
+run docker container with CPU limit,docker run --cpus=0.5 myimage
+list Kubernetes pods,kubectl get pods
+list Kubernetes services,kubectl get services
+list Kubernetes deployments,kubectl get deployments
+describe a Kubernetes pod,kubectl describe pod pod_name
+show Kubernetes pod logs,kubectl logs pod_name
+follow Kubernetes pod logs,kubectl logs -f pod_name
+execute command in a Kubernetes pod,kubectl exec -it pod_name -- bash
+apply a Kubernetes manifest,kubectl apply -f manifest.yaml
+delete a Kubernetes resource,kubectl delete -f manifest.yaml
+scale a Kubernetes deployment,kubectl scale deployment deployment_name --replicas=3
+show Kubernetes cluster info,kubectl cluster-info
+list Kubernetes namespaces,kubectl get namespaces
+switch Kubernetes namespace,kubectl config set-context --current --namespace=mynamespace
+show Kubernetes events,kubectl get events --sort-by=.metadata.creationTimestamp
+port forward to a Kubernetes pod,kubectl port-forward pod_name 8080:80
+show Kubernetes node resource usage,kubectl top nodes
+show Kubernetes pod resource usage,kubectl top pods
+create a Kubernetes secret,kubectl create secret generic mysecret --from-literal=key=value
+list Kubernetes secrets,kubectl get secrets
+show Kubernetes config maps,kubectl get configmaps
+rollout status of a deployment,kubectl rollout status deployment/deployment_name
+rollback a Kubernetes deployment,kubectl rollout undo deployment/deployment_name
+show rollout history,kubectl rollout history deployment/deployment_name
+drain a Kubernetes node,kubectl drain node_name --ignore-daemonsets
+cordon a Kubernetes node,kubectl cordon node_name
+uncordon a Kubernetes node,kubectl uncordon node_name
+show all resources in a namespace,kubectl get all -n namespace
+export Kubernetes resource as YAML,kubectl get deployment deployment_name -o yaml
+create a Kubernetes job,kubectl create job myjob --image=myimage
+list all Kubernetes jobs,kubectl get jobs
+delete completed Kubernetes jobs,kubectl delete jobs --field-selector status.successful=1
+run a one-off pod,kubectl run debug --image=busybox --rm -it -- sh
+copy files to a Kubernetes pod,kubectl cp local_file pod_name:/remote/path
+show Kubernetes pod events,kubectl get events --field-selector involvedObject.name=pod_name
+check Kubernetes API resources,kubectl api-resources
+show Kubernetes resource quotas,kubectl get resourcequota
+show Kubernetes persistent volumes,kubectl get pv
+show Kubernetes persistent volume claims,kubectl get pvc
+list Helm releases,helm list
+install a Helm chart,helm install release_name chart_name
+upgrade a Helm release,helm upgrade release_name chart_name
+uninstall a Helm release,helm uninstall release_name
+show Helm release values,helm get values release_name
+search for Helm charts,helm search repo chart_name
+add a Helm repository,helm repo add repo_name repo_url
+update Helm repositories,helm repo update
+create Terraform plan,terraform plan
+apply Terraform configuration,terraform apply
+destroy Terraform resources,terraform destroy
+initialize Terraform,terraform init
+show Terraform state,terraform state list
+import existing resource into Terraform,terraform import resource_type.name resource_id
+validate Terraform configuration,terraform validate
+format Terraform files,terraform fmt
+show Terraform outputs,terraform output
+refresh Terraform state,terraform refresh
+create Terraform workspace,terraform workspace new workspace_name
+list Terraform workspaces,terraform workspace list
+switch Terraform workspace,terraform workspace select workspace_name
+show Terraform providers,terraform providers
+lock Terraform state,terraform force-unlock lock_id
+list AWS S3 buckets,aws s3 ls
+copy a file to S3,aws s3 cp file.txt s3://bucket/path/
+sync a directory to S3,aws s3 sync ./local s3://bucket/path/
+list EC2 instances,"aws ec2 describe-instances --query 'Reservations[].Instances[].[InstanceId,State.Name,PublicIpAddress]' --output table"
+show AWS account identity,aws sts get-caller-identity
+list AWS Lambda functions,aws lambda list-functions
+invoke an AWS Lambda function,aws lambda invoke --function-name myfunction output.json
+list AWS CloudFormation stacks,aws cloudformation list-stacks
+show AWS RDS instances,aws rds describe-db-instances
+list GCP compute instances,gcloud compute instances list
+SSH into a GCP instance,gcloud compute ssh instance_name
+list GCP storage buckets,gsutil ls
+copy a file to GCS,gsutil cp file.txt gs://bucket/path/
+list Azure VMs,az vm list --output table
+show Azure account info,az account show
+list Azure resource groups,az group list --output table
+create an Azure resource group,az group create --name mygroup --location eastus
+convert a string to hex,"echo -n ""hello"" | xxd -p"
+convert hex to string,"echo ""68656c6c6f"" | xxd -r -p"
+encode a URL,"python3 -c ""import urllib.parse; print(urllib.parse.quote('hello world'))"""
+decode a URL,"python3 -c ""import urllib.parse; print(urllib.parse.unquote('hello%20world'))"""
+generate a UUID,uuidgen
+generate multiple UUIDs,for i in $(seq 1 10); do uuidgen; done
+calculate file entropy,ent file.bin
+show ASCII table,man ascii
+convert decimal to binary,"echo ""obase=2; 255"" | bc"
+convert binary to decimal,"echo ""ibase=2; 11111111"" | bc"
+benchmark a website with Apache Bench,ab -n 1000 -c 10 https://example.com/
+stress test with wrk,wrk -t12 -c400 -d30s https://example.com/
+profile a bash script,bash -x script.sh
+debug a bash script,bash -xv script.sh
+check bash script for errors,shellcheck script.sh
+format a bash script,shfmt -w script.sh
+lint a Python file,pylint script.py
+format Python code with black,black script.py
+type check Python code,mypy script.py
+run Python tests with pytest,pytest tests/
+run Python tests with coverage,pytest --cov=src tests/
+generate Python test coverage report,coverage report -m
+lint JavaScript code,eslint src/
+format JavaScript code with prettier,"prettier --write ""src/**/*.{js,jsx,ts,tsx}"""
+run JavaScript tests with jest,jest
+lint CSS files,"stylelint ""src/**/*.css"""
+lint Docker files,hadolint Dockerfile
+lint YAML files,yamllint config.yaml
+validate a JSON file,jsonlint file.json
+check for outdated npm packages,npm outdated
+update all npm packages,npm update
+audit npm packages for vulnerabilities,npm audit
+fix npm audit vulnerabilities,npm audit fix
+check for outdated pip packages,pip list --outdated
+upgrade all pip packages,pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 | xargs -n1 pip install -U
+freeze pip requirements,pip freeze > requirements.txt
+install from requirements file,pip install -r requirements.txt
+create a Python virtual environment and activate it,python3 -m venv venv && source venv/bin/activate
+deactivate Python virtual environment,deactivate
+show Python package info,pip show package_name
+list installed Python packages,pip list
+run a Jupyter notebook from command line,jupyter nbconvert --to notebook --execute notebook.ipynb
+convert Jupyter notebook to Python script,jupyter nbconvert --to script notebook.ipynb
+start a Jupyter notebook server,jupyter notebook
+start JupyterLab,jupyter lab
+create a conda environment,conda create -n myenv python=3.9
+activate conda environment,conda activate myenv
+list conda environments,conda env list
+export conda environment,conda env export > environment.yml
+create conda environment from file,conda env create -f environment.yml
+remove a conda environment,conda env remove -n myenv
+search for a package in conda,conda search package_name
+update all conda packages,conda update --all
+show total lines of code by language,find . -name '*.py' -o -name '*.js' -o -name '*.go' | xargs wc -l | tail -1
+count lines of Python code,"find . -name ""*.py"" | xargs wc -l"
+count number of functions in a Python file,"grep -c ""def "" script.py"
+find TODO comments in code,"grep -rn ""TODO"" --include=""*.py"" ."
+find FIXME comments in codebase,"grep -rn ""FIXME"" ."
+show git diff statistics,git diff --stat
+export git log to CSV,"git log --pretty=format:'%H,%an,%ae,%ad,%s' > git_log.csv"
+generate a changelog from git,git log --oneline --no-merges v1.0..HEAD
+find merge commits,git log --merges --oneline
+show files changed between two branches,git diff --name-only main..feature
+count commits on current branch,git rev-list --count HEAD
+show the root directory of git repo,git rev-parse --show-toplevel
+check if inside a git repository,git rev-parse --is-inside-work-tree
+show the current branch name,git rev-parse --abbrev-ref HEAD
+list all git aliases,git config --get-regexp alias
+create a git alias,git config --global alias.co checkout
+remove a git alias,git config --global --unset alias.co
+show the size of the git repository,du -sh .git
+garbage collect git repository,git gc --aggressive
+verify git repository integrity,git fsck
+show git reflog,git reflog
+recover a deleted branch from reflog,git checkout -b recovered_branch HEAD@{1}
+blame a specific line range,"git blame -L 10,20 file.txt"
+show word-level diff,git diff --word-diff
+create a signed commit,"git commit -S -m ""signed commit"""
+verify a signed commit,git verify-commit HEAD
+set up git LFS,git lfs install
+track large files with git LFS,"git lfs track ""*.psd"""
+show git LFS tracked files,git lfs ls-files
+show submodule status,git submodule status
+update git submodules,git submodule update --init --recursive
+add a git submodule,git submodule add https://github.com/user/repo.git path/to/submodule
+remove all node_modules directories recursively,"find . -name ""node_modules"" -type d -exec rm -rf {} +"
+find all package.json files,"find . -name ""package.json"" -not -path ""*/node_modules/*"""
+show all listening services on all interfaces,ss -tlnp
+check certificate expiration date,echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -enddate
+continuously monitor process count,"watch -n 1 ""ps aux | wc -l"""
+show top 10 largest files in a directory tree,find . -type f -exec du -h {} + | sort -rh | head -10
+redirect a command's output to clipboard,command | xclip -selection clipboard
+paste from clipboard,xclip -selection clipboard -o
+show the weather from command line,curl wttr.in
+show a cheat sheet for a command,curl cheat.sh/tar
+generate a QR code in the terminal,"qrencode -t ANSI ""https://example.com"""
+speedtest from command line,speedtest-cli
+show network bandwidth usage,nload
+show calendar with week numbers,cal -w
+create a simple backup script,tar -czf backup_$(date +%Y%m%d).tar.gz /path/to/backup
+restore from a backup,tar -xzf backup_20240115.tar.gz -C /restore/path
+calculate directory checksum,find . -type f -exec sha256sum {} + | sort -k2 | sha256sum
+compare two directories by content,diff <(cd dir1 && find . -type f -exec md5sum {} + | sort) <(cd dir2 && find . -type f -exec md5sum {} + | sort)
+monitor a command output and alert on change,"watch -d -n 5 ""command"""
+run a command at low I/O priority,ionice -c3 command
+show all environment variables sorted,env | sort
+find broken symlinks,find . -xtype l -ls
+count unique IP addresses in access log,awk '{print $1}' access.log | sort -u | wc -l
+show top 10 IP addresses in access log,awk '{print $1}' access.log | sort | uniq -c | sort -rn | head -10
+extract URLs from a file,grep -oP 'https?://[^\s]+' file.txt
+show HTTP status codes from access log,awk '{print $9}' access.log | sort | uniq -c | sort -rn
+analyze response times from access log,"awk '{print $NF}' access.log | sort -n | awk 'BEGIN{c=0} {a[c++]=$1} END{print ""Min:"",a[0],""Max:"",a[c-1],""Median:"",a[int(c/2)]}'"
+tail multiple files simultaneously,tail -f file1.log file2.log
+interleave lines from two files,paste -d '\n' file1.txt file2.txt
+split a file by number of lines,split -l 1000 largefile.txt chunk_
+split a file into equal parts,split -n 5 largefile.txt part_
+merge sorted files,sort -m sorted1.txt sorted2.txt
+remove BOM from a UTF-8 file,sed -i '1s/^\xEF\xBB\xBF//' file.txt
+convert line endings from Windows to Unix,dos2unix file.txt
+convert line endings from Unix to Windows,unix2dos file.txt
+show character frequency in a file,cat file.txt | fold -w1 | sort | uniq -c | sort -rn
+find and list all executable files,find . -type f -executable
+show files opened by a specific user,lsof -u username
+recursively change file extensions,"find . -name ""*.txt"" -exec rename 's/\.txt$/.md/' {} \;"
+create a file with a specific size,fallocate -l 1G testfile
+generate a file filled with zeros,dd if=/dev/zero of=zeros.bin bs=1M count=100
+generate a file filled with random data,dd if=/dev/urandom of=random.bin bs=1M count=100
+show running processes as a tree,ps auxf
+show only zombie processes,"ps aux | awk '$8==""Z""'"
+find memory leaks in a program,valgrind --leak-check=full ./program
+profile a program's memory usage,valgrind --tool=massif ./program
+show shared libraries used by a process,cat /proc/PID/maps
+show a process's environment variables,cat /proc/PID/environ | tr '\0' '\n'
+monitor a process's CPU and memory usage,pidstat -p PID 1
+trace a process's file operations,strace -e trace=file -p PID
+show system call statistics,strace -c command
+send desktop notification,"notify-send ""Title"" ""Message body"""
+play a system beep,echo -e '\a'
+speak text out loud,"espeak ""Hello world"""
+take a screenshot from command line,scrot screenshot.png
+take a delayed screenshot,scrot -d 5 screenshot.png
+record terminal session,script session.log
+replay a recorded terminal session,scriptreplay session.log
+create an animated GIF from terminal,asciinema rec demo.cast
+show a matrix-style animation,cmatrix
+display system info with ASCII art,neofetch
+show a random fortune,fortune
+display a cow saying something,"echo ""Hello"" | cowsay"
+show disk usage with a visual bar,ncdu
+interactive process viewer,htop
+visual git log,tig
+interactive JSON viewer,cat data.json | fx
+visual diff tool,vimdiff file1.txt file2.txt
+interactive disk usage analyzer,baobab
+show network connections visually,iftop
+show system temperature,watch -n 1 sensors
+check if a command is available on the system,"command -v docker &>/dev/null && echo ""installed"" || echo ""not installed"""
+add a line to a file only if it does not already exist,grep -qxF 'line to add' file.txt || echo 'line to add' >> file.txt
+remove a specific line from a file by line number,sed -i '5d' file.txt
+swap two lines in a file,sed -i '3{h;d};4{p;x}' file.txt
+replace the nth occurrence of a pattern,sed -i 's/pattern/replacement/3' file.txt
+show only the first occurrence of each unique line,awk '!seen[$0]++' file.txt
+print every other line of a file,awk 'NR%2==1' file.txt
+show the longest line in a file,awk '{ if (length > max) { max = length; line = $0 } } END { print line }' file.txt
+show average line length of a file,awk '{ total += length } END { print total/NR }' file.txt
+transpose rows and columns in a file,awk '{ for(i=1;i<=NF;i++) a[i]=a[i] FS $i } END { for(i=1;i<=NF;i++) print a[i] }' file.txt
+remove trailing whitespace from all lines,sed -i 's/[[:space:]]*$//' file.txt
+convert a multi-line file to a single comma-separated line,"paste -sd',' file.txt"
+convert a comma-separated line to multiple lines,"tr ',' '\n' < file.txt"
+show the intersection of two files,comm -12 <(sort file1.txt) <(sort file2.txt)
+show lines only in the first file,comm -23 <(sort file1.txt) <(sort file2.txt)
+show lines only in the second file,comm -13 <(sort file1.txt) <(sort file2.txt)
+randomly shuffle lines of a file,shuf file.txt
+pick a random line from a file,shuf -n 1 file.txt
+sample 10 random lines from a file,shuf -n 10 file.txt
+generate a random number between 1 and 100,shuf -i 1-100 -n 1
+repeat a string N times,printf 'hello\n%.0s' {1..10}
+create a horizontal line separator,printf '%*s\n' 80 | tr ' ' '-'
+colorize output text in red,"echo -e ""\033[31mRed text\033[0m"""
+colorize output text in green,"echo -e ""\033[32mGreen text\033[0m"""
+show a spinner while a command runs,"spin=('|' '/' '-' '\'); while kill -0 $PID 2>/dev/null; do for s in ""${spin[@]}""; do printf ""\r$s""; sleep 0.1; done; done"
+display a progress percentage,pv largefile.bin > /dev/null
+create a named pipe,mkfifo mypipe
+write to a named pipe,"echo ""data"" > mypipe"
+read from a named pipe,cat mypipe
+show file descriptors for current shell,ls -la /proc/$$/fd
+redirect file descriptor 3 to a file,exec 3> output.txt
+close file descriptor 3,exec 3>&-
+use process substitution with tee,"command | tee >(grep ""error"" > errors.log) >(grep ""warn"" > warnings.log)"
+wait for all background jobs to finish,wait
+wait for a specific background job,wait %1
+disown a background process,disown %1
+send a process to background,bg %1
+suspend the current foreground process,kill -STOP $$
+resume a suspended process,kill -CONT PID
+print text in multiple columns,pr -3 -t file.txt
+format text for printing,fmt -w 60 file.txt
+show calendar for next 3 months,cal -3
+test network throughput with iperf,iperf3 -c server_ip
+start an iperf server,iperf3 -s
+show wireless network information,iwconfig
+scan for wireless networks,sudo iwlist wlan0 scan
+show DHCP lease information,cat /var/lib/dhcp/dhclient.leases
+release DHCP lease,sudo dhclient -r
+renew DHCP lease,sudo dhclient
+show routing table with metrics,ip route show table all
+add a default gateway,sudo ip route add default via 192.168.1.1
+delete a route,sudo ip route del 10.0.0.0/24
+show network statistics,netstat -s
+show interface statistics,ip -s link
+enable IP forwarding,sudo sysctl -w net.ipv4.ip_forward=1
+show kernel parameters,sysctl -a
+set a kernel parameter,sudo sysctl -w parameter=value
+show loaded kernel modules,lsmod
+load a kernel module,sudo modprobe module_name
+remove a kernel module,sudo modprobe -r module_name
+show module information,modinfo module_name
+show interrupt statistics,cat /proc/interrupts
+show I/O port allocations,cat /proc/ioports
+show DMA channel allocations,cat /proc/dma
+show kernel ring buffer,dmesg | tail -50
+clear the kernel ring buffer,sudo dmesg -C
+show available entropy,cat /proc/sys/kernel/random/entropy_avail
+stress test the system,stress --cpu 4 --io 2 --vm 2 --vm-bytes 256M --timeout 60s
+benchmark CPU performance,sysbench cpu --cpu-max-prime=20000 run
+benchmark memory performance,sysbench memory run
+benchmark disk I/O performance,sysbench fileio --file-test-mode=rndrw run
+show process priority and nice value,"ps -eo pid,ni,comm"
+show all signals available,kill -l
+send SIGHUP to a process to reload config,kill -HUP PID
+create a coredump of a running process,gcore PID
+show thread count per process,"ps -eo pid,nlwp,comm | sort -k2 -rn | head"
+show CPU affinity of a process,taskset -p PID
+set CPU affinity for a process,"taskset -c 0,1 command"
+show NUMA information,numactl --hardware
+run a command on a specific NUMA node,numactl --cpunodebind=0 --membind=0 command

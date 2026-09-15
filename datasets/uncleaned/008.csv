@@ -1,0 +1,51 @@
+input_text,input_parameters,bash_command
+GCP copy a file to GCS,"[""file.txt"", ""gs://mybucket/""]",gsutil cp file.txt gs://mybucket/
+docker run a container,"[""nginx""]",docker run -d nginx
+set an environment variable,"[""API_KEY"", ""abc123""]",export API_KEY=abc123
+use rsync to delete files not in source,"[""source/"", ""dest/""]",rsync -avz --delete source/ dest/
+create a GIF from a video,"[""input.mp4"", ""output.gif""]","ffmpeg -i input.mp4 -vf ""fps=10,scale=320:-1"" output.gif"
+parse YAML from command line,"[""config.yaml""]",yq '.' config.yaml
+test a TCP connection to a port,"[""example.com"", ""443""]",nc -zv example.com 443
+restore a MySQL database from dump,"[""database_name"", ""backup.sql""]",mysql -u root -p database_name < backup.sql
+cut a video clip,"[""00:01:00"", ""00:02:00"", ""input.mp4"", ""clip.mp4""]",ffmpeg -i input.mp4 -ss 00:01:00 -to 00:02:00 -c copy clip.mp4
+git show commits from a specific date range,"[""2024-01-01"", ""2024-01-31""]","git log --after=""2024-01-01"" --before=""2024-01-31"""
+kubernetes autoscale a deployment,"[""mydeployment"", ""2"", ""10""]",kubectl autoscale deployment mydeployment --min=2 --max=10 --cpu-percent=80
+use rsync with bandwidth limit,"[""1000"", ""source/"", ""dest/""]",rsync -avz --bwlimit=1000 source/ dest/
+disable swap,"[""/swapfile""]",sudo swapoff /swapfile
+kubernetes get logs from a pod,"[""mypod""]",kubectl logs mypod
+check if a port is in use,"[""8080""]",lsof -i :8080
+check if a directory exists,"[""dirpath""]","test -d dirpath && echo ""exists"" || echo ""not found"""
+brute force directories on a web server,"[""http://example.com"", ""wordlist.txt""]",dirb http://example.com wordlist.txt
+move file data.csv to the archive directory,"[""data.csv"", ""archive/""]",mv data.csv archive/
+apply a patch file,"[""changes.patch""]",patch -p1 < changes.patch
+setup SSH passwordless authentication,"[""user@server""]",ssh-copy-id user@server
+initialize a new React app,"[""my-app""]",npx create-react-app my-app
+change permissions recursively,"[""755"", ""project/""]",chmod -R 755 project/
+allow a port through the firewall,"[""22""]",sudo ufw allow 22
+search command history for a keyword,"[""docker""]",history | grep docker
+encrypt a file with openssl,"[""secret.txt""]",openssl enc -aes-256-cbc -salt -in secret.txt -out secret.enc
+set a Redis key,"[""mykey"", ""myvalue""]",redis-cli set mykey myvalue
+make kernel parameter persistent,"[""net.ipv4.ip_forward = 1""]","echo ""net.ipv4.ip_forward = 1"" | sudo tee -a /etc/sysctl.conf"
+GCP create a compute instance,"[""myvm"", ""us-central1-a""]",gcloud compute instances create myvm --zone=us-central1-a
+curl a URL and show response headers,"[""https://example.com""]",curl -I https://example.com
+extract pages from a PDF,"[""input.pdf"", ""1"", ""5"", ""output.pdf""]",pdfseparate -f 1 -l 5 input.pdf output_%d.pdf
+find all hard links to a file,"[""target.txt""]",find . -samefile target.txt
+search and replace across multiple files,"[""old_function"", ""new_function""]","find . -type f -name ""*.py"" -exec sed -i ""s/old_function/new_function/g"" {} +"
+run a command that survives terminal close,"[""./server""]",nohup ./server &
+get unique lines with count,"[""access.log""]",sort access.log | uniq -c | sort -rn
+docker inspect a container,"[""container_id""]",docker inspect container_id
+watch a command execute every 2 seconds,"[""df -h""]",watch -n 2 df -h
+enable a service to start on boot,"[""nginx""]",sudo systemctl enable nginx
+create a new partition,"[""/dev/sdb""]",sudo fdisk /dev/sdb
+compile a C++ program,"[""main.cpp"", ""output""]",g++ -o output main.cpp
+unzip a file,"[""backup.zip""]",unzip backup.zip
+ansible check playbook syntax,"[""playbook.yml""]",ansible-playbook --syntax-check playbook.yml
+docker build an image from a Dockerfile,"[""myapp""]",docker build -t myapp .
+block an IP address with iptables,"[""10.0.0.5""]",sudo iptables -A INPUT -s 10.0.0.5 -j DROP
+unmount a filesystem,"[""/mnt/usb""]",sudo umount /mnt/usb
+use screen to start a detached session,"[""mysession""]",screen -S mysession -d -m
+check for memory leaks,"[""./myapp""]",valgrind --leak-check=full ./myapp
+run a MySQL query from command line,"[""SELECT * FROM users"", ""mydb""]","mysql -u root -p mydb -e ""SELECT * FROM users"""
+display a file in octal,"[""binary.dat""]",od binary.dat | head -20
+run a command after a delay of 5 seconds,"[""echo done""]",sleep 5 && echo done
+add a watermark to an image,"[""image.jpg"", ""watermark.png"", ""output.jpg""]",composite -dissolve 50% -gravity southeast watermark.png image.jpg output.jpg

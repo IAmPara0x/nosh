@@ -1,0 +1,51 @@
+input_text,input_parameters,bash_command
+compile a C program,"[""main.c"", ""output""]",gcc -o output main.c
+show the number of characters in a file,"[""essay.txt""]",wc -c essay.txt
+check user login history,"[""johndoe""]",last johndoe
+create a GitHub pull request,"[""Add new feature""]","gh pr create --title ""Add new feature"""
+create a PostgreSQL database dump,"[""database_name"", ""backup.sql""]",pg_dump database_name > backup.sql
+profile memory usage of a command,"[""./myapp""]",valgrind --tool=memcheck ./myapp
+convert YAML to JSON,"[""config.yaml""]",yq -o=json '.' config.yaml
+test network bandwidth between two hosts,"[""server_ip""]",iperf3 -c server_ip
+sort a file alphabetically,"[""names.txt""]",sort names.txt
+archive files older than 30 days,"[""archive/""]",find . -mtime +30 -exec mv {} archive/ \;
+use batch to run job when load is low,"[""./heavy_script.sh""]","echo ""./heavy_script.sh"" | batch"
+encrypt a file with GPG,"[""file.txt"", ""recipient@email.com""]",gpg --encrypt --recipient recipient@email.com file.txt
+merge two PDF files,"[""file1.pdf"", ""file2.pdf"", ""merged.pdf""]",pdfunite file1.pdf file2.pdf merged.pdf
+calculate the SHA256 hash of a file,"[""document.pdf""]",sha256sum document.pdf
+use perf to find CPU hotspots,"[""./myapp""]",perf record -g ./myapp && perf report
+lock a user account,"[""johndoe""]",sudo usermod -L johndoe
+docker tag an image,"[""myapp"", ""registry.example.com/myapp:v1""]",docker tag myapp registry.example.com/myapp:v1
+use socat to forward a port,"[""8080"", ""remote:80""]","socat TCP-LISTEN:8080,fork TCP:remote:80"
+find the most requested URLs,"[""access.log""]",awk '{print $7}' access.log | sort | uniq -c | sort -rn | head -20
+curl with POST request and JSON data,"[""https://api.example.com/data"", ""{'key':'value'}""]","curl -X POST -H ""Content-Type: application/json"" -d ""{'key':'value'}"" https://api.example.com/data"
+compile a Java program,"[""Main.java""]",javac Main.java
+show files modified between two dates,"[""2024-01-01"", ""2024-01-31""]","find . -newermt ""2024-01-01"" ! -newermt ""2024-01-31"""
+commit changes in the repo with a message,"[""initial commit""]","git commit -m ""initial commit"""
+send an email from command line,"[""user@example.com"", ""Subject"", ""Body""]","echo ""Body"" | mail -s ""Subject"" user@example.com"
+trace the route to a host,"[""google.com""]",traceroute google.com
+download a file with curl,"[""https://example.com/api/data""]",curl -O https://example.com/api/data
+git add a remote,"[""upstream"", ""https://github.com/upstream/repo.git""]",git remote add upstream https://github.com/upstream/repo.git
+load test with wrk,"[""http://localhost:8080""]",wrk -t4 -c100 -d30s http://localhost:8080
+convert binary to decimal,"[""101010""]","echo ""ibase=2;101010"" | bc"
+set password expiry for a user,"[""johndoe"", ""90""]",sudo chage -M 90 johndoe
+git clone a repository,"[""https://github.com/user/repo.git""]",git clone https://github.com/user/repo.git
+create a nested directory structure,"[""project/src/main""]",mkdir -p project/src/main
+convert JSON to pretty-printed format,"[""data.json""]",python3 -m json.tool data.json
+batch rename files with a prefix,"[""backup_""]","for f in *; do mv ""$f"" ""backup_$f""; done"
+minify JSON,"[""data.json""]",jq -c '.' data.json
+git blame a file,"[""main.py""]",git blame main.py
+parallel SSH to multiple servers,"[""servers.txt"", ""uptime""]","parallel-ssh -h servers.txt -i ""uptime"""
+docker show image build history,"[""myapp""]",docker history myapp
+AWS copy a file to S3,"[""file.txt"", ""s3://mybucket/""]",aws s3 cp file.txt s3://mybucket/
+attach to a tmux session,"[""work""]",tmux attach-session -t work
+move multiple files to a directory,"[""*.txt"", ""archive/""]",mv *.txt archive/
+use pass to generate a new password,"[""web/example.com""]",pass generate web/example.com 20
+mount an NFS share,"[""server:/share"", ""/mnt/nfs""]",sudo mount -t nfs server:/share /mnt/nfs
+helm install a chart,"[""myrelease"", ""mychart/""]",helm install myrelease mychart/
+docker remove an image,"[""image_id""]",docker rmi image_id
+convert hexadecimal to decimal,"[""ff""]",printf '%d\n' 0xff
+show partition table,"[""/dev/sda""]",sudo fdisk -l /dev/sda
+run a program with limited CPU priority,"[""10"", ""./heavy_task""]",nice -n 10 ./heavy_task
+kubernetes delete a resource,"[""deployment.yaml""]",kubectl delete -f deployment.yaml
+cut the first field from a CSV,"[""data.csv""]","cut -d',' -f1 data.csv"

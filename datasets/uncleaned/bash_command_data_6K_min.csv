@@ -1,0 +1,20 @@
+prompt,command
+"List all files in the current directory, including hidden ones, in long format.",ls -la
+"Show the first 10 lines of a file named ""report.txt"".",head -n 10 report.txt
+"Count how many times the word ""error"" appears in the syslog.","grep -o ""error"" /var/log/syslog | wc -l"
+Create a compressed tar archive named backup.tar.gz of the folder /home/user/data.,tar -czvf backup.tar.gz /home/user/data
+Find all .log files larger than 5 MB in /var/log and delete them.,"find /var/log -type f -name ""*.log"" -size +5M -exec rm -f {} \;"
+Display the current disk usage of each mounted filesystem in human‑readable form.,df -h
+"Show a tree view of the directory structure under /etc, limited to depth 2.",tree -L 2 /etc
+"Search recursively for the string ""TODO"" in all .py files under the src directory, ignoring case.","grep -ri ""TODO"" src/*.py"
+"Replace all occurrences of ""localhost"" with ""127.0.0.1"" in the file hosts.conf, editing the file in place.",sed -i 's/localhost/127.0.0.1/g' hosts.conf
+Show the last 20 lines of the system journal for the ssh service.,journalctl -u ssh -n 20
+"List all currently running processes owned by the user alice, showing PID and command.","ps -u alice -o pid,cmd"
+Monitor real‑time network bandwidth usage on interface eth0.,ifstat -i eth0 1
+Download a file from https://example.com/file.zip and save it as file.zip.,curl -L -o file.zip https://example.com/file.zip
+Extract the contents of archive.tar.bz2 into the current directory.,tar -xjvf archive.tar.bz2
+"Show the differences between two configuration files, config1.cfg and config2.cfg, ignoring whitespace changes.",diff -w config1.cfg config2.cfg
+Print the current date and time in ISO 8601 format.,date --iso-8601=seconds
+Create a new user named devuser with a home directory and default shell /bin/bash.,sudo useradd -m -s /bin/bash devuser
+Change the permissions of script.sh to be executable by the owner only.,chmod 700 script.sh
+"Append the line ""export PATH=$PATH:/opt/tools"" to the end of ~/.bashrc if it is not already present.",grep -qxF 'export PATH=$PATH:/opt/tools' ~/.bashrc || echo 'export PATH=$PATH:/opt/tools' >> ~/.bashrc

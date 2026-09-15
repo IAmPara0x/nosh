@@ -1,0 +1,12 @@
+checkpoints/
+unsloth_compiled_cache/
+unsloth_training_checkpoints/
+notes.md
+.ipynb_checkpoints/
+.claude/
+__pycache__/
+*.log
+time.txt
+paper/*.aux
+paper/*.log
+paper/*.out

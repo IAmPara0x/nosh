@@ -1,0 +1,51 @@
+input_text,input_parameters,bash_command
+display the contents of config.yaml,"[""config.yaml""]",cat config.yaml
+calculate the MD5 hash of a file,"[""document.pdf""]",md5sum document.pdf
+initialize a Go module,"[""github.com/user/myproject""]",go mod init github.com/user/myproject
+helm add a repository,"[""bitnami"", ""https://charts.bitnami.com/bitnami""]",helm repo add bitnami https://charts.bitnami.com/bitnami
+replace text in a file,"[""old_text"", ""new_text"", ""file.txt""]","sed -i ""s/old_text/new_text/g"" file.txt"
+check SSL certificate expiry of a website,"[""example.com""]",echo | openssl s_client -connect example.com:443 2>/dev/null | openssl x509 -noout -dates
+add a default gateway,"[""192.168.1.1""]",sudo ip route add default via 192.168.1.1
+test IPv6 connectivity,"[""ipv6.google.com""]",ping6 -c 4 ipv6.google.com
+format a partition as ext4,"[""/dev/sdb1""]",sudo mkfs.ext4 /dev/sdb1
+read user input in a script,"[""name""]","read -p ""Enter your name: "" name"
+write hello world to a file,"[""hello.txt""]","echo ""Hello World"" > hello.txt"
+limit a process to a specific CPU core,"[""0"", ""./task""]",taskset -c 0 ./task
+extract a specific field from JSON,"[""data.json"", ""name""]",jq '.name' data.json
+check if a package is installed,"[""curl""]",dpkg -l | grep curl
+view logs for a specific service,"[""nginx""]",journalctl -u nginx
+compare two files,"[""file1.txt"", ""file2.txt""]",diff file1.txt file2.txt
+convert a CSV to JSON,"[""data.csv""]","python3 -c ""import csv,json,sys; print(json.dumps(list(csv.DictReader(open('data.csv')))))"""
+merge two JSON files,"[""a.json"", ""b.json""]",jq -s '.[0] * .[1]' a.json b.json
+kubernetes apply a configuration file,"[""deployment.yaml""]",kubectl apply -f deployment.yaml
+set the sticky bit on a directory,"[""/shared""]",chmod +t /shared
+capture packets and save to file,"[""eth0"", ""capture.pcap""]",sudo tcpdump -i eth0 -w capture.pcap
+force kill a process,"[""5678""]",kill -9 5678
+check and repair a filesystem,"[""/dev/sda1""]",sudo e2fsck -f /dev/sda1
+run multiple commands on remote servers,"[""server1 server2"", ""uptime""]","for host in server1 server2; do echo ""=== $host ==="" && ssh $host ""uptime""; done"
+check SSL/TLS protocols supported by a server,"[""example.com""]",nmap --script ssl-enum-ciphers -p 443 example.com
+remove all blank lines from a file,"[""file.txt""]",sed '/^$/d' file.txt
+test mail delivery,"[""user@example.com""]","echo ""Test"" | sendmail user@example.com"
+kubernetes get pod details,"[""mypod""]",kubectl describe pod mypod
+curl with authentication,"[""user:pass"", ""https://api.example.com""]",curl -u user:pass https://api.example.com
+install a specific npm package,"[""express""]",npm install express
+git show file at a specific commit,"[""abc1234"", ""main.py""]",git show abc1234:main.py
+check if a string is a valid JSON,"[""'{\""key\"":\""value\""}'""]","echo '{""key"":""value""}' | jq . > /dev/null 2>&1 && echo ""Valid"" || echo ""Invalid"""
+find files newer than a reference file,"[""reference.txt""]",find . -newer reference.txt
+check if a file is a binary or text,"[""file""]",file file
+use awk to process Apache access logs,"[""access.log""]",awk '{print $1}' access.log | sort | uniq -c | sort -rn | head -20
+automate FTP file transfer,"[""server"", ""user"", ""pass"", ""file.txt""]",curl -T file.txt ftp://server --user user:pass
+record system performance data,"[""30""]",sar -u 1 30
+run a local script on a remote server,"[""script.sh"", ""user@server""]",ssh user@server 'bash -s' < script.sh
+terraform import an existing resource,"[""aws_instance.web"", ""i-1234567890abcdef0""]",terraform import aws_instance.web i-1234567890abcdef0
+find files owned by a specific user,"[""root""]",find . -user root
+run a Python script,"[""main.py""]",python3 main.py
+find the location of a binary,"[""python3""]",which python3
+run a Node.js script,"[""app.js""]",node app.js
+check systemd service dependencies,"[""nginx""]",systemctl list-dependencies nginx
+add text at the end of a file,"[""footer text"", ""file.txt""]","echo ""footer text"" >> file.txt"
+docker pull an image,"[""ubuntu:latest""]",docker pull ubuntu:latest
+remove the directory called temp,"[""temp""]",rm -rf temp
+set maximum open files limit,"[""65535""]",ulimit -n 65535
+search for a shared library,"[""libssl""]",ldconfig -p | grep libssl
+show password policy for a user,"[""johndoe""]",sudo chage -l johndoe

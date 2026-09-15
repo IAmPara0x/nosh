@@ -1,0 +1,51 @@
+input_text,input_parameters,bash_command
+run make with a specific target,"[""install""]",make install
+show the first 10 lines of log.txt,"[""log.txt""]",head log.txt
+kubernetes rollback a deployment,"[""mydeployment""]",kubectl rollout undo deployment/mydeployment
+monitor a log file in real time,"[""app.log""]",tail -f app.log
+run a command for each line of a file,"[""script.sh"", ""urls.txt""]","while IFS= read -r line; do ./script.sh ""$line""; done < urls.txt"
+profile a bash script,"[""script.sh""]",PS4='+ $(date +%s.%N) ' bash -x script.sh
+create a RAID array,"[""/dev/md0"", ""/dev/sdb"", ""/dev/sdc""]",sudo mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb /dev/sdc
+use GNU parallel to process files,"[""4"", ""process.sh""]","find . -name ""*.csv"" | parallel -j4 ./process.sh {}"
+encode a string in base64,"[""hello world""]","echo ""hello world"" | base64"
+show lines that do not match a pattern,"[""debug"", ""log.txt""]","grep -v ""debug"" log.txt"
+use xargs to process items in parallel,"[""4"", ""process.sh""]",cat items.txt | xargs -P 4 -I {} ./process.sh {}
+add a disk to LVM,"[""/dev/sdb""]",sudo pvcreate /dev/sdb
+convert a markdown file to PDF,"[""document.md"", ""document.pdf""]",pandoc document.md -o document.pdf
+set the keyboard layout,"[""us""]",sudo localectl set-keymap us
+decode a base64 string,"[""aGVsbG8gd29ybGQ=""]","echo ""aGVsbG8gd29ybGQ="" | base64 -d"
+remove trailing whitespace from a file,"[""file.txt""]",sed -i 's/[[:space:]]*$//' file.txt
+run a command with timeout,"[""30"", ""./long_task""]",timeout 30 ./long_task
+process files in parallel with xargs,"[""4""]","find . -name ""*.jpg"" -print0 | xargs -0 -P 4 -I {} convert {} -resize 50% {}"
+flatten a nested JSON structure,"[""data.json""]","jq '[paths(scalars) as $p | {key: ($p | join(""."")), value: getpath($p)}] | from_entries' data.json"
+run a Go program,"[""main.go""]",go run main.go
+convert an image format,"[""input.png"", ""output.jpg""]",convert input.png output.jpg
+run a specific Python test file,"[""test_main.py""]",python3 -m pytest test_main.py
+create a new directory called projects,"[""projects""]",mkdir projects
+create an SSH tunnel,"[""8080"", ""localhost:3306"", ""user@server""]",ssh -L 8080:localhost:3306 user@server
+kubernetes create a secret,"[""mysecret"", ""password"", ""s3cr3t""]",kubectl create secret generic mysecret --from-literal=password=s3cr3t
+create a logical volume,"[""mylv"", ""10G"", ""myvg""]",sudo lvcreate -n mylv -L 10G myvg
+docker copy a file to container,"[""./config.txt"", ""container_id"", ""/app/config.txt""]",docker cp ./config.txt container_id:/app/config.txt
+decompress a bzip2 file,"[""data.txt.bz2""]",bunzip2 data.txt.bz2
+change file permissions to read-only,"[""secret.txt""]",chmod 444 secret.txt
+git delete a local branch,"[""old-feature""]",git branch -d old-feature
+view a GitHub pull request,"[""123""]",gh pr view 123
+analyze a pcap file,"[""capture.pcap""]",tshark -r capture.pcap
+decompress a gzip file,"[""data.txt.gz""]",gunzip data.txt.gz
+remove EXIF data from an image,"[""photo.jpg""]",exiftool -all= photo.jpg
+compress a directory into a tar.gz file,"[""archive.tar.gz"", ""project/""]",tar -czf archive.tar.gz project/
+check out a GitHub pull request locally,"[""123""]",gh pr checkout 123
+git cherry-pick a commit,"[""abc1234""]",git cherry-pick abc1234
+query a SQLite database,"[""mydb.sqlite""]","sqlite3 mydb.sqlite ""SELECT * FROM users;"""
+docker view logs of a container,"[""container_id""]",docker logs container_id
+transform JSON data,"[""data.json""]","jq '[.[] | {name: .name, age: .age}]' data.json"
+use m4 macro processor,"[""template.m4""]",m4 template.m4
+start a systemd service,"[""nginx""]",sudo systemctl start nginx
+extract IP addresses from a file,"[""log.txt""]","grep -oP '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' log.txt"
+convert decimal to binary,"[""42""]","echo ""obase=2;42"" | bc"
+search for a whole word only,"[""error"", ""log.txt""]","grep -w ""error"" log.txt"
+calculate the average of a column,"[""data.txt""]",awk '{sum+=$1; n++} END {print sum/n}' data.txt
+show process memory map,"[""1234""]",cat /proc/1234/maps
+use bc for floating point arithmetic,"[""3.14 * 2.5""]","echo ""3.14 * 2.5"" | bc"
+show detailed SMART attributes,"[""/dev/sda""]",sudo smartctl -A /dev/sda
+show the total size of a file type,"[""*.log""]","find . -name ""*.log"" -exec du -ch {} + | tail -1"

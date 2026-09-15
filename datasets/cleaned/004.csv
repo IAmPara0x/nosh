@@ -1,0 +1,115 @@
+prompt,command
+use dd to create a bootable USB from image.iso to /dev/sdb,sudo dd if=image.iso of=/dev/sdb bs=4M status=progress
+use dd to create a bootable USB,sudo dd if=YOUR_IMAGE of=YOUR_DEVICE bs=4M status=progress
+wait for a background process 1234 to finish,wait 1234
+wait for a background process to finish,wait YOUR_PID
+convert PDF document.pdf to text,pdftotext document.pdf
+convert PDF to text,pdftotext YOUR_PDF_FILE
+merge two CSV files file1.csv and file2.csv by a common column,"join -t',' file1.csv file2.csv"
+merge two CSV files by a common column,"join -t',' YOUR_FILE1 YOUR_FILE2"
+change SELinux context to httpd_sys_content_t for /var/www/html,sudo chcon -R -t httpd_sys_content_t /var/www/html
+change SELinux context,sudo chcon -R -t YOUR_CONTEXT YOUR_DIRECTORY
+git tag a commit v1.0.0,git tag v1.0.0
+git tag a commit,git tag YOUR_TAG
+create a Java JAR file app.jar from Main.class,jar cf app.jar Main.class
+create a Java JAR file,jar cf YOUR_JAR YOUR_CLASS
+truncate a file log.txt to zero bytes,truncate -s 0 log.txt
+truncate a file to zero bytes,truncate -s 0 YOUR_FILE
+convert CSV data.csv to TSV,"sed 's/,/\t/g' data.csv"
+convert CSV to TSV,"sed 's/,/\t/g' YOUR_FILE"
+install a global npm package typescript,npm install -g typescript
+install a global npm package,npm install -g YOUR_PACKAGE
+colorize grep output for error in log.txt,"grep --color=always ""error"" log.txt"
+colorize grep output,"grep --color=always ""YOUR_PATTERN"" YOUR_FILE"
+extract audio from a video video.mp4 to audio.mp3,ffmpeg -i video.mp4 -vn audio.mp3
+extract audio from a video,ffmpeg -i YOUR_VIDEO -vn YOUR_AUDIO
+helm upgrade a release myrelease from mychart/,helm upgrade myrelease mychart/
+helm upgrade a release,helm upgrade YOUR_RELEASE YOUR_CHART
+use ab for HTTP benchmarking with 100 requests and 10 concurrent connections to http://example.com/,ab -n 100 -c 10 http://example.com/
+use ab for HTTP benchmarking,ab -n YOUR_REQUESTS -c YOUR_CONCURRENT YOUR_URL
+lint Python code main.py with flake8,flake8 main.py
+lint Python code with flake8,flake8 YOUR_FILE
+show HTTP response time breakdown for https://example.com,"curl -w ""DNS: %{time_namelookup}s\nConnect: %{time_connect}s\nTLS: %{time_appconnect}s\nStart: %{time_starttransfer}s\nTotal: %{time_total}s\n"" -o /dev/null -s https://example.com"
+show HTTP response time breakdown,"curl -w ""DNS: %{time_namelookup}s\nConnect: %{time_connect}s\nTLS: %{time_appconnect}s\nStart: %{time_starttransfer}s\nTotal: %{time_total}s\n"" -o /dev/null -s YOUR_URL"
+display a file binary.dat in hexadecimal,xxd binary.dat | head -20
+display a file in hexadecimal,xxd YOUR_FILE | head -20
+create a systemd service file myservice,"sudo tee /etc/systemd/system/myservice.service << EOF
+[Unit]
+Description=My Service
+[Service]
+ExecStart=/usr/local/bin/myapp
+[Install]
+WantedBy=multi-user.target
+EOF"
+create a systemd service file,"sudo tee /etc/systemd/system/YOUR_SERVICE.service << EOF
+[Unit]
+Description=YOUR_DESCRIPTION
+[Service]
+ExecStart=YOUR_EXEC_PATH
+[Install]
+WantedBy=multi-user.target
+EOF"
+docker load an image from a file myapp.tar,docker load -i myapp.tar
+docker load an image from a file,docker load -i YOUR_FILE
+remove a shared memory segment 12345,ipcrm -m 12345
+remove a shared memory segment,ipcrm -m YOUR_SEGMENT_ID
+AWS stop an EC2 instance i-1234567890abcdef0,aws ec2 stop-instances --instance-ids i-1234567890abcdef0
+AWS stop an EC2 instance,aws ec2 stop-instances --instance-ids YOUR_INSTANCE_ID
+docker save an image myapp to a file myapp.tar,docker save -o myapp.tar myapp
+docker save an image to a file,docker save -o YOUR_OUTPUT YOUR_IMAGE
+change ownership recursively to user for project/,chown -R user project/
+change ownership recursively,chown -R YOUR_USER YOUR_DIRECTORY
+use strace to trace network operations for ./myapp,strace -e trace=network ./myapp
+use strace to trace network operations,strace -e trace=network YOUR_COMMAND
+run curl https://primary.com if curl https://primary.com fails run curl https://backup.com,curl https://primary.com || curl https://backup.com
+run a command only if the previous one fails,YOUR_COMMAND1 || YOUR_COMMAND2
+convert a file encoding from input.txt to output.txt,iconv -f ISO-8859-1 -t UTF-8 input.txt > output.txt
+convert a file encoding,iconv -f YOUR_FROM_ENCODING -t YOUR_TO_ENCODING YOUR_INPUT > YOUR_OUTPUT
+compile main.c with debug symbols to output,gcc -g -o output main.c
+compile with debug symbols,gcc -g -o YOUR_OUTPUT YOUR_SOURCE
+compress a video input.mp4 to compressed.mp4,ffmpeg -i input.mp4 -crf 28 compressed.mp4
+compress a video,ffmpeg -i YOUR_INPUT -crf YOUR_QUALITY YOUR_OUTPUT
+deny a port 23 through the firewall,sudo ufw deny 23
+deny a port through the firewall,sudo ufw deny YOUR_PORT
+show only matching part of lines matching [0-9]+ in data.txt,"grep -oP ""[0-9]+"" data.txt"
+show only matching part of lines,"grep -oP ""YOUR_PATTERN"" YOUR_FILE"
+use pass to show a password email/work,pass email/work
+use pass to show a password,pass YOUR_PASSWORD_PATH
+install a Python package requests with pip,pip install requests
+install a Python package with pip,pip install YOUR_PACKAGE
+create a Python virtual environment venv,python3 -m venv venv
+create a Python virtual environment,python3 -m venv YOUR_ENV_NAME
+convert PEM cert.pem to DER format cert.der,openssl x509 -in cert.pem -outform DER -out cert.der
+convert PEM to DER format,openssl x509 -in YOUR_PEM -outform DER -out YOUR_DER
+filter JSON array data.json by a condition,jq '.[] | select(.age > 25)' data.json
+filter JSON array by a condition,jq '.[] | select(.YOUR_CONDITION)' YOUR_FILE
+split a large file largefile.txt into smaller parts,split -b 100M largefile.txt part_
+split a large file into smaller parts,split -b YOUR_SIZE YOUR_FILE YOUR_PREFIX
+strip comments from a configuration file config.conf,grep -v '^#' config.conf | grep -v '^$'
+strip comments from a configuration file,grep -v '^#' YOUR_FILE | grep -v '^$'
+redirect stderr to a file error.log for command,command 2> error.log
+redirect stderr to a file,YOUR_COMMAND 2> YOUR_LOGFILE
+docker copy a file from container container_id:/app/data.txt to ./data.txt,docker cp container_id:/app/data.txt ./data.txt
+docker copy a file from container,docker cp YOUR_CONTAINER:YOUR_CONTAINER_PATH YOUR_LOCAL_PATH
+git show a specific commit abc1234,git show abc1234
+git show a specific commit,git show YOUR_COMMIT_HASH
+check ELF binary information for ./myapp,readelf -h ./myapp
+check ELF binary information,readelf -h YOUR_BINARY
+download a file https://example.com/file.zip with wget to a specific directory /tmp/,wget -P /tmp/ https://example.com/file.zip
+download a file with wget to a specific directory,wget -P YOUR_DIRECTORY YOUR_URL
+kubernetes create a namespace staging,kubectl create namespace staging
+kubernetes create a namespace,kubectl create namespace YOUR_NAMESPACE
+docker run a container nginx with port mapping 8080:80,docker run -d -p 8080:80 nginx
+docker run a container with port mapping,docker run -d -p YOUR_LOCAL_PORT:YOUR_CONTAINER_PORT YOUR_IMAGE
+ansible run playbook playbook.yml in check mode,ansible-playbook --check playbook.yml
+ansible run playbook in check mode,ansible-playbook --check YOUR_PLAYBOOK
+start a tmux session work,tmux new-session -s work
+start a tmux session,tmux new-session -s YOUR_SESSION_NAME
+GCP get credentials for a GKE cluster mycluster in region us-central1,gcloud container clusters get-credentials mycluster --region us-central1
+GCP get credentials for a GKE cluster,gcloud container clusters get-credentials YOUR_CLUSTER --region YOUR_REGION
+rate limit network traffic on interface eth0 to 1mbit,sudo tc qdisc add dev eth0 root tbf rate 1mbit burst 32kbit latency 400ms
+rate limit network traffic on an interface,sudo tc qdisc add dev YOUR_INTERFACE root tbf rate YOUR_RATE burst YOUR_BURST latency YOUR_LATENCY
+change the priority of a running process 1234 to 10,renice 10 -p 1234
+change the priority of a running process,renice YOUR_PRIORITY -p YOUR_PID
+mount a filesystem /dev/sdb1 to /mnt/usb,sudo mount /dev/sdb1 /mnt/usb
+mount a filesystem,sudo mount YOUR_DEVICE YOUR_MOUNT_POINT
