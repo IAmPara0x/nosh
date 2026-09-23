@@ -44,6 +44,7 @@ def main():
         load_in_4bit=False,
         load_in_8bit=False,
         full_finetuning=False,
+        do_one_hot_enc=True
     )
 
     print(f"Saving merged model ({args.save_method}) to {args.output_dir}")
